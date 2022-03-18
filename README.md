@@ -21,3 +21,7 @@
 
 ## Arcteture model 
 - The arquiteture model is avalilable in: (https://drive.google.com/drive/folders/1Am2HyrRsltKiXkUHeORgqAcMWP3VGUN0?usp=sharing)
+
+
+## Virtual IC Assistent link on Heroku
+> (https://virtual-assistent-frontend.herokuapp.com/)
