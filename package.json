@@ -2,6 +2,9 @@
   "name": "virtual-assistent-frontend",
   "private": true,
   "version": "0.0.0",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
