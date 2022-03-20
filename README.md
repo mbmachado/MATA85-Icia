@@ -32,7 +32,7 @@
   npm run build
 ```
 
-## Requiriments of system
+## System Requiriments
 
 - The requiriments for the project is avalilable on: (https://drive.google.com/drive/folders/1wQ_EoAkUwsMh9vt8VNHWr2dJ2YOKP9y1?usp=sharing)
 
