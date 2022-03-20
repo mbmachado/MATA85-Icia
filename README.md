@@ -6,7 +6,7 @@
 
 - To run the application you need to install Node.js version >=12.2.0.
 
-### Requiriments softwares
+### Software Requiriments 
 
 1. Install Node.js
 
