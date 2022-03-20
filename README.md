@@ -26,8 +26,8 @@
   npm run dev
 ```
 
-### Build the application for publishing
-
+### Building the application 
+- When publishing the application, you can build with the following command:
 ```
   npm run build
 ```
