@@ -18,24 +18,24 @@
   npm install
 ```
 
-### Test if all right
+### Running the app for Development
 
-- To check if the application running, run the code:
+- To check if the application is running, run the command:
 
 ```
   npm run dev
 ```
 
-### Building the application 
-- When publishing the application, you can build with the following command:
+### Building  the app for Production
+- When publishing the application in a production environment, use the following command to build the app:
 ```
   npm run build
 ```
 
 ## Requiriments of system
 
-- The requiriments of project is avalilable in: (https://drive.google.com/drive/folders/1wQ_EoAkUwsMh9vt8VNHWr2dJ2YOKP9y1?usp=sharing)
+- The requiriments for the project is avalilable on: (https://drive.google.com/drive/folders/1wQ_EoAkUwsMh9vt8VNHWr2dJ2YOKP9y1?usp=sharing)
 
 ## Arcteture model
 
-- The arquiteture model is avalilable in: (https://drive.google.com/drive/folders/1Am2HyrRsltKiXkUHeORgqAcMWP3VGUN0?usp=sharing)
+- The arquiteture model is avalilable on: (https://drive.google.com/drive/folders/1Am2HyrRsltKiXkUHeORgqAcMWP3VGUN0?usp=sharing)
