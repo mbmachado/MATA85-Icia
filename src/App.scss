@@ -1,0 +1,37 @@
+:root {
+  --red: #FF5C5C;
+  --blue: #72C3E6;
+  --dark-blue: #1C4F9C;
+  --green: #A9C959;
+  --yellow: #F9D055;
+  --ligth-grey: #E0E3E7;
+  --grey: #F1F1F1;
+  --dark-grey: #666;
+  --white: #FFF;
+}
+
+.App {
+  background: var(--white);
+
+  .App-header {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: var(--blue);
+    color: var(--white);
+    height: 80px;
+    padding: 0 10px;
+    width: 100%;
+
+    .App-logo {
+      width: 55px;
+      height: 55px;
+    }
+
+    .App-Title {
+      margin: 0 10px;
+
+    }
+  }
+}
+
