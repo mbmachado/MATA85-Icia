@@ -12,7 +12,7 @@
 
 ### Start project
 
-- To install base packages you need run the command:
+- To install base packages, you need to run the following command:
 
 ```
   npm install
@@ -20,7 +20,7 @@
 
 ### Running the app for Development
 
-- To check if the application is running, run the command:
+- To check if the application is running, run the following command:
 
 ```
   npm run dev
