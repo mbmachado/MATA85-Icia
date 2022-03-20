@@ -20,7 +20,7 @@
 
 ### Running the app for Development
 
-- To check if the application is running, run the following command:
+- To check if the application is running, execute the following command:
 
 ```
   npm run dev
