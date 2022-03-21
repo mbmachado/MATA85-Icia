@@ -46,7 +46,7 @@
 
 > https://virtual-assistent-frontend.herokuapp.com/
 
-#Deploy instructions
+# Deploy instructions
 
 1. It specifies how to deploy a react typescript vite app into Heroku platform.
 2. Clone the repository using: git clone https://github.com/mbmachado/virtual-assistent-frontend.git
