@@ -1,9 +1,9 @@
 {
-    "root": "./dist",
-    "clean_urls": true,
-    "encoding": "US-ASCII",
-    "routes": {
-        "/*.html": "index.html",
-        "/route/**": "index.html"
-    }
+  "root": "./dist",
+  "clean_urls": true,
+  "encoding": "US-ASCII",
+  "routes": {
+    "/*.html": "index.html",
+    "/route/**": "index.html"
+  }
 }
