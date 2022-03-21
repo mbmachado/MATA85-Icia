@@ -6,7 +6,7 @@
 
 - To run the application you need to install Node.js version >=12.2.0.
 
-### Software Requiriments 
+### Software Requiriments
 
 1. Install Node.js
 
@@ -26,8 +26,10 @@
   npm run dev
 ```
 
-### Building  the app for Production
+### Building the app for Production
+
 - When publishing the application in a production environment, use the following command to build the app:
+
 ```
   npm run build
 ```
@@ -39,3 +41,7 @@
 ## Arcteture model
 
 - The arquiteture model is avalilable on: (https://drive.google.com/drive/folders/1Am2HyrRsltKiXkUHeORgqAcMWP3VGUN0?usp=sharing)
+
+## Heroku App link
+
+> https://virtual-assistent-frontend.herokuapp.com/
