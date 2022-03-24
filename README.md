@@ -50,7 +50,7 @@
 
 ### Heroku App link
 
-> https://virtual-assistent-frontend.herokuapp.com/
+> (https://virtual-assistent-frontend.herokuapp.com/)
 
 ### Github Pages
 
