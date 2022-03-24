@@ -38,13 +38,17 @@
 
 - The requiriments for the project is avalilable on: (https://drive.google.com/drive/folders/1wQ_EoAkUwsMh9vt8VNHWr2dJ2YOKP9y1?usp=sharing)
 
+## Prototype
+
+- (https://www.figma.com/file/NfxpuhWE4XqnrQwzj5vObl/Prot%C3%B3tipo-Assistente-Virtual?node-id=0%3A1)
+
 ## Arcteture model
 
 - The arquiteture model is avalilable on: (https://drive.google.com/drive/folders/1Am2HyrRsltKiXkUHeORgqAcMWP3VGUN0?usp=sharing)
 
 ## Heroku App link
 
-> https://virtual-assistent-frontend.herokuapp.com/
+> (https://virtual-assistent-frontend.herokuapp.com/)
 
 # Deploy instructions
 
