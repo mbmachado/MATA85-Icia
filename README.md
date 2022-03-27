@@ -56,3 +56,4 @@
 6. Connect Heroku app to your repository and select your repository
 7. Set main as the branch
 8. Click in deploy button or define automatically deploy
+9. Done! If you defined automatically deploy, ever you update github the project will be deployed in Heroku
