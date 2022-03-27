@@ -1,7 +1,67 @@
-body {
-  margin: 0;
-  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --red: #FF5C5C;
+  --blue: #72C3E6;
+  --dark-blue: #1C4F9C;
+  --green: #A9C959;
+  --yellow: #F9D055;
+  --ligth-grey: #E0E3E7;
+  --grey: #F1F1F1;
+  --dark-grey: #666;
+  --white: #FFF;
 }
+
+$red: #FF5C5C;
+$blue: #72C3E6;
+$dark-blue: #1C4F9C;
+$green: #A9C959;
+$yellow: #F9D055;
+$ligth-grey: #E0E3E7;
+$grey: #F1F1F1;
+$dark-grey: #666;
+$white: #FFF;
+
+/* Applying Bootstrap Reboot */
+$link-color: $yellow;
+$link-hover-color: currentColor;
+$link-hover-decoration: none;
+$label-margin-bottom: 0;
+$grid-gutter-width: 16px;
+$border-radius: 4px;
+$font-weight-bold: 500;
+$font-weight-bolder: 700;
+
+$grid-breakpoints: (
+  xs: 0,      // Extra small screen / phone
+  sm: 600px,  // Small screen / phone
+  md: 960px,  // Medium screen / tablet
+  lg: 1280px, // Large screen / desktop
+  xl: 1600px  // Extra large screen / wide desktop
+);
+
+$container-max-widths: (
+  sm: 600px,
+  md: 960px,
+  lg: 1280px,
+  xl: 1600px
+);
+
+$theme-colors: (
+  "primary": $blue,
+  "secondary": $yellow,
+  "success": $green,
+  "warning": $red,
+  "danger": $red,
+  "info": $grey,
+  "dark": $dark-grey,
+);
+
+$font-family-sans-serif: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+  "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/alert";
