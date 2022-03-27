@@ -2,9 +2,8 @@ import './App.scss';
 
 import React from 'react';
 
-import logo from './assets/assistente.png';
-
 function App() {
+  const logo = './assets/logo.png';
   return (
     <div className="App">
       <header className="App-header">
