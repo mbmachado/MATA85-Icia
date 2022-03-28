@@ -1,16 +1,17 @@
 import './App.scss';
 
+import { ThemeProvider } from '@mui/material';
 import React from 'react';
+import { AppRoutes } from 'Routes';
+import { theme } from 'themes/ic-ufba.theme';
 
 function App() {
-  const logo = './assets/logo.png';
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-Title">ICIA</h1>
-      </header>
-    </div>
+    <>
+      <ThemeProvider theme={theme}>
+        <AppRoutes />
+      </ThemeProvider>
+    </>
   );
 }
 

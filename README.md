@@ -47,14 +47,7 @@
 - The arquiteture model is avalilable on: (https://drive.google.com/drive/folders/1Am2HyrRsltKiXkUHeORgqAcMWP3VGUN0?usp=sharing)
 
 ## Heroku App link
-
-<<<<<<< HEAD
-
-> # (https://virtual-assistent-frontend.herokuapp.com/)
->
 > https://virtual-assistent-frontend.herokuapp.com/
->
-> > > > > > > upstream-modifications
 
 # Deploy instructions
 
