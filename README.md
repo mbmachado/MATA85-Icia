@@ -14,25 +14,19 @@
 
 - To install base packages, you need to run the following command:
 
-```
-  npm install
-```
+> npm install
 
 ### Running the app for Development
 
 - To check if the application is running, execute the following command:
 
-```
-  npm run dev
-```
+> npm run dev
 
 ### Building the app for Production
 
 - When publishing the application in a production environment, use the following command to build the app:
 
-```
-  npm run build
-```
+> npm run build
 
 ## System Requiriments
 
