@@ -46,9 +46,11 @@
 
 - The arquiteture model is avalilable on: (https://drive.google.com/drive/folders/1Am2HyrRsltKiXkUHeORgqAcMWP3VGUN0?usp=sharing)
 
-## Heroku App link
+## App links
+### Heroku App link
 > https://virtual-assistent-frontend.herokuapp.com/
-
+### Github Pages
+> https://silvaengcomp.github.io/virtual-assistent-frontend/dist
 # Deploy instructions
 
 1. It specifies how to deploy a react typescript vite app into Heroku platform.
