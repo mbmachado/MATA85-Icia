@@ -11,6 +11,8 @@ import {
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { services } from 'services';
+
 import Auth from '../Auth';
 
 interface State {
@@ -45,7 +47,15 @@ export default function Login() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(values.email);
+    services.login(values.email, values.password)
+      .then( response => {
+        console.log(response.data)
+        navigate('/dashboard');
+      })
+      .catch( err => {
+        console.log(err);
+        setValues({ ...values, password: '' });
+      });
   };
 
   const handleRedirect = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -101,12 +111,11 @@ export default function Login() {
         </div>
 
         <Button
-          type="button" // Trocar para subimit quando for usar o form
+          type="submit"
           variant="contained"
           className="mb-3"
           disableElevation
           fullWidth
-          onClick={handleRedirect}
         >
           Entrar
         </Button>
