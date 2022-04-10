@@ -1,12 +1,11 @@
 .app {
-  
+  background: var(--blue);
+
   .app-header {
-    background: var(--blue);
     background-color: var(--blue);
     color: var(--white);
     height: 80px;
     padding: 0 10px;
-    width: 100%;
 
     .app-logo {
       width: 55px;
@@ -15,7 +14,6 @@
 
     .app-title {
       margin: 0 10px;
-
     }
   }
 }

@@ -1,4 +1,4 @@
-import './Dashboard.scss';
+import './styles.scss';
 
 import AdminTemplate from 'components/AdminTemplate';
 import React from 'react';
