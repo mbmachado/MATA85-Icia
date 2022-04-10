@@ -1,3 +1,5 @@
+import './styles.scss';
+
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
   Button,
@@ -9,7 +11,7 @@ import {
 } from '@mui/material';
 import { useAuthContext } from 'contexts/AuthContext/hook';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { services, setAuthOnLocalStorage } from 'services';
 
 import Auth from '..';
@@ -108,10 +110,9 @@ export default function Login() {
           />
         </FormControl>
 
-        {/* TODO implementar Esqueceu a senha */}
-        {/* <div className="d-flex mb-3 justify-content-end">
-          <Link href="/">Esqueceu sua senha?</Link>
-        </div> */}
+        <div className="d-flex mb-3 justify-content-end">
+          <Link to="/request-password">Esqueceu sua senha?</Link>
+        </div>
 
         <Button
           type="submit"

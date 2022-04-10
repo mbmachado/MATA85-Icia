@@ -1,4 +1,4 @@
-import './Questions.scss';
+import './styles.scss';
 
 import AdminTemplate from 'components/AdminTemplate';
 import QuestionCard from 'components/QuestionCard';

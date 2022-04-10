@@ -1,4 +1,4 @@
-import './QuestionCard.scss';
+import './styles.scss';
 
 import YellowButton from 'components/YellowButton';
 import { Question } from 'pages/Questions/types';

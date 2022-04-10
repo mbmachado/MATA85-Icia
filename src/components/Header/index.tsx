@@ -1,8 +1,9 @@
-import './Header.scss';
+import './styles.scss';
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { removeAuthOnLocalStorage, setAuthOnLocalStorage } from 'services';
+
 import Logo from '../../assets/assistente.png';
 import { useAuthContext } from '../../contexts/AuthContext/hook';
 
@@ -17,12 +18,12 @@ const Header = () => {
           <h1 className="app-title">ICIA</h1>
         </div>
         <button
+          id="logout-button"
           onClick={() => {
             removeAuthOnLocalStorage();
             clean();
             navigate('/login', { replace: true });
           }}
-          id="logout-button"
         >
           SAIR
         </button>

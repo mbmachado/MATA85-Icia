@@ -1,5 +1,8 @@
 import { useAuthContext } from 'contexts/AuthContext/hook';
 import Login from 'pages/Auth/Login';
+import RequestPassword from 'pages/Auth/RequestPassword';
+import ResetPassword from 'pages/Auth/ResetPassword';
+import Chat from 'pages/Chat';
 import CreateQuestion from 'pages/CreateQuestion';
 import Dashboard from 'pages/Dashboard';
 import Questions from 'pages/Questions';
@@ -34,14 +37,21 @@ export function AppRoutes() {
             <Route path="/users" element={<Users />} />
             <Route path="/questions" element={<Questions />} />
             <Route path="/questions/create" element={<CreateQuestion />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="users" element={<Users />} />
+            <Route path="questions" element={<Questions />} />
           </>
         ) : (
-          <Route path="/login" element={<Login />} />
+          <>
+            <Route path="login" element={<Login />} />
+            <Route path="request-password" element={<RequestPassword />} />
+            <Route path="reset-password" element={<ResetPassword />} />
+          </>
         )}
-        {/* TODO trocar a rota login para o chatbot */}
+        <Route path="/" element={<Chat />} />
         <Route
           path="*"
-          element={<Navigate to={isUserLogged ? '/dashboard' : '/login'} replace />}
+          element={<Navigate to={isUserLogged ? '/dashboard' : '/'} replace />}
         />
       </Routes>
     </Router>

@@ -1,4 +1,4 @@
-import './AdminTemplate.scss';
+import './styles.scss';
 
 import Header from 'components/Header';
 import Menu from 'components/Menu';
