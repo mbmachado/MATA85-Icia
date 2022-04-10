@@ -1,19 +1,42 @@
-.app {
-  background: var(--blue);
+.chat-container {
+  height: calc(100% - 80px);
 
-  .app-header {
-    background-color: var(--blue);
-    color: var(--white);
-    height: 80px;
-    padding: 0 10px;
+  aside {
+    width: 70px;
+    min-width: 70px;
+    padding: 10px 0;
 
-    .app-logo {
-      width: 55px;
-      height: 55px;
+    button.MuiButtonBase-root {
+      background-color: var(--grey);
     }
 
-    .app-title {
-      margin: 0 10px;
+    button.MuiButtonBase-root:hover {
+      background-color: var(--ligth-grey);
+    }
+
+    > * ~ * {
+      margin-top: 10px;
+    }
+  }
+
+  main {
+    .chat-toolbar {
+      min-height: 60px;
+      height: 60px;
+    }
+
+    .chat-content {
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      
+    }
+
+    .chat-input-container {
+      input {
+        outline: none;
+        border-width: 1px;
+      }
     }
   }
 }
