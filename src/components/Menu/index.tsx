@@ -31,7 +31,7 @@ const Menu = () => {
   return (
     <nav id="container">
       {links.map((link, index) => {
-        const isSelected = window.location.pathname === link.path;
+        const isSelected = window.location.pathname.includes(link.path);
         return (
           <Link to={link.path} key={index}>
             <div className="menu-option">

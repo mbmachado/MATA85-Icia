@@ -1,0 +1,20 @@
+
+.title-container{
+    padding: 12px 0 0 20px;
+    border-bottom: 1px solid var(--grey);
+}
+
+.questions-container{
+    padding: 12px 0 0 20px;
+}
+
+.title{
+    font-size: 24px;
+    color: var(--dark-grey);
+    font-weight: normal;
+}
+
+#questions-container{
+    display: flex;
+    flex-wrap: wrap;
+}
