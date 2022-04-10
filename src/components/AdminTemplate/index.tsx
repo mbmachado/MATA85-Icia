@@ -14,7 +14,7 @@ export default function AdminTemplate({ children }: AdminTemplateProps) {
       <Header />
       <div id="admin-container">
         <Menu />
-        {children}
+        <main id="admin-content">{children}</main>
       </div>
     </div>
   );

@@ -16,8 +16,13 @@ const AuthProvider: React.FC = ({ children }: AuthProviderProps) => {
     setAuthToken(token);
   };
 
+  const clean = () => {
+    setAuthToken('');
+    setUser(undefined);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, authToken, storeUser, storeToken }}>
+    <AuthContext.Provider value={{ user, authToken, storeUser, storeToken, clean }}>
       {children}
     </AuthContext.Provider>
   );
