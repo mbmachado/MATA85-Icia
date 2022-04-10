@@ -32,6 +32,9 @@
 
     .chat-message {
       max-width: 45%;
+      & ~ .chat-message {
+        margin-top: 20px;
+      }
 
       .chat-user {
         min-width: 48px;
