@@ -1,4 +1,4 @@
-import './Auth.scss';
+import './styles.scss';
 
 import React from 'react';
 
