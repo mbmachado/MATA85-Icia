@@ -37,7 +37,7 @@ export default function Chat() {
                   alt="assistente chatbot"
                 />
               </div>
-              <div className="chat-ballon text-white p-3">
+              <div className="chat-ballon text-white py-3 px-4">
                 <h3 className="mb-0">Qual tipo de informação você procura?</h3>
 
                 <div className="chat-menu ">
@@ -60,8 +60,71 @@ export default function Chat() {
               <div className="chat-user rounded-circle align-self-end d-flex align-items-center justify-content-center">
                 <Icon>person</Icon>
               </div>
-              <div className="chat-ballon text-dark p-3">
+              <div className="chat-ballon text-dark py-3 px-4">
                 <h3 className="mb-0">Cursos</h3>
+              </div>
+            </div>
+
+            <div className="chat-message d-flex left w-100">
+              <div className="chat-user rounded-circle align-self-end d-flex align-items-center justify-content-center">
+                <img
+                  src={AssistentImage}
+                  className="w-75 h-auto"
+                  alt="assistente chatbot"
+                />
+              </div>
+              <div className="chat-ballon text-white py-3 px-4">
+                <h3 className="mb-0">Qual categoria?</h3>
+
+                <div className="chat-menu ">
+                  <div className="chat-menu-option selected d-inline-block rounded-pill bg-info text-dark py-2 px-3 mt-3">
+                    <span>Graduação</span>
+                  </div>
+
+                  <div className="chat-menu-option d-inline-block rounded-pill bg-info text-dark py-2 px-3 mt-3">
+                    <span>Pós-graduação</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="chat-message d-flex right w-100">
+              <div className="chat-user rounded-circle align-self-end d-flex align-items-center justify-content-center">
+                <Icon>person</Icon>
+              </div>
+              <div className="chat-ballon text-dark py-3 px-4">
+                <h3 className="mb-0">Graduação</h3>
+              </div>
+            </div>
+
+            <div className="chat-message d-flex left w-100">
+              <div className="chat-user rounded-circle align-self-end d-flex align-items-center justify-content-center">
+                <img
+                  src={AssistentImage}
+                  className="w-75 h-auto"
+                  alt="assistente chatbot"
+                />
+              </div>
+              <div className="chat-ballon text-white py-3 px-4">
+                <h3 className="mb-0">Qual atividade você procura?</h3>
+
+                <div className="chat-menu ">
+                  <div className="chat-menu-option d-inline-block rounded-pill bg-info text-dark py-2 px-3 mt-3">
+                    <span>Ensino</span>
+                  </div>
+
+                  <div className="chat-menu-option d-inline-block rounded-pill bg-info text-dark py-2 px-3 mt-3">
+                    <span>Pesquisa</span>
+                  </div>
+
+                  <div className="chat-menu-option d-inline-block rounded-pill bg-info text-dark py-2 px-3 mt-3">
+                    <span>Extensão</span>
+                  </div>
+
+                  <div className="chat-menu-option d-inline-block rounded-pill bg-info text-dark py-2 px-3 mt-3">
+                    <span>Inovação</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
