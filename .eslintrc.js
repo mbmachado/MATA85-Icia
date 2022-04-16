@@ -23,6 +23,7 @@ module.exports = {
     browser: true,
     amd: true,
     node: true,
+    'jest/globals': true,
   },
   extends: [
     'eslint:recommended',

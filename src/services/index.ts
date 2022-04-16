@@ -20,6 +20,34 @@ export const services = {
       password,
     });
   },
+  getTopics: async (authToken: string) => {
+    let token = authToken
+    if(!token){
+      token = getAuthOnLocalStorage()?.token || ""
+    }
+    return api.get('/api/v3/topics', {
+      headers: { Accept: 'application/json, text/plain, */*',
+      'X-CSRF-TOKEN': '',
+      Authorization: `Bearer ${token}`,},
+    });
+  },
+  createQuestion: async (authToken:string,topicId:number,description: string, answare: string) => {
+    let token = authToken
+    if(!token){
+      token = getAuthOnLocalStorage()?.token || ""
+    }
+    const data = {
+      topic_id: topicId,
+      description,
+      answare,
+    }
+    console.log(data)
+    return api.post('/api/v3/questions',data, {
+      headers:{ Accept: 'application/json, text/plain, */*',
+      'X-CSRF-TOKEN': '',
+      Authorization: `Bearer ${token}`,},
+    });
+  },
 };
 
 export const setAuthOnLocalStorage = (state: LoginResonseData) => {

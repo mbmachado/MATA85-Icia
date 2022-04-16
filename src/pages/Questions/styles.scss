@@ -1,3 +1,7 @@
+#questions-container{
+    display: flex;
+    flex-wrap: wrap;
+}
 
 .title-container{
     padding: 12px 0 0 20px;
@@ -14,7 +18,38 @@
     font-weight: normal;
 }
 
-#questions-container{
-    display: flex;
-    flex-wrap: wrap;
+.filter-question-button{
+    padding: 10px 20px;
+    border-radius: 50px;  
+    background-color: var(--grey);
+    border: none;
+    color: var(--dark-grey);
+    margin-right: 20px;
+}
+
+.add-category-button{
+    padding: 10px 20px;
+    border-radius: 50px;  
+    border: 1px dashed  var(--dark-grey);
+    width: 120px;
+    background-color: var(--white);
+    color: var(--dark-grey);
+}
+
+.selected-button{
+    background-color: var(--yellow)
+}
+
+.breadcrumb-container{
+    color: var(--dark-grey);
+    margin: 20px 10px;
+}
+
+.breadcrumb-item{
+    text-decoration: underline;
+}
+
+.breadcrumb-item:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
