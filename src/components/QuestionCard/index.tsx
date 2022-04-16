@@ -9,12 +9,12 @@ interface QuestionCardProps {
 }
 
 const QuestionCard = ({ question }: QuestionCardProps) => {
-  const { id, description, answare } = question;
+  const { id, description, answer } = question;
   return (
     <div className="question-container">
       <div>
         <h4 className="question-text">{description}</h4>
-        <p className="question-text">{answare}</p>
+        <p className="question-text">{answer}</p>
       </div>
       <YellowButton name="EDITAR" onClick={(xablau) => {}} />
     </div>
