@@ -1,3 +1,3 @@
 {
-    testEnvironment: "jsdom"
+  testEnvironment: 'jsdom';
 }
