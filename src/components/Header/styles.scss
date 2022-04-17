@@ -1,9 +1,16 @@
 .app-header {
   background-color: var(--blue);
   height: 80px;
-
+  
   .app-logo {
     width: 55px;
     height: 55px;
   }
+}
+
+#logout-button{
+  background-color: var(--yellow);
+  color: var(--blank);
+  border:none;
+  padding: 10px 70px;
 }

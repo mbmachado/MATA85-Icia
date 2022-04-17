@@ -11,6 +11,7 @@ export interface ContextProps {
   authToken: string;
   storeUser: (user: User) => void;
   storeToken: (token: string) => void;
+  clean: () => void;
 }
 
 export interface AuthProviderProps {

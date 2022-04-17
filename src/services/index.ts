@@ -31,3 +31,7 @@ export const getAuthOnLocalStorage = () => {
   if (data) return JSON.parse(data) as LoginResonseData;
   return null;
 };
+
+export const removeAuthOnLocalStorage = () => {
+  window.sessionStorage.removeItem('AUTH');
+};
