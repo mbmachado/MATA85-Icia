@@ -12,12 +12,11 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <header className="d-flex  align-items-center justify-content-between app-header">
-        <div className="d-flex">
-          <img src={Logo} className="app-logo" alt="logo" />
-          <h1 className="app-title">ICIA</h1>
-        </div>
-        <button
+      <header className="d-flex align-items-center justify-content-start w-100 app-header px-2">
+        <img src={Logo} className="app-logo" alt="logo" />
+        <h1 className="text-white ml-2 mb-0">ICIA</h1>
+        <div className="flex-fill"></div>
+        {/* <button
           id="logout-button"
           onClick={() => {
             removeAuthOnLocalStorage();
@@ -26,7 +25,11 @@ const Header = () => {
           }}
         >
           SAIR
-        </button>
+        </button> */}
+        {/* Usar props children aqui,
+            pelo que tinha sido validado com o Prof no começo, não teria botão de Adm no Chatbot.
+            Os usuários do chatbot não devem saber do painel Adm.
+        */}
       </header>
     </div>
   );

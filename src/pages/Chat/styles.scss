@@ -1,24 +1,6 @@
 .chat-container {
   height: calc(100% - 80px);
 
-  aside {
-    width: 70px;
-    min-width: 70px;
-    padding: 10px 0;
-
-    button.MuiButtonBase-root {
-      background-color: var(--grey);
-    }
-
-    button.MuiButtonBase-root:hover {
-      background-color: var(--ligth-grey);
-    }
-
-    > * ~ * {
-      margin-top: 10px;
-    }
-  }
-
   main {
     .chat-toolbar {
       min-height: 60px;
@@ -28,89 +10,6 @@
     .chat-content {
       overflow-y: auto;
       overflow-x: hidden;
-    }
-
-    .chat-message {
-      max-width: 45%;
-      & ~ .chat-message {
-        margin-top: 20px;
-      }
-
-      .chat-user {
-        min-width: 48px;
-        width: 48px;
-        min-height: 48px;
-        height: 48px;
-      }
-
-      .chat-ballon {
-        border-radius: 40px;
-
-        .chat-menu {
-          .chat-menu-option ~ .chat-menu-option {
-            margin-left: 10px;
-          }
-
-          .chat-menu-option.selected {
-            background-color: var(--dark-blue) !important;
-            color: var(--white) !important;
-            text-decoration: underline;
-          }
-        }
-      }
-
-      &.left {
-        .chat-user, .chat-ballon {
-          background-color: var(--blue);
-        }
-
-        .chat-user {
-          margin-right: 10px;
-          order: 1;
-
-          img {
-            position: relative;
-            left: -2px;
-          }
-        }
-
-        .chat-ballon {
-          border-bottom-left-radius: 10px;
-          order: 2;
-        }
-
-        align-self: flex-start;
-      }
-
-      &.right {
-        justify-content: flex-end;
-
-        .chat-user, .chat-ballon {
-          background-color: var(--grey);
-        }
-
-        .chat-user {
-          margin-left: 10px;
-          order: 2;
-
-          min-width: 40px;
-          width: 40px;
-          min-height: 40px;
-          height: 40px;
-
-          img {
-            position: relative;
-            left: -2px;
-          }
-        }
-
-        .chat-ballon {
-          border-bottom-right-radius: 10px;
-          order: 1;
-        }
-
-        align-self: flex-end;
-      }
     }
 
     .chat-input-container {
