@@ -1,0 +1,17 @@
+aside {
+  width: 70px;
+  min-width: 70px;
+  padding: 10px 0;
+
+  button.MuiButtonBase-root {
+    background-color: var(--grey);
+  }
+
+  button.MuiButtonBase-root:not(:first-child) {
+    margin-top: 10px;
+  }
+
+  button.MuiButtonBase-root:hover {
+    background-color: var(--ligth-grey);
+  }
+}
