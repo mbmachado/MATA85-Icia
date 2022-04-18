@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { TopicsTree } from 'types';
 
 import { LoginResonseData } from './types';
 
@@ -20,12 +21,12 @@ export const services = {
       password,
     });
   },
-  getTopics: async (authToken: string) => {
+  getTopicsTree: async (authToken?: string) => {
     let token = authToken;
     if (!token) {
       token = getAuthOnLocalStorage()?.token || '';
     }
-    return api.get('/api/v3/topics', {
+    return api.get<TopicsTree[]>('/api/v3/topics', {
       headers: {
         Accept: 'application/json, text/plain, */*',
         'X-CSRF-TOKEN': '',
@@ -48,7 +49,6 @@ export const services = {
       description,
       answer,
     };
-    console.log(data);
     return api.post('/api/v3/questions', data, {
       headers: {
         Accept: 'application/json, text/plain, */*',
@@ -57,6 +57,8 @@ export const services = {
       },
     });
   },
+
+
 };
 
 export const setAuthOnLocalStorage = (state: LoginResonseData) => {

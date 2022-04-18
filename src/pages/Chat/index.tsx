@@ -1,69 +1,97 @@
 import './styles.scss';
 
-import { Brightness4, Cached, FormatSize, Send } from '@mui/icons-material';
-import { Icon, IconButton } from '@mui/material';
+import { Send } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 import Header from 'components/Header';
-import React from 'react';
+import React, { useEffect, useState } from "react";
 
-import AssistentImage from '../../assets/assistente.png';
+import ChatAside from 'components/Chat/ChatAside';
+import ChatMessage from 'components/Chat/ChatMessage';
+import { services } from 'services';
+import { Message, Topic, TopicsTree } from 'types';
 
 export default function Chat() {
+  const [topicsTree, setTopicsTree] = useState<TopicsTree[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  useEffect(() => {
+    services.getTopicsTree()
+      .then(response => {
+        setTopicsTree(response.data);
+
+        const topics: Topic[] = response.data
+          .filter(topic => topic.name.length !== 0)
+          .map(topic => {
+            return {
+              id: topic.id,
+              name: topic.name,
+            }
+          });
+
+        setMessages([...messages, {
+          text: 'Olá, eu sou a Icia. Como posso te ajudar? Escolha o tipo da informação você procura.',
+          side: 'left',
+          topics,
+        }]);
+      });
+  }, []);
+
+  const generateNextMessegesOnTopicSelection = (selectedTopicId: number) => {
+    const newMessages: Message[] = [];
+
+    const topicsSubTree = findTopicsSubTree(selectedTopicId, topicsTree);
+
+    newMessages.push({
+      text: topicsSubTree.name,
+      side: 'right',
+    });
+
+    const topics: Topic[] = topicsSubTree.children
+      .filter(topic => topic.name.length !== 0)
+      .map(topic => {
+        return {
+          id: topic.id,
+          name: topic.name,
+        }
+      });
+
+    newMessages.push({
+      text: 'Agora escolha um subtipo :)' ,
+      side: 'left',
+      topics,
+    });
+
+    setMessages([...messages, ...newMessages]);
+  }
+
+  const findTopicsSubTree = (topicId: number, topicsTree: TopicsTree[]): TopicsTree => {
+    const topicsSubTree = topicsTree.find(topic => topic.id === topicId);
+
+    
+    return topicsSubTree!;
+    
+    //topicsTree.forEach(obj => findTopicsSubTree(topicId, obj.children));
+  }
+  
   return (
     <div className="min-vh-100 vh-100 w-100">
       <Header />
       <div className="chat-container d-flex">
-        <aside className="d-none d-sm-flex flex-column align-items-center border-right border-info h-100">
-          <IconButton aria-label="brightness4">
-            <Brightness4 />
-          </IconButton>
-          <IconButton aria-label="cached">
-            <Cached />
-          </IconButton>
-          <IconButton aria-label="cached">
-            <FormatSize />
-          </IconButton>
-        </aside>
+        <ChatAside />
         <main className="d-flex flex-column flex-fill">
           <div className="chat-toolbar d-flex align-items-center border-bottom border-info px-3">
             <h2 className="mb-0 text-dark">Cursos {'>'} Graduação</h2>
           </div>
 
           <div className="chat-content d-flex flex-column flex-fill w-100 mw-100 p-3">
-            <div className="chat-message d-flex left w-100">
-              <div className="chat-user rounded-circle align-self-end d-flex align-items-center justify-content-center">
-                <img
-                  src={AssistentImage}
-                  className="w-75 h-auto"
-                  alt="assistente chatbot"
-                />
-              </div>
-              <div className="chat-ballon text-white p-3">
-                <h3 className="mb-0">Qual tipo de informação você procura?</h3>
-
-                <div className="chat-menu ">
-                  <div className="chat-menu-option d-inline-block rounded-pill bg-info text-dark py-2 px-3 mt-3">
-                    <span>Insitutinal</span>
-                  </div>
-
-                  <div className="chat-menu-option d-inline-block rounded-pill bg-info text-dark py-2 px-3 mt-3">
-                    <span>Pessoas</span>
-                  </div>
-
-                  <div className="chat-menu-option selected d-inline-block rounded-pill bg-info text-dark py-2 px-3 mt-3">
-                    <span>Cursos</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="chat-message d-flex right w-100">
-              <div className="chat-user rounded-circle align-self-end d-flex align-items-center justify-content-center">
-                <Icon>person</Icon>
-              </div>
-              <div className="chat-ballon text-dark p-3">
-                <h3 className="mb-0">Cursos</h3>
-              </div>
-            </div>
+            {messages.map((message, index) => (
+              <ChatMessage
+                key={index}
+                text={message.text}
+                side={message.side}
+                topics={message.topics}
+                generateNextMessegesOnTopicSelection={generateNextMessegesOnTopicSelection}/>
+            ))}
           </div>
 
           <div className="chat-toolbar d-flex align-items-center border-top border-info px-3">

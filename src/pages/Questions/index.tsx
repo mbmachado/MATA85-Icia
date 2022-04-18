@@ -19,10 +19,10 @@ export default function Questions() {
   const [selectedTopicId, setSelectedTopicId] = useState(0);
   const navigate = useNavigate();
   const { authToken } = useAuthContext();
-  const { getTopics } = services;
+  const { getTopicsTree } = services;
 
   useEffect(() => {
-    getTopics(authToken).then((response) => {
+    getTopicsTree(authToken).then((response) => {
       setCurrentTopics(response.data || []);
       setInitialData(response.data || []);
     });
