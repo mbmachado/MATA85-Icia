@@ -9,32 +9,27 @@ import { Topic } from 'types';
 
 type ChatMessageProps = {
   questions?: any;
-  side: "left" | "right";
+  side: 'left' | 'right';
   text: string;
   topics?: Topic[];
-  generateNextMessegesOnTopicSelection: (selectedTopicId: number) => void
+  generateNextMessegesOnTopicSelection: (selectedTopicId: number) => void;
 };
 
 export default function ChatMessage({
   side,
   text,
   topics,
-  generateNextMessegesOnTopicSelection
-}: ChatMessageProps) {  
-  
+  generateNextMessegesOnTopicSelection,
+}: ChatMessageProps) {
   const handleTopicSelection = (topicId: number) => {
     generateNextMessegesOnTopicSelection(topicId);
-  }
-  
+  };
+
   return (
     <div className={`chat-message d-flex ${side} w-100`}>
       <div className="chat-user rounded-circle align-self-end d-flex align-items-center justify-content-center">
         {side === 'left' ? (
-          <img
-            src={AssistentImage}
-            className="w-75 h-auto"
-            alt="assistente chatbot"
-          />
+          <img src={AssistentImage} className="w-75 h-auto" alt="assistente chatbot" />
         ) : (
           <Icon>person</Icon>
         )}
@@ -44,5 +39,5 @@ export default function ChatMessage({
         <ChatMessageTopics topics={topics} handleTopicSelection={handleTopicSelection} />
       </div>
     </div>
-  ); 
+  );
 }

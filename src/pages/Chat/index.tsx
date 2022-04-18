@@ -3,7 +3,7 @@ import './styles.scss';
 import { Send } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import Header from 'components/Header';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 import ChatAside from 'components/Chat/ChatAside';
 import ChatMessage from 'components/Chat/ChatMessage';
@@ -15,25 +15,27 @@ export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
-    services.getTopicsTree()
-      .then(response => {
-        setTopicsTree(response.data);
+    services.getTopicsTree().then((response) => {
+      setTopicsTree(response.data);
 
-        const topics: Topic[] = response.data
-          .filter(topic => topic.name.length !== 0)
-          .map(topic => {
-            return {
-              id: topic.id,
-              name: topic.name,
-            }
-          });
+      const topics: Topic[] = response.data
+        .filter((topic) => topic.name.length !== 0)
+        .map((topic) => {
+          return {
+            id: topic.id,
+            name: topic.name,
+          };
+        });
 
-        setMessages([...messages, {
+      setMessages([
+        ...messages,
+        {
           text: 'Olá, eu sou a Icia. Como posso te ajudar? Escolha o tipo da informação você procura.',
           side: 'left',
           topics,
-        }]);
-      });
+        },
+      ]);
+    });
   }, []);
 
   const generateNextMessegesOnTopicSelection = (selectedTopicId: number) => {
@@ -47,32 +49,31 @@ export default function Chat() {
     });
 
     const topics: Topic[] = topicsSubTree.children
-      .filter(topic => topic.name.length !== 0)
-      .map(topic => {
+      .filter((topic) => topic.name.length !== 0)
+      .map((topic) => {
         return {
           id: topic.id,
           name: topic.name,
-        }
+        };
       });
 
     newMessages.push({
-      text: 'Agora escolha um subtipo :)' ,
+      text: 'Agora escolha um subtipo :)',
       side: 'left',
       topics,
     });
 
     setMessages([...messages, ...newMessages]);
-  }
+  };
 
   const findTopicsSubTree = (topicId: number, topicsTree: TopicsTree[]): TopicsTree => {
-    const topicsSubTree = topicsTree.find(topic => topic.id === topicId);
+    const topicsSubTree = topicsTree.find((topic) => topic.id === topicId);
 
-    
     return topicsSubTree!;
-    
+
     //topicsTree.forEach(obj => findTopicsSubTree(topicId, obj.children));
-  }
-  
+  };
+
   return (
     <div className="min-vh-100 vh-100 w-100">
       <Header />
@@ -90,7 +91,10 @@ export default function Chat() {
                 text={message.text}
                 side={message.side}
                 topics={message.topics}
-                generateNextMessegesOnTopicSelection={generateNextMessegesOnTopicSelection}/>
+                generateNextMessegesOnTopicSelection={
+                  generateNextMessegesOnTopicSelection
+                }
+              />
             ))}
           </div>
 

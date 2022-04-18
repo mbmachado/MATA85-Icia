@@ -1,6 +1,6 @@
 import './styles.scss';
 
-import React from "react";
+import React from 'react';
 import { Brightness4, FormatSize, Home } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 
@@ -17,5 +17,5 @@ export default function ChatAside() {
         <FormatSize />
       </IconButton>
     </aside>
-  )
+  );
 }

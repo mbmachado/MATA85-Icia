@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TopicsTree } from 'types';
+import { TopicsTree, User } from 'types';
 
 import { LoginResonseData } from './types';
 
@@ -23,6 +23,14 @@ export const services = {
   },
   getTopicsTree: async () => {
     return api.get<TopicsTree[]>('/api/v1/topics');
+  },
+  getUsers: async () => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.get<User[]>('/api/v3/users', config);
   },
 };
 
