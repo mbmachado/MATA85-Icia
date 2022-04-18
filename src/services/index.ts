@@ -21,9 +21,44 @@ export const services = {
       password,
     });
   },
-  getTopicsTree: async () => {
-    return api.get<TopicsTree[]>('/api/v1/topics');
+  getTopicsTree: async (authToken?: string) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+    return api.get<TopicsTree[]>('/api/v3/topics', {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
+    });
   },
+  createQuestion: async (
+    authToken: string,
+    topicId: number,
+    description: string,
+    answer: string,
+  ) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+    const data = {
+      topic_id: topicId,
+      description,
+      answer,
+    };
+    return api.post('/api/v3/questions', data, {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+
+
 };
 
 export const setAuthOnLocalStorage = (state: LoginResonseData) => {
