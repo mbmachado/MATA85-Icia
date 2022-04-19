@@ -33,13 +33,13 @@ export function AppRoutes() {
       <Routes>
         {isUserLogged ? (
           <>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/questions" element={<Questions />} />
-            <Route path="/questions/create" element={<CreateQuestion />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="users" element={<Users />} />
-            <Route path="questions" element={<Questions />} />
+            <Route path="/dashboard" element={<Navigate to="/dashboard/questions" />} />
+            <Route path="/dashboard/users" element={<Users />} />
+            <Route path="/dashboard/questions" element={<Questions />} />
+            <Route path="/dashboard/questions/create" element={<CreateQuestion />} />
+            <Route path="dashboard" element={<Navigate to="/dashboard/questions" />} />
+            <Route path="questions" element={<Navigate to="/dashboard/questions" />} />
+            <Route path="users" element={<Navigate to="/dashboard/users" />} />
           </>
         ) : (
           <>

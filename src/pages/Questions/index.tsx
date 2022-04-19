@@ -106,7 +106,7 @@ export default function Questions() {
                 <YellowButton
                   name="ADICIONAR"
                   onClick={() => {
-                    navigate('/questions/create', {
+                    navigate('/dashboard/questions/create', {
                       state: { topicId: selectedTopicId, topicName: selectedTopicName },
                     });
                   }}
