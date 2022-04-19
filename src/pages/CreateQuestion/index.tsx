@@ -52,7 +52,7 @@ const CreateQuestion = () => {
       <form onSubmit={handleSubmit} className="formContainer">
         <div className="formControl">
           <FormControl
-            className="formControl"
+            className="formControl mt-4"
             variant="outlined"
             fullWidth
             color="secondary"
@@ -69,10 +69,10 @@ const CreateQuestion = () => {
         </div>
         <div className="formControl mb-2">
           <FormControl
-            className="formControl"
+            className="formControl mt-4"
             variant="outlined"
-            fullWidth
             color="secondary"
+            fullWidth
           >
             <InputLabel htmlFor="email">Resposta</InputLabel>
             <OutlinedInput
