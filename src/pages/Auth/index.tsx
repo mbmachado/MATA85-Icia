@@ -5,7 +5,7 @@ import React from 'react';
 import Logo from '../../assets/logo-icia-vertical.svg';
 
 type AuthProps = {
-  children?: any;
+  children?: React.ReactNode;
 };
 
 export default function Auth({ children }: AuthProps) {

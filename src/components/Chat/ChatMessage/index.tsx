@@ -8,7 +8,7 @@ import IciaImage from '../../../assets/icon-icia.svg';
 import ChatMessageItems from '../ChatMessageItems';
 
 type ChatMessageProps = {
-  children?: any;
+  children?: React.ReactNode;
   questions?: Question[];
   side: 'left' | 'right';
   text?: string;

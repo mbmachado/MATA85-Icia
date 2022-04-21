@@ -3,7 +3,7 @@ import { TopicsTree } from 'types';
 
 import { LoginResonseData } from './types';
 
-const header = {
+const headers = {
   Accept: 'application/json, text/plain, */*',
   'X-CSRF-TOKEN': '',
   Authorization: 'Bearer ',
@@ -11,7 +11,7 @@ const header = {
 
 const api = axios.create({
   baseURL: 'http://127.0.0.1:8000',
-  headers: header,
+  headers: headers,
 });
 
 export const services = {
@@ -21,7 +21,44 @@ export const services = {
       password,
     });
   },
-  getTopicsTree: async () => {
+  getTopicsTree: async (authToken?: string) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+    return api.get<TopicsTree[]>('/api/v3/topics', {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  createQuestion: async (
+    authToken: string,
+    topicId: number,
+    description: string,
+    answer: string,
+  ) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+    const data = {
+      topic_id: topicId,
+      description,
+      answer,
+    };
+    return api.post('/api/v3/questions', data, {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+
+  getInitialTopicsTree: async () => {
     return api.get<TopicsTree[]>('/api/v1/topics');
   },
   getTopicsTreeById: async (id: number) => {
