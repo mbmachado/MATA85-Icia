@@ -3,43 +3,55 @@ import './styles.scss';
 import { Send } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import Header from 'components/Header';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
 import ChatAside from 'components/Chat/ChatAside';
 import ChatMessage from 'components/Chat/ChatMessage';
 import { services } from 'services';
 import { Message, Topic, TopicsTree } from 'types';
+import ChatTypingLoader from 'components/Chat/ChatTypingLoader';
 
 export default function Chat() {
+  const chatScrollableContainer = useRef<HTMLDivElement>(null);
   const [topicsTree, setTopicsTree] = useState<TopicsTree[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
-    services.getTopicsTree()
-      .then(response => {
-        setTopicsTree(response.data);
+    services.getTopicsTree().then((response) => {
+      setTopicsTree(response.data);
 
-        const topics: Topic[] = response.data
-          .filter(topic => topic.name.length !== 0)
-          .map(topic => {
-            return {
-              id: topic.id,
-              name: topic.name,
-            }
-          });
+      const topics: Topic[] = response.data
+        .filter((topic) => topic.name.length !== 0)
+        .map((topic) => {
+          return {
+            id: topic.id,
+            name: topic.name,
+          };
+        });
 
-        setMessages([...messages, {
+      setMessages([
+        ...messages,
+        {
           text: 'Olá, eu sou a Icia. Como posso te ajudar? Escolha o tipo da informação você procura.',
           side: 'left',
           topics,
-        }]);
+        },
+      ]);
+    });
+
+    if (chatScrollableContainer) {
+      chatScrollableContainer.current!.addEventListener('DOMNodeInserted', event => {
+        const target = event.currentTarget as HTMLDivElement;
+        target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
       });
+    }
   }, []);
 
-  const generateNextMessegesOnTopicSelection = (selectedTopicId: number) => {
+  const generateNextMessegesOnTopicSelection = async (selectedTopicId: number) => {
     const newMessages: Message[] = [];
 
-    const topicsSubTree = findTopicsSubTree(selectedTopicId, topicsTree);
+    const response = await services.getSubTopicsTree(selectedTopicId);
+    const topicsSubTree = response.data.find(Boolean)!;
 
     newMessages.push({
       text: topicsSubTree.name,
@@ -47,32 +59,23 @@ export default function Chat() {
     });
 
     const topics: Topic[] = topicsSubTree.children
-      .filter(topic => topic.name.length !== 0)
-      .map(topic => {
+      .filter((topic) => topic.name.length !== 0)
+      .map((topic) => {
         return {
           id: topic.id,
           name: topic.name,
-        }
+        };
       });
 
     newMessages.push({
-      text: 'Agora escolha um subtipo :)' ,
+      text: 'Agora escolha uma subcategoria :)',
       side: 'left',
       topics,
     });
 
     setMessages([...messages, ...newMessages]);
-  }
+  };
 
-  const findTopicsSubTree = (topicId: number, topicsTree: TopicsTree[]): TopicsTree => {
-    const topicsSubTree = topicsTree.find(topic => topic.id === topicId);
-
-    
-    return topicsSubTree!;
-    
-    //topicsTree.forEach(obj => findTopicsSubTree(topicId, obj.children));
-  }
-  
   return (
     <div className="min-vh-100 vh-100 w-100">
       <Header />
@@ -83,15 +86,25 @@ export default function Chat() {
             <h2 className="mb-0 text-dark">Cursos {'>'} Graduação</h2>
           </div>
 
-          <div className="chat-content d-flex flex-column flex-fill w-100 mw-100 p-3">
+          <div
+            ref={chatScrollableContainer}
+            className="chat-content d-flex flex-column flex-fill w-100 mw-100 p-3"
+          >
             {messages.map((message, index) => (
               <ChatMessage
                 key={index}
                 text={message.text}
                 side={message.side}
                 topics={message.topics}
-                generateNextMessegesOnTopicSelection={generateNextMessegesOnTopicSelection}/>
+                generateNextMessegesOnTopicSelection={
+                  generateNextMessegesOnTopicSelection
+                }
+              />
             ))}
+
+            <ChatMessage side={'left'}>
+              <ChatTypingLoader />
+            </ChatMessage>
           </div>
 
           <div className="chat-toolbar d-flex align-items-center border-top border-info px-3">

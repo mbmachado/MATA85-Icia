@@ -10,7 +10,7 @@ const header = {
 };
 
 const api = axios.create({
-  baseURL: 'https://virtual-assistent-backend.herokuapp.com',
+  baseURL: 'http://127.0.0.1:8000',
   headers: header,
 });
 
@@ -23,6 +23,9 @@ export const services = {
   },
   getTopicsTree: async () => {
     return api.get<TopicsTree[]>('/api/v1/topics');
+  },
+  getSubTopicsTree: async (id: number) => {
+    return api.get<TopicsTree[]>(`/api/v1/topics/${id}`);
   },
 };
 
