@@ -9,7 +9,7 @@ import {
   OutlinedInput,
 } from '@mui/material';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { services } from 'services';
 
 import Auth from '../Auth';
@@ -21,7 +21,7 @@ interface State {
 }
 
 export default function Login() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [values, setValues] = React.useState<State>({
     email: '',
     password: '',
@@ -58,10 +58,10 @@ export default function Login() {
       });
   };
 
-  const handleRedirect = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    navigate('/dashboard');
-  };
+  // const handleRedirect = (event: React.MouseEvent<HTMLButtonElement>) => {
+  //   event.preventDefault();
+  //   navigate('/dashboard');
+  // };
 
   return (
     <Auth>
