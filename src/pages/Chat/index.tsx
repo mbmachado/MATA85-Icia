@@ -1,112 +1,174 @@
 import './styles.scss';
 
-import { Send } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
-import Header from 'components/Header';
-import React, { useEffect, useState } from "react";
-
 import ChatAside from 'components/Chat/ChatAside';
+import ChatHeader from 'components/Chat/ChatHeader';
+import ChatInput from 'components/Chat/ChatInput';
 import ChatMessage from 'components/Chat/ChatMessage';
+import ChatTypingLoader from 'components/Chat/ChatTypingLoader';
+import Header from 'components/Header';
+import React, { useEffect, useRef, useState } from 'react';
 import { services } from 'services';
-import { Message, Topic, TopicsTree } from 'types';
+import { Message, Question, Topic, TopicsTree } from 'types';
 
 export default function Chat() {
-  const [topicsTree, setTopicsTree] = useState<TopicsTree[]>([]);
+  const chatScrollableContainer = useRef<HTMLDivElement>(null);
+  const [chatRefreshCount, setChatRefreshCount] = useState<number>(0);
   const [messages, setMessages] = useState<Message[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const genericMessages = [
+    'Agora escolha uma opção :)',
+    'Escolha mais uma opção abaixo.',
+    'Quase lá, selecione uma opção.',
+    'Veja algumas opções que encontrei :)',
+  ];
 
   useEffect(() => {
-    services.getTopicsTree()
-      .then(response => {
-        setTopicsTree(response.data);
+    services.getInitialTopicsTree().then((response) => {
+      const topics: Topic[] = getMessageTopics(response.data);
 
-        const topics: Topic[] = response.data
-          .filter(topic => topic.name.length !== 0)
-          .map(topic => {
-            return {
-              id: topic.id,
-              name: topic.name,
-            }
-          });
-
-        setMessages([...messages, {
-          text: 'Olá, eu sou a Icia. Como posso te ajudar? Escolha o tipo da informação você procura.',
+      setLoading(false);
+      setMessages([
+        ...messages,
+        {
+          text:
+            chatRefreshCount === 0
+              ? 'Olá, eu sou a Icia. Como posso te ajudar hoje?'
+              : 'Ok... vamos tentar de novo. Como posso te ajudar hoje?',
           side: 'left',
           topics,
-        }]);
-      });
-  }, []);
-
-  const generateNextMessegesOnTopicSelection = (selectedTopicId: number) => {
-    const newMessages: Message[] = [];
-
-    const topicsSubTree = findTopicsSubTree(selectedTopicId, topicsTree);
-
-    newMessages.push({
-      text: topicsSubTree.name,
-      side: 'right',
+        },
+      ]);
     });
 
-    const topics: Topic[] = topicsSubTree.children
-      .filter(topic => topic.name.length !== 0)
-      .map(topic => {
-        return {
-          id: topic.id,
-          name: topic.name,
-        }
+    if (chatRefreshCount === 0) {
+      startChatScrollableContainer();
+    }
+  }, [chatRefreshCount]);
+
+  const startChatScrollableContainer = (): void => {
+    if (chatScrollableContainer) {
+      chatScrollableContainer.current!.addEventListener('DOMNodeInserted', (event) => {
+        const target = event.currentTarget as HTMLDivElement;
+        target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
       });
+    }
+  };
+
+  const handleSidebarOptionClick = (option: 'home' | 'dark' | 'font'): void => {
+    if (option === 'home') {
+      setChatRefreshCount(1 + chatRefreshCount);
+    } else {
+      alert('Não implementado!');
+    }
+  };
+
+  const generateMessegesForTopicSelection = async (topic: Topic) => {
+    const newMessages: Message[] = [
+      ...messages,
+      {
+        text: topic.name,
+        side: 'right',
+      },
+    ];
+
+    setMessages(newMessages);
+    setLoading(true);
+
+    const response = await services.getTopicsTreeById(topic.id);
+    const topicsSubTree = response.data.find(Boolean)!;
+    const topics = getMessageTopics(topicsSubTree.children);
+    const questions = topicsSubTree.questions;
 
     newMessages.push({
-      text: 'Agora escolha um subtipo :)' ,
+      text: genericMessages[Math.floor(Math.random() * genericMessages.length)],
       side: 'left',
       topics,
+      questions,
+    });
+
+    setLoading(false);
+    setMessages(newMessages);
+  };
+
+  const generateMessegesForQuestionSelection = async (question: Question) => {
+    const newMessages: Message[] = [
+      ...messages,
+      {
+        text: question.description,
+        side: 'right',
+      },
+      {
+        text: question.answer,
+        side: 'left',
+      },
+    ];
+
+    setMessages(newMessages);
+  };
+
+  const generateMessegesOnFormSubmit = async (text: string) => {
+    const newMessages: Message[] = [];
+
+    newMessages.push({ text, side: 'right' });
+    newMessages.push({
+      text: 'Ohh, não... Não encontrei uma resposta para a sua pergunta. \
+        Tente pesquisar com outro termo ou utilizar as opções do menu :(',
+      side: 'left',
     });
 
     setMessages([...messages, ...newMessages]);
-  }
+  };
 
-  const findTopicsSubTree = (topicId: number, topicsTree: TopicsTree[]): TopicsTree => {
-    const topicsSubTree = topicsTree.find(topic => topic.id === topicId);
+  const getMessageTopics = (topicsTree: TopicsTree[]): Topic[] => {
+    const topics: Topic[] = topicsTree
+      .filter((topic) => !!topic.name.length)
+      .map((topic) => {
+        return {
+          id: topic.id,
+          name: topic.name,
+        };
+      });
 
-    
-    return topicsSubTree!;
-    
-    //topicsTree.forEach(obj => findTopicsSubTree(topicId, obj.children));
-  }
-  
+    return topics;
+  };
+
   return (
-    <div className="min-vh-100 vh-100 w-100">
+    <div className="chatbot d-block min-vh-100 vh-100 w-100 mx-auto">
       <Header />
       <div className="chat-container d-flex">
-        <ChatAside />
+        <ChatAside handleSidebarOptionClick={handleSidebarOptionClick} />
         <main className="d-flex flex-column flex-fill">
           <div className="chat-toolbar d-flex align-items-center border-bottom border-info px-3">
-            <h2 className="mb-0 text-dark">Cursos {'>'} Graduação</h2>
+            <ChatHeader />
           </div>
 
-          <div className="chat-content d-flex flex-column flex-fill w-100 mw-100 p-3">
+          <div
+            ref={chatScrollableContainer}
+            className="chat-content d-flex flex-column flex-fill w-100 mw-100 p-3"
+          >
             {messages.map((message, index) => (
               <ChatMessage
                 key={index}
                 text={message.text}
                 side={message.side}
                 topics={message.topics}
-                generateNextMessegesOnTopicSelection={generateNextMessegesOnTopicSelection}/>
+                questions={message.questions}
+                generateMessegesForTopicSelection={generateMessegesForTopicSelection}
+                generateMessegesForQuestionSelection={
+                  generateMessegesForQuestionSelection
+                }
+              />
             ))}
+
+            {loading ? (
+              <ChatMessage side={'left'}>
+                <ChatTypingLoader />
+              </ChatMessage>
+            ) : null}
           </div>
 
           <div className="chat-toolbar d-flex align-items-center border-top border-info px-3">
-            <div className="chat-input-container rounded-pill border border-info position-relative overflow-hidden w-100">
-              <input
-                className="py-2 pl-4 pr-5 w-100 border-0"
-                placeholder="Digite algo"
-                type="text"
-              />
-              <div className="position-absolute">
-                <IconButton aria-label="cached">
-                  <Send />
-                </IconButton>
-              </div>
-            </div>
+            <ChatInput generateMessegesOnFormSubmit={generateMessegesOnFormSubmit} />
           </div>
         </main>
       </div>

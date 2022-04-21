@@ -1,15 +1,15 @@
-.chat-menu {
-  button.chat-menu-option {
+.chat-items {
+  button.chat-item-option {
     opacity: 1;
     cursor: pointer;
     transition: all .4s;
   }
   
-  button.chat-menu-option:hover {
+  button.chat-item-option:hover {
     opacity: 0.8;
   }
   
-  button.chat-menu-option.selected {
+  button.chat-item-option.selected {
     background-color: var(--dark-blue) !important;
     color: var(--white) !important;
     text-decoration: underline;
