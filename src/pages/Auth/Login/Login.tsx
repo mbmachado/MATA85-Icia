@@ -10,7 +10,6 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { services } from 'services';
 
 import Auth from '../Auth';
@@ -47,12 +46,13 @@ export default function Login() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    services.login(values.email, values.password)
-      .then( response => {
-        console.log(response.data)
-        navigate('/dashboard');
+    services
+      .login(values.email, values.password)
+      .then((response) => {
+        console.log(response.data);
+        // navigate('/dashboard');
       })
-      .catch( err => {
+      .catch((err) => {
         console.log(err);
         setValues({ ...values, password: '' });
       });
