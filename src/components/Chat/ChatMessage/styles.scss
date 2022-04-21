@@ -1,5 +1,6 @@
 .chat-message {
-  max-width: 45%;
+  max-width: 80%;
+
   & ~ .chat-message {
     margin-top: 20px;
   }
@@ -25,8 +26,7 @@
       order: 1;
 
       img {
-        position: relative;
-        left: -2px;
+        width: 32px;
       }
     }
 
@@ -54,11 +54,6 @@
       width: 40px;
       min-height: 40px;
       height: 40px;
-
-      img {
-        position: relative;
-        left: -2px;
-      }
     }
 
     .chat-ballon {
@@ -68,5 +63,11 @@
     }
 
     align-self: flex-end;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .chat-message {
+    max-width: 90%;
   }
 }

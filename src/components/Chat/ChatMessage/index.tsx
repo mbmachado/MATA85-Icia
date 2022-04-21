@@ -1,48 +1,74 @@
 import './styles.scss';
 
-import React from 'react';
 import { Icon } from '@mui/material';
+import React from 'react';
+import { Question, Topic } from 'types';
 
-import AssistentImage from '../../../assets/assistente.png';
-import ChatMessageTopics from '../ChatMessageTopics';
-import { Topic } from 'types';
+import IciaImage from '../../../assets/icon-icia.svg';
+import ChatMessageItems from '../ChatMessageItems';
 
 type ChatMessageProps = {
   children?: any;
-  questions?: any;
+  questions?: Question[];
   side: 'left' | 'right';
   text?: string;
   topics?: Topic[];
-  generateNextMessegesOnTopicSelection?: (selectedTopicId: number) => void;
+  generateMessegesForTopicSelection?: (topic: Topic) => void;
+  generateMessegesForQuestionSelection?: (question: Question) => void;
 };
 
 export default function ChatMessage({
   children,
+  questions,
   side,
   text,
   topics,
-  generateNextMessegesOnTopicSelection,
+  generateMessegesForTopicSelection,
+  generateMessegesForQuestionSelection,
 }: ChatMessageProps) {
-  const handleTopicSelection = (topicId: number) => {
-    if (typeof generateNextMessegesOnTopicSelection === 'function')
-      generateNextMessegesOnTopicSelection(topicId);
+  const handleItemSelection = (item: Question | Topic) => {
+    if (typeof generateMessegesForTopicSelection === 'function' && isTopic(item)) {
+      generateMessegesForTopicSelection(item);
+    }
+    if (typeof generateMessegesForQuestionSelection === 'function' && isQuestion(item)) {
+      generateMessegesForQuestionSelection(item);
+    }
+  };
+
+  const isTopic = (item: Topic | Question): item is Topic => {
+    return (item as Topic).name !== undefined;
+  };
+
+  const isQuestion = (item: Question | Topic): item is Question => {
+    return (item as Question).description !== undefined;
   };
 
   return (
     <div className={`chat-message d-flex ${side} w-100`}>
       <div className="chat-user rounded-circle align-self-end d-flex align-items-center justify-content-center">
         {side === 'left' ? (
-          <img src={AssistentImage} className="w-75 h-auto" alt="assistente chatbot" />
+          <img src={IciaImage} className="h-auto" alt="assistente chatbot" />
         ) : (
           <Icon>person</Icon>
         )}
       </div>
       <div className="chat-ballon py-3 px-4">
-        { !!text?.length ? (<h3 className="mb-0">{text}</h3>) : null }
-        
+        {text?.length ? <h3 className="mb-0">{text}</h3> : null}
+
         {children}
-          
-        <ChatMessageTopics topics={topics} handleTopicSelection={handleTopicSelection} />
+
+        <ChatMessageItems items={topics} handleItemSelection={handleItemSelection} />
+
+        {questions?.length ? (
+          <div className="d-block w-100">
+            <h4 className="text-white mt-3 mb-0">Questões:</h4>
+            <ChatMessageItems
+              items={questions}
+              handleItemSelection={handleItemSelection}
+            />
+          </div>
+        ) : null}
+        <div></div>
       </div>
     </div>
   );

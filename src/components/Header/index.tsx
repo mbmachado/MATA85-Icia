@@ -4,7 +4,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { removeAuthOnLocalStorage, setAuthOnLocalStorage } from 'services';
 
-import Logo from '../../assets/assistente.png';
+import Logo from '../../assets/logo-icia-horizontal-text-white.svg';
 import { useAuthContext } from '../../contexts/AuthContext/hook';
 
 const Header = () => {
@@ -14,7 +14,6 @@ const Header = () => {
     <div>
       <header className="d-flex align-items-center justify-content-start w-100 app-header px-2">
         <img src={Logo} className="app-logo" alt="logo" />
-        <h1 className="text-white ml-2 mb-0">ICIA</h1>
         <div className="flex-fill"></div>
         {/* <button
           id="logout-button"

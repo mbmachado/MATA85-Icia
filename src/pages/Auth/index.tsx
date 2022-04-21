@@ -2,7 +2,7 @@ import './styles.scss';
 
 import React from 'react';
 
-import Logo from '../../assets/assistente.png';
+import Logo from '../../assets/logo-icia-vertical.svg';
 
 type AuthProps = {
   children?: any;
@@ -16,7 +16,7 @@ export default function Auth({ children }: AuthProps) {
     >
       <div className="shadow-sm rounded bg-white w-100 p-3">
         <div className="px-3 pt-3 pb-4">
-          <a className="logo d-block mx-auto mb-2">
+          <a className="logo d-block mx-auto mb-3">
             <img src={Logo} alt="Logomarca ICIA" className="w-100" />
           </a>
           {children}

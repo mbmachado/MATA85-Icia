@@ -69,7 +69,6 @@ export default function Login() {
 
   return (
     <Auth>
-      <h2 className="text-center mb-2">Acessar conta</h2>
       <p className="text-center mb-3">
         Faça login com e-mail e senha para acessar o painel administrativo do Assistente
         Virtual do <span className="text-primary font-weight-bold">IC-UFBA</span>.

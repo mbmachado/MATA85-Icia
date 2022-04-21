@@ -24,8 +24,13 @@ export const services = {
   getTopicsTree: async () => {
     return api.get<TopicsTree[]>('/api/v1/topics');
   },
-  getSubTopicsTree: async (id: number) => {
+  getTopicsTreeById: async (id: number) => {
     return api.get<TopicsTree[]>(`/api/v1/topics/${id}`);
+  },
+  getTopicsTreeByNlp: async (text: string) => {
+    return api.get<TopicsTree[]>(`/api/v3/nlp`, {
+      params: { text },
+    });
   },
 };
 

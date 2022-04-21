@@ -25,4 +25,4 @@ interface TopicsTree {
   children: TopicsTree[];
 }
 
-export type { Topic, Question, Message, TopicsTree };
+export type { Message, Question, Topic, TopicsTree };
