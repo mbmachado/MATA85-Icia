@@ -53,7 +53,17 @@ export default function ChatMessage({
         )}
       </div>
       <div className="chat-ballon py-3 px-4">
-        {text?.length ? <h3 className="mb-0">{text}</h3> : null}
+        {text?.length ? (
+          <h3 className="mb-0">
+            {text.includes('https://') ? (
+              <a target="_blank" className="text-white" href={text} rel="noreferrer">
+                {text}
+              </a>
+            ) : (
+              text
+            )}
+          </h3>
+        ) : null}
 
         {children}
 

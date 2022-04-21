@@ -38,6 +38,10 @@ export default function ChatHeader() {
           vertical: 'bottom',
           horizontal: 'right',
         }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
       >
         <Typography sx={{ p: 2 }}>
           Icia ChatBot

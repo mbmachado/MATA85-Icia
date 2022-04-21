@@ -3,12 +3,12 @@ import './styles.scss';
 import AdminTemplate from 'components/AdminTemplate';
 import QuestionCard from 'components/QuestionCard';
 import YellowButton from 'components/YellowButton';
+import { useAuthContext } from 'contexts/AuthContext/hook';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { services } from 'services';
 
 import { Question } from './types';
-import { useAuthContext } from 'contexts/AuthContext/hook';
-import { services } from 'services';
 
 export default function Questions() {
   const [questions, setQuestions] = useState<Question[]>([]);

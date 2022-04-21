@@ -1,15 +1,25 @@
-.chat-container {
-  height: calc(100% - 80px);
+.chatbot {
+  max-width: 1600px;
 
-  main {
-    .chat-toolbar {
-      min-height: 60px;
-      height: 60px;
+  @media screen and (min-width: 1600px) {
+    & {
+      box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
     }
+  }
 
-    .chat-content {
-      overflow-y: auto;
-      overflow-x: hidden;
+  .chat-container {
+    height: calc(100% - 80px);
+  
+    main {
+      .chat-toolbar {
+        min-height: 60px;
+        height: 60px;
+      }
+  
+      .chat-content {
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
     }
   }
 }

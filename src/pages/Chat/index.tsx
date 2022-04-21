@@ -23,7 +23,7 @@ export default function Chat() {
   ];
 
   useEffect(() => {
-    services.getTopicsTree().then((response) => {
+    services.getInitialTopicsTree().then((response) => {
       const topics: Topic[] = getMessageTopics(response.data);
 
       setLoading(false);
@@ -133,7 +133,7 @@ export default function Chat() {
   };
 
   return (
-    <div className="min-vh-100 vh-100 w-100">
+    <div className="chatbot d-block min-vh-100 vh-100 w-100 mx-auto">
       <Header />
       <div className="chat-container d-flex">
         <ChatAside handleSidebarOptionClick={handleSidebarOptionClick} />
