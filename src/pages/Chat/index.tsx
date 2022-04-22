@@ -1,5 +1,6 @@
 import './styles.scss';
 
+import { Button } from '@mui/material';
 import ChatAside from 'components/Chat/ChatAside';
 import ChatHeader from 'components/Chat/ChatHeader';
 import ChatInput from 'components/Chat/ChatInput';
@@ -72,6 +73,7 @@ export default function Chat() {
     ];
 
     setMessages(newMessages);
+
     setLoading(true);
 
     const response = await services.getTopicsTreeById(topic.id);
@@ -134,7 +136,17 @@ export default function Chat() {
 
   return (
     <div className="chatbot d-block min-vh-100 vh-100 w-100 mx-auto">
-      <Header />
+      <Header>
+        <Button
+          type="button"
+          variant="contained"
+          color="secondary"
+          disableElevation
+          href="/login"
+        >
+          Login
+        </Button>
+      </Header>
       <div className="chat-container d-flex">
         <ChatAside handleSidebarOptionClick={handleSidebarOptionClick} />
         <main className="d-flex flex-column flex-fill">

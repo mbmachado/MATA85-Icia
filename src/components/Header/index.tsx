@@ -11,7 +11,7 @@ type HeaderProps = {
 export default function Header({ children }: HeaderProps) {
   return (
     <div>
-      <header className="d-flex align-items-center justify-content-start w-100 app-header px-2">
+      <header className="d-flex align-items-center justify-content-start w-100 app-header px-3">
         <img src={Logo} className="app-logo" alt="logo" />
         <div className="flex-fill"></div>
         {children}
