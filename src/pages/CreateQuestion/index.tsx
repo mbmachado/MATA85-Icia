@@ -1,3 +1,5 @@
+import './styles.scss';
+
 import * as Icons from '@mui/icons-material';
 import { FormControl, InputLabel, OutlinedInput } from '@mui/material';
 import AdminTemplate from 'components/AdminTemplate';
@@ -6,7 +8,6 @@ import { useAuthContext } from 'contexts/AuthContext/hook';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { services } from 'services';
-import './styles.scss';
 interface CreateQuestionProps {
   category_id: number;
   onSubmit: () => void;

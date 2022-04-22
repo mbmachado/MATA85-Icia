@@ -3,15 +3,15 @@ import { TopicsTree } from 'types';
 
 import { LoginResonseData } from './types';
 
-const header = {
+const headers = {
   Accept: 'application/json, text/plain, */*',
   'X-CSRF-TOKEN': '',
   Authorization: 'Bearer ',
 };
 
 const api = axios.create({
-  baseURL: 'https://virtual-assistent-backend.herokuapp.com',
-  headers: header,
+  baseURL: 'http://127.0.0.1:8000',
+  headers: headers,
 });
 
 export const services = {
@@ -58,7 +58,17 @@ export const services = {
     });
   },
 
-
+  getInitialTopicsTree: async () => {
+    return api.get<TopicsTree[]>('/api/v1/topics');
+  },
+  getTopicsTreeById: async (id: number) => {
+    return api.get<TopicsTree[]>(`/api/v1/topics/${id}`);
+  },
+  getTopicsTreeByNlp: async (text: string) => {
+    return api.get<TopicsTree[]>(`/api/v3/nlp`, {
+      params: { text },
+    });
+  },
 };
 
 export const setAuthOnLocalStorage = (state: LoginResonseData) => {
