@@ -135,54 +135,56 @@ export default function Chat() {
   };
 
   return (
-    <div className="chatbot d-block min-vh-100 vh-100 w-100 mx-auto">
-      <Header>
-        <Button
-          type="button"
-          variant="contained"
-          color="secondary"
-          disableElevation
-          href="/login"
-        >
-          Login
-        </Button>
-      </Header>
-      <div className="chat-container d-flex">
-        <ChatAside handleSidebarOptionClick={handleSidebarOptionClick} />
-        <main className="d-flex flex-column flex-fill">
-          <div className="chat-toolbar d-flex align-items-center border-bottom border-info px-3">
-            <ChatHeader />
-          </div>
-
-          <div
-            ref={chatScrollableContainer}
-            className="chat-content d-flex flex-column flex-fill w-100 mw-100 p-3"
+    <div className="chatbot d-block w-100">
+      <div className="d-block min-vh-100 vh-100 w-100 mx-auto">
+        <Header>
+          <Button
+            type="button"
+            variant="contained"
+            color="secondary"
+            disableElevation
+            href="/login"
           >
-            {messages.map((message, index) => (
-              <ChatMessage
-                key={index}
-                text={message.text}
-                side={message.side}
-                topics={message.topics}
-                questions={message.questions}
-                generateMessegesForTopicSelection={generateMessegesForTopicSelection}
-                generateMessegesForQuestionSelection={
-                  generateMessegesForQuestionSelection
-                }
-              />
-            ))}
+            Login
+          </Button>
+        </Header>
+        <div className="chat-container d-flex">
+          <ChatAside handleSidebarOptionClick={handleSidebarOptionClick} />
+          <main className="d-flex flex-column flex-fill">
+            <div className="chat-toolbar d-flex align-items-center border-bottom border-info px-3">
+              <ChatHeader />
+            </div>
 
-            {loading ? (
-              <ChatMessage side={'left'}>
-                <ChatTypingLoader />
-              </ChatMessage>
-            ) : null}
-          </div>
+            <div
+              ref={chatScrollableContainer}
+              className="chat-content d-flex flex-column flex-fill w-100 mw-100 p-3"
+            >
+              {messages.map((message, index) => (
+                <ChatMessage
+                  key={index}
+                  text={message.text}
+                  side={message.side}
+                  topics={message.topics}
+                  questions={message.questions}
+                  generateMessegesForTopicSelection={generateMessegesForTopicSelection}
+                  generateMessegesForQuestionSelection={
+                    generateMessegesForQuestionSelection
+                  }
+                />
+              ))}
 
-          <div className="chat-toolbar d-flex align-items-center border-top border-info px-3">
-            <ChatInput generateMessegesOnFormSubmit={generateMessegesOnFormSubmit} />
-          </div>
-        </main>
+              {loading ? (
+                <ChatMessage side={'left'}>
+                  <ChatTypingLoader />
+                </ChatMessage>
+              ) : null}
+            </div>
+
+            <div className="chat-toolbar d-flex align-items-center border-top border-info px-3">
+              <ChatInput generateMessegesOnFormSubmit={generateMessegesOnFormSubmit} />
+            </div>
+          </main>
+        </div>
       </div>
     </div>
   );

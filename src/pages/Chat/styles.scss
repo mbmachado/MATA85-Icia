@@ -1,14 +1,18 @@
 .chatbot {
-  max-width: 1600px;
+  background-color: var(--grey);
 
-  @media screen and (min-width: 1600px) {
-    & {
-      box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  & > div {
+    max-width: 1600px;
+    @media screen and (min-width: 1600px) {
+      & {
+        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+      }
     }
   }
 
   .chat-container {
     height: calc(100% - 80px);
+    background-color: var(--white);
   
     main {
       .chat-toolbar {
