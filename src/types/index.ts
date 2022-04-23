@@ -25,4 +25,10 @@ interface TopicsTree {
   children: TopicsTree[];
 }
 
-export type { Message, Question, Topic, TopicsTree };
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+export type { Message, Question, Topic, TopicsTree, User };

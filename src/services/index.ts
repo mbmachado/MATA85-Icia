@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TopicsTree } from 'types';
+import { TopicsTree, User } from 'types';
 
 import { LoginResonseData } from './types';
 
@@ -68,6 +68,15 @@ export const services = {
     return api.get<TopicsTree[]>(`/api/v3/nlp`, {
       params: { text },
     });
+  },
+
+  getUsers: async () => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.get<User[]>('/api/v3/users', config);
   },
 };
 
