@@ -21,7 +21,7 @@ $dark-grey: #666;
 $white: #FFF;
 
 /* Applying Bootstrap Reboot */
-$link-color: $yellow;
+$link-color: $dark-grey;
 $link-hover-color: currentColor;
 $link-hover-decoration: none;
 $label-margin-bottom: 0;
@@ -51,7 +51,7 @@ $theme-colors: (
   "success": $green,
   "warning": $red,
   "danger": $red,
-  "info": $grey,
+  "info": $ligth-grey,
   "dark": $dark-grey,
 );
 

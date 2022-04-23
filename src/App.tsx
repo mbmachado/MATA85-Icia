@@ -1,16 +1,19 @@
 import './App.scss';
 
 import { ThemeProvider } from '@mui/material';
+import AuthProvider from 'contexts/AuthContext';
 import React from 'react';
-import { AppRoutes } from 'Routes';
+import { AppRoutes } from 'routes/Routes';
 import { theme } from 'themes/ic-ufba.theme';
 
 function App() {
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <AppRoutes />
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          <AppRoutes />
+        </ThemeProvider>
+      </AuthProvider>
     </>
   );
 }

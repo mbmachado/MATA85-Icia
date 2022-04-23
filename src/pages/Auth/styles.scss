@@ -1,0 +1,12 @@
+div.auth-container {
+  background-color: var(--blue);
+
+  > div {
+    max-width: 380px;
+  }
+
+  .logo {
+    width: 150px;
+    outline: none;
+  }
+}

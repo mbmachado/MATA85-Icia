@@ -1,0 +1,26 @@
+#container {
+  max-width: 220px;
+  background-color: var(--grey);
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 80px);
+  flex: 1;
+}
+
+.menu-option {
+  background-color: #FFF;
+  margin: 10px 10px 0 10px ;
+  padding:10px 0px 10px 16px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  margin-right: 10px; 
+  
+}
+
+.is-selected {
+  color: var(--yellow);
+}

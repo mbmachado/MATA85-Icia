@@ -1,0 +1,16 @@
+.question-container{
+    flex-direction: column;
+    justify-content: space-between;
+    width: 248px;
+    border: 1px solid var(--grey); 
+    border-radius: 6px;  
+    margin: 20px 30px 0 0;
+    padding: 14px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.question-text{
+    color: var(--dark-grey)
+}
+

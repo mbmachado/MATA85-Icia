@@ -1,7 +1,9 @@
 import axios from 'axios';
-// import { resolvePath } from 'react-router-dom';
+import { TopicsTree, User } from 'types';
 
-const header = {
+import { LoginResonseData } from './types';
+
+const headers = {
   Accept: 'application/json, text/plain, */*',
   'X-CSRF-TOKEN': '',
   Authorization: 'Bearer ',
@@ -9,14 +11,109 @@ const header = {
 
 const api = axios.create({
   baseURL: 'https://virtual-assistent-backend.herokuapp.com',
-  headers: header,
+  headers: headers,
 });
 
 export const services = {
-  login: async (email: string, password: string): Promise<any> => {
+  login: async (email: string, password: string) => {
     return api.post('/api/v2/auth/login', {
       email,
       password,
     });
   },
+  getTopicsTree: async (authToken?: string) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+    return api.get<TopicsTree[]>('/api/v3/topics', {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  createQuestion: async (
+    authToken: string,
+    topicId: number,
+    description: string,
+    answer: string,
+  ) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+    const data = {
+      topic_id: topicId,
+      description,
+      answer,
+    };
+    return api.post('/api/v3/questions', data, {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+
+  getInitialTopicsTree: async () => {
+    return api.get<TopicsTree[]>('/api/v1/topics');
+  },
+  getTopicsTreeById: async (id: number) => {
+    return api.get<TopicsTree[]>(`/api/v1/topics/${id}`);
+  },
+  getTopicsTreeByNlp: async (text: string) => {
+    return api.get<TopicsTree[]>(`/api/v3/nlp`, {
+      params: { text },
+    });
+  },
+
+  getUsers: async () => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.get<User[]>('/api/v3/users', config);
+  },
+  createUser: async (email: string, name: string, password: string) => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.post('/api/v3/users', { email, name, password }, config);
+  },
+  editUser: async (id: number, email?: string, name?: string, password?: string) => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.patch(`/api/v3/users/${id}`, { email, name, password }, config);
+  },
+  deleteUser: async (id: number) => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.delete(`/api/v3/users/${id}`, config);
+  },
+};
+
+export const setAuthOnLocalStorage = (state: LoginResonseData) => {
+  window.sessionStorage.setItem('AUTH', JSON.stringify(state));
+};
+
+export const getAuthOnLocalStorage = () => {
+  const data = window.sessionStorage.getItem('AUTH');
+  if (data) return JSON.parse(data) as LoginResonseData;
+  return null;
+};
+
+export const removeAuthOnLocalStorage = () => {
+  window.sessionStorage.removeItem('AUTH');
 };

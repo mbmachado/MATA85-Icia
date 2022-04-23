@@ -1,0 +1,29 @@
+.chatbot {
+  background-color: var(--grey);
+
+  & > div {
+    max-width: 1600px;
+    @media screen and (min-width: 1600px) {
+      & {
+        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+      }
+    }
+  }
+
+  .chat-container {
+    height: calc(100% - 80px);
+    background-color: var(--white);
+  
+    main {
+      .chat-toolbar {
+        min-height: 60px;
+        height: 60px;
+      }
+  
+      .chat-content {
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+    }
+  }
+}

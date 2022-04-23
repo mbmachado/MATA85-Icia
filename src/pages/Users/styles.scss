@@ -1,0 +1,18 @@
+
+.title-container{
+    display: flex;
+    border-bottom: 1px solid var(--grey);
+
+    h2 {
+        margin-right: 10px;
+        margin-bottom: 0px;
+        font-size: 24px;
+        color: var(--dark-grey);
+        font-weight: normal;
+    }
+}
+
+.user-container{
+    align-items: start;
+    padding: 12px 20px;
+}
