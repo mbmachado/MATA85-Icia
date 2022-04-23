@@ -15,17 +15,33 @@ import {
   TextField,
 } from '@mui/material';
 import AdminTemplate from 'components/AdminTemplate';
+import ConfirmDialog from 'components/ConfirmDialog';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { services } from 'services';
 import { User } from 'types';
 
 export default function Users() {
+  const navigate = useNavigate();
   const [user, setUser] = useState<User[]>([]);
+  const [confirmOpen, setConfirmOpen] = useState<boolean>(false);
 
-  useEffect(() => {
+  const handleDelete = (id: number) => {
+    services
+      .deleteUser(id)
+      .then(() => getUsers())
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const getUsers = () => {
     services.getUsers().then((response) => {
       setUser(response.data);
     });
+  };
+
+  useEffect(() => {
+    getUsers();
   }, []);
 
   return (
@@ -36,7 +52,9 @@ export default function Users() {
           variant="outlined"
           color="secondary"
           onClick={() => {
-            console.log('criar novo usuário');
+            navigate('/users/create', {
+              state: { id: '', name: '', email: '' },
+            });
           }}
         >
           CRIAR NOVO
@@ -58,7 +76,7 @@ export default function Users() {
       </div>
       <div className="user-container">
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} size="small">
+          <Table sx={{ minWidth: 450 }} size="small">
             <TableHead>
               <TableRow>
                 <TableCell>Nome</TableCell>
@@ -81,7 +99,9 @@ export default function Users() {
                       aria-label="Editar"
                       component="span"
                       onClick={() => {
-                        console.log('editar ' + row.name);
+                        navigate('/users/edit', {
+                          state: { id: row.id, name: row.name, email: row.email },
+                        });
                       }}
                     >
                       <Edit />
@@ -89,11 +109,17 @@ export default function Users() {
                     <IconButton
                       aria-label="Deletar"
                       component="span"
-                      onClick={() => {
-                        console.log('deletar ' + row.name);
-                      }}
+                      onClick={() => setConfirmOpen(true)}
                     >
                       <Delete />
+                      <ConfirmDialog
+                        title={`Deletar usuário ${row.name}`}
+                        open={confirmOpen}
+                        setOpen={setConfirmOpen}
+                        onConfirm={handleDelete(row.id)}
+                      >
+                        Are you sure you want to delete this post?
+                      </ConfirmDialog>
                     </IconButton>
                   </TableCell>
                 </TableRow>

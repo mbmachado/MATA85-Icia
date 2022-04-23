@@ -10,7 +10,7 @@ const headers = {
 };
 
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
+  baseURL: 'https://virtual-assistent-backend.herokuapp.com',
   headers: headers,
 });
 
@@ -77,6 +77,30 @@ export const services = {
       },
     };
     return api.get<User[]>('/api/v3/users', config);
+  },
+  createUser: async (email: string, name: string, password: string) => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.post('/api/v3/users', { email, name, password }, config);
+  },
+  editUser: async (id: number, email?: string, name?: string, password?: string) => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.patch(`/api/v3/users/${id}`, { email, name, password }, config);
+  },
+  deleteUser: async (id: number) => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.delete(`/api/v3/users/${id}`, config);
   },
 };
 

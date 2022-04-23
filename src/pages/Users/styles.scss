@@ -5,6 +5,7 @@
 
     h2 {
         margin-right: 10px;
+        margin-bottom: 0px;
         font-size: 24px;
         color: var(--dark-grey);
         font-weight: normal;
@@ -12,5 +13,6 @@
 }
 
 .user-container{
+    align-items: start;
     padding: 12px 20px;
 }
