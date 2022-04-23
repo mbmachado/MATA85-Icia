@@ -1,6 +1,6 @@
 import './styles.scss';
 
-import YellowButton from 'components/YellowButton';
+import { Button } from '@mui/material';
 import { Question } from 'pages/Questions/types';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -18,12 +18,15 @@ const QuestionCard = ({ question }: QuestionCardProps) => {
         <h4 className="question-text">{description}</h4>
         <p className="question-text">{answer}</p>
       </div>
-      <YellowButton
-        name="EDITAR"
+      <Button
+        variant="contained"
+        color="secondary"
         onClick={() => {
           navigate('edit', { state: { id, topic_id, description, answer } });
         }}
-      />
+      >
+        EDITAR
+      </Button>
     </div>
   );
 };

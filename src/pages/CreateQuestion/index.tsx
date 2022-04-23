@@ -33,7 +33,11 @@ const CreateQuestion = () => {
       .then((response) => response.data)
       .then((response) => {
         console.log(response);
-        navigate(-1);
+        navigate('/dashboard/questions', {
+          state: {
+            message: { type: 'success', text: 'Pergunta adicionada com sucesso!' },
+          },
+        });
       })
       .catch((err) => {});
   };

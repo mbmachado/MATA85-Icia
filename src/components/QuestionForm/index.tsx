@@ -1,9 +1,7 @@
 import './styles.scss';
 
-import { FormControl, InputLabel, OutlinedInput } from '@mui/material';
+import { Button, FormControl, InputLabel, OutlinedInput } from '@mui/material';
 import React from 'react';
-
-import YellowButton from '../YellowButton';
 
 interface QuestionFormProps {
   description: string;
@@ -24,30 +22,18 @@ const QuestionForm = ({
 }: QuestionFormProps) => {
   return (
     <form onSubmit={handleSubmit} className="formContainer">
-      <div className="formControl">
-        <FormControl
-          className="formControl mt-4"
-          variant="outlined"
-          fullWidth
-          color="secondary"
-        >
-          <InputLabel htmlFor="email">Pergunta</InputLabel>
-          <OutlinedInput
-            id="description"
-            type="text"
-            placeholder="Digite a pergunta"
-            value={description}
-            onChange={(event) => handleQuestionChange(event.target.value)}
-          />
-        </FormControl>
-      </div>
-      <div className="formControl mb-2">
-        <FormControl
-          className="formControl mt-4"
-          variant="outlined"
-          color="secondary"
-          fullWidth
-        >
+      <FormControl className="mt-4" variant="outlined" fullWidth color="secondary">
+        <InputLabel htmlFor="email">Pergunta</InputLabel>
+        <OutlinedInput
+          id="description"
+          type="text"
+          placeholder="Digite a pergunta"
+          value={description}
+          onChange={(event) => handleQuestionChange(event.target.value)}
+        />
+      </FormControl>
+      <div className=" mb-2">
+        <FormControl className="mt-4" variant="outlined" color="secondary" fullWidth>
           <InputLabel htmlFor="email">Resposta</InputLabel>
           <OutlinedInput
             id="email"
@@ -60,9 +46,13 @@ const QuestionForm = ({
       </div>
 
       {isEdit ? (
-        <YellowButton type="submit" name="EDITAR" />
+        <Button variant="contained" color="secondary" type="submit">
+          EDITAR
+        </Button>
       ) : (
-        <YellowButton type="submit" name="CADASTRAR" />
+        <Button variant="contained" color="secondary" type="submit">
+          CADASTRAR
+        </Button>
       )}
     </form>
   );

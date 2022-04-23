@@ -1,9 +1,11 @@
 import * as Icons from '@mui/icons-material';
+import { LinearProgress } from '@mui/material';
 import AdminTemplate from 'components/AdminTemplate';
 import QuestionForm from 'components/QuestionForm';
 import { useAuthContext } from 'contexts/AuthContext/hook';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { services } from 'services';
 
 interface EditQuestionNavigationState {
@@ -27,6 +29,7 @@ const EditQuestion = () => {
   const [description, setQuestion] = useState(initialDescription);
   const [answer, setAnswer] = useState(initialAnswer);
   const { authToken } = useAuthContext();
+  const [isLoading, setIsLoading] = useState(false);
 
   const { pathname } = useLocation();
   const isEdit = pathname.includes('edit');
@@ -41,18 +44,26 @@ const EditQuestion = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsLoading(true);
     services
       .editQuestion(id, authToken, topic_id, description, answer)
       .then((response) => response.data)
       .then((response) => {
-        navigate(-1);
+        setIsLoading(false);
+        navigate('/dashboard/questions', {
+          state: { message: { type: 'success', text: 'Pergunta editada com sucesso!' } },
+        });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        toast.error('Ocorreu um erro');
+        setIsLoading(false);
+      });
   };
 
   //TODO change mouse hover on back arrow
   return (
     <AdminTemplate>
+      {isLoading && <LinearProgress variant={'indeterminate'} />}
       <div className="d-flex align-items-center mt-2">
         <Icons.ArrowBack
           className="mr-3 ml-3"

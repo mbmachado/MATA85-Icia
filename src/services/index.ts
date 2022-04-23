@@ -84,9 +84,24 @@ export const services = {
       id,
       topic_id: topicId,
       description,
+      answer,
       answare: answer,
     };
     return api.patch(`/api/v3/questions/${id}`, data, {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  deleteQuestion: async (id: number, authToken: string) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+
+    return api.delete(`/api/v3/questions/${id}`, {
       headers: {
         Accept: 'application/json, text/plain, */*',
         'X-CSRF-TOKEN': '',

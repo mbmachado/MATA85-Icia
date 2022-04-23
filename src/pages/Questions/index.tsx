@@ -1,11 +1,13 @@
 import './styles.scss';
 
+import { Button } from '@mui/material';
 import AdminTemplate from 'components/AdminTemplate';
-import QuestionCard from 'components/QuestionCard';
-import YellowButton from 'components/YellowButton';
+import QuestionsTable from 'components/QuestionsTable';
+import TextModal from 'components/TextModal';
 import { useAuthContext } from 'contexts/AuthContext/hook';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { services } from 'services';
 import { TopicsTree } from 'types';
 
@@ -21,7 +23,11 @@ export default function Questions() {
   const navigate = useNavigate();
   const { authToken } = useAuthContext();
   const { getTopicsTree } = services;
-  console.log(currentSubtopics);
+
+  const handleRemoveQuestionFromTable = (id: number) => {
+    setQuestions((current) => current.filter((question) => question.id !== id));
+  };
+
   useEffect(() => {
     getTopicsTree(authToken).then((response) => {
       setCurrentTopics(response.data || []);
@@ -105,23 +111,25 @@ export default function Questions() {
               <h3> {`Perguntas categoria ${selectedTopicName}`}</h3>
               <br />
               <div>
-                <YellowButton
-                  name="ADICIONAR"
+                <Button
+                  variant="contained"
                   onClick={() => {
                     navigate('/dashboard/questions/create', {
                       state: { topicId: selectedTopicId, topicName: selectedTopicName },
                     });
                   }}
-                />
+                >
+                  ADICIONAR
+                </Button>
               </div>
             </>
           )}
         </div>
         <div id="questions-container">
-          {console.log(questions)}
-          {questions.map((question) => (
-            <QuestionCard key={question.id} question={question} />
-          ))}
+          <QuestionsTable
+            questions={questions}
+            removeQuestion={handleRemoveQuestionFromTable}
+          />
         </div>
       </div>
     </AdminTemplate>
