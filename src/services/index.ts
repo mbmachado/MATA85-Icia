@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TopicsTree } from 'types';
+import { TopicsTree, User } from 'types';
 
 import { LoginResonseData } from './types';
 
@@ -108,6 +108,38 @@ export const services = {
         Authorization: `Bearer ${token}`,
       },
     });
+  },
+  getUsers: async () => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.get<User[]>('/api/v3/users', config);
+  },
+  createUser: async (email: string, name: string, password: string) => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.post('/api/v3/users', { email, name, password }, config);
+  },
+  editUser: async (id: number, email?: string, name?: string, password?: string) => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.patch(`/api/v3/users/${id}`, { email, name, password }, config);
+  },
+  deleteUser: async (id: number) => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.delete(`/api/v3/users/${id}`, config);
   },
 };
 

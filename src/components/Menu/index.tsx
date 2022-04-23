@@ -10,13 +10,13 @@ const links = [
   {
     icon: (htmlColor: string) => <Icons.Forum htmlColor={htmlColor} />,
     name: 'Perguntas',
-    path: '/questions',
+    path: '/dashboard/questions',
     isSelected: false,
   },
   {
     icon: (htmlColor: string) => <Icons.People htmlColor={htmlColor} />,
     name: 'Usuários',
-    path: '/users',
+    path: '/dashboard/users',
     isSelected: false,
   },
 ];

@@ -6,6 +6,7 @@ import Chat from 'pages/Chat';
 import CreateQuestion from 'pages/CreateQuestion';
 import EditQuestion from 'pages/EditQuestion';
 import Questions from 'pages/Questions';
+import UsersCreate from 'pages/Users/Users-create';
 import React, { useMemo } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import { getAuthOnLocalStorage } from 'services';
