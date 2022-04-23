@@ -6,6 +6,7 @@ import Chat from 'pages/Chat';
 import CreateQuestion from 'pages/CreateQuestion';
 import Dashboard from 'pages/Dashboard';
 import Questions from 'pages/Questions';
+import UsersCreate from 'pages/Users/Users-create';
 import React, { useMemo } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import { getAuthOnLocalStorage } from 'services';
@@ -39,6 +40,8 @@ export function AppRoutes() {
             <Route path="/questions/create" element={<CreateQuestion />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="users" element={<Users />} />
+            <Route path="users/create" element={<UsersCreate />} />
+            <Route path="users/edit" element={<UsersCreate />} />
             <Route path="questions" element={<Questions />} />
           </>
         ) : (
