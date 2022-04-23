@@ -23,8 +23,12 @@ export default function QuestionsTable({
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [openedModal, setOpenedModal] = React.useState<number>();
   const handleEdit = (question: Question) => {
-    const { id, topic_id, description, answer } = question;
-    navigate('edit', { state: { id, topic_id, description, answer } });
+    const { id, topic_id, description, answer, parents } = question;
+    let topic = topic_id;
+    if (!topic && parents) {
+      topic = parents[parents.length - 1].id;
+    }
+    navigate('edit', { state: { id, topic_id: topic, description, answer } });
   };
 
   const handleConfirm = (id: number) => {
@@ -104,7 +108,7 @@ export default function QuestionsTable({
       <DataGrid
         rows={questions}
         columns={columns}
-        pageSize={20}
+        pageSize={15}
         rowsPerPageOptions={[]}
         disableSelectionOnClick
       />

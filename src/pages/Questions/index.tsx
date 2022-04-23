@@ -22,11 +22,19 @@ export default function Questions() {
   const [selectedTopicId, setSelectedTopicId] = useState(0);
   const navigate = useNavigate();
   const { authToken } = useAuthContext();
-  const { getTopicsTree } = services;
+  const { getTopicsTree, getQuestions } = services;
 
   const handleRemoveQuestionFromTable = (id: number) => {
     setQuestions((current) => current.filter((question) => question.id !== id));
   };
+
+  useEffect(() => {
+    if (selectedTopicId === 0) {
+      getQuestions(authToken).then((response) => {
+        setQuestions(response.data);
+      });
+    }
+  }, [selectedTopicId]);
 
   useEffect(() => {
     getTopicsTree(authToken).then((response) => {

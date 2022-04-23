@@ -69,6 +69,19 @@ export const services = {
       params: { text },
     });
   },
+  getQuestions: async (authToken: string) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+    return api.get('/api/v3/questions', {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
   editQuestion: async (
     id: number,
     authToken: string,
@@ -85,7 +98,6 @@ export const services = {
       topic_id: topicId,
       description,
       answer,
-      answare: answer,
     };
     return api.patch(`/api/v3/questions/${id}`, data, {
       headers: {
