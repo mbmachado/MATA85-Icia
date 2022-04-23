@@ -10,7 +10,7 @@ const links = [
   {
     icon: (htmlColor: string) => <Icons.Forum htmlColor={htmlColor} />,
     name: 'Perguntas',
-    path: '/dashboard',
+    path: '/questions',
     isSelected: false,
   },
   {

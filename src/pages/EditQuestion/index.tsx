@@ -1,38 +1,50 @@
 import * as Icons from '@mui/icons-material';
 import AdminTemplate from 'components/AdminTemplate';
+import QuestionForm from 'components/QuestionForm';
 import { useAuthContext } from 'contexts/AuthContext/hook';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { services } from 'services';
 
-import QuestionForm from '../../components/QuestionForm';
+interface EditQuestionNavigationState {
+  id: number;
+  topic_id: number;
+  description: string;
+  topicName: string;
+  answer: string;
+}
 
-const CreateQuestion = () => {
+const EditQuestion = () => {
+  const {
+    id,
+    topic_id,
+    topicName,
+    description: initialDescription,
+    answer: initialAnswer,
+  } = useLocation().state as EditQuestionNavigationState;
+
   const navigate = useNavigate();
-  const [description, setDescription] = useState('');
-  const [answer, setAnswer] = useState('');
+  const [description, setQuestion] = useState(initialDescription);
+  const [answer, setAnswer] = useState(initialAnswer);
   const { authToken } = useAuthContext();
 
-  const { topicId, topicName } = useLocation().state as {
-    topicId: number;
-    topicName: string;
-  };
+  const { pathname } = useLocation();
+  const isEdit = pathname.includes('edit');
 
   const handleAnswerChange = (newAnswer: string) => {
     setAnswer(newAnswer);
   };
 
-  const handleQuestionChange = (newDescription: string) => {
-    setDescription(newDescription);
+  const handleQuestionChange = (newQuestion: string) => {
+    setQuestion(newQuestion);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     services
-      .createQuestion(authToken, topicId, description, answer)
+      .editQuestion(id, authToken, topic_id, description, answer)
       .then((response) => response.data)
       .then((response) => {
-        console.log(response);
         navigate(-1);
       })
       .catch((err) => {});
@@ -48,7 +60,7 @@ const CreateQuestion = () => {
             navigate(-1);
           }}
         />
-        <span className="title">Cadastrar Pergunta em {topicName}</span>
+        <span className="title">Editar Pergunta{topicName}</span>
       </div>
 
       <QuestionForm
@@ -57,9 +69,10 @@ const CreateQuestion = () => {
         handleSubmit={handleSubmit}
         handleAnswerChange={handleAnswerChange}
         handleQuestionChange={handleQuestionChange}
+        isEdit={isEdit}
       />
     </AdminTemplate>
   );
 };
 
-export default CreateQuestion;
+export default EditQuestion;

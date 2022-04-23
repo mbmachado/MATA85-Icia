@@ -10,7 +10,7 @@ const headers = {
 };
 
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
+  baseURL: 'https://virtual-assistent-backend.herokuapp.com',
   headers: headers,
 });
 
@@ -67,6 +67,31 @@ export const services = {
   getTopicsTreeByNlp: async (text: string) => {
     return api.get<TopicsTree[]>(`/api/v3/nlp`, {
       params: { text },
+    });
+  },
+  editQuestion: async (
+    id: number,
+    authToken: string,
+    topicId: number,
+    description: string,
+    answer: string,
+  ) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+    const data = {
+      id,
+      topic_id: topicId,
+      description,
+      answare: answer,
+    };
+    return api.patch(`/api/v3/questions/${id}`, data, {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
     });
   },
 };

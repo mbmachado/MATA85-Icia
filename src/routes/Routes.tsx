@@ -4,7 +4,7 @@ import RequestPassword from 'pages/Auth/RequestPassword';
 import ResetPassword from 'pages/Auth/ResetPassword';
 import Chat from 'pages/Chat';
 import CreateQuestion from 'pages/CreateQuestion';
-import Dashboard from 'pages/Dashboard';
+import EditQuestion from 'pages/EditQuestion';
 import Questions from 'pages/Questions';
 import React, { useMemo } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
@@ -37,6 +37,7 @@ export function AppRoutes() {
             <Route path="/dashboard/users" element={<Users />} />
             <Route path="/dashboard/questions" element={<Questions />} />
             <Route path="/dashboard/questions/create" element={<CreateQuestion />} />
+            <Route path="/dashboard/questions/edit" element={<EditQuestion />} />
             <Route path="dashboard" element={<Navigate to="/dashboard/questions" />} />
             <Route path="questions" element={<Navigate to="/dashboard/questions" />} />
             <Route path="users" element={<Navigate to="/dashboard/users" />} />
