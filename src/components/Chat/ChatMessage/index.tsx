@@ -10,7 +10,7 @@ import ChatMessageItems from '../ChatMessageItems';
 type ChatMessageProps = {
   children?: React.ReactNode;
   questions?: Question[];
-  side: 'left' | 'right';
+  side?: 'left' | 'right';
   text?: string;
   topics?: Topic[];
   generateMessegesForTopicSelection?: (topic: Topic) => void;

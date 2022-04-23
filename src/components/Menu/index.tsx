@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 import { theme } from '../../themes/ic-ufba.theme';
 
 const links = [
-  {
+  /*{
     icon: (htmlColor: string) => <Icons.Home htmlColor={htmlColor} />,
     name: 'Inicio',
     path: '/dashboard',
     isSelected: false,
-  },
+  },*/
   {
     icon: (htmlColor: string) => <Icons.Forum htmlColor={htmlColor} />,
     name: 'Perguntas',
