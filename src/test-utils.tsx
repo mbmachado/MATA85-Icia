@@ -1,10 +1,10 @@
 import { ThemeProvider } from '@mui/material';
-import { render } from '@testing-library/react';
+import { render, RenderOptions } from '@testing-library/react';
 import AuthProvider from 'contexts/AuthContext';
-import React from 'react';
+import React, { FC } from 'react';
 import { theme } from 'themes/ic-ufba.theme';
 
-const AllTheProviders = ({ children }) => {
+const AllTheProviders = ({ children }: { children?: React.ReactNode }) => {
   return (
     <AuthProvider>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
@@ -12,7 +12,7 @@ const AllTheProviders = ({ children }) => {
   );
 };
 
-const customRender = (ui, options) =>
+const customRender = (ui: React.ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
   render(ui, { wrapper: AllTheProviders, ...options });
 
 // re-export everything

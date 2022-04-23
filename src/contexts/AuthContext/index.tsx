@@ -4,7 +4,7 @@ import { AuthProviderProps, ContextProps, User } from './types';
 
 export const AuthContext = createContext({} as ContextProps);
 
-const AuthProvider: React.FC = ({ children }: AuthProviderProps) => {
+const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User>();
   const [authToken, setAuthToken] = useState('');
 

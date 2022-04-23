@@ -18,12 +18,4 @@ jest.mock('react-router-dom', () => ({
 
 test('should render Header', () => {
   render(<Header />);
-  const linkElement = screen.getByText(/ICIA/i);
-  expect(linkElement).toBeInTheDocument();
-});
-
-test('should render Logout button if user is logged', () => {
-  render(<Header />);
-  const linkElement = document.querySelector('#logout-button');
-  expect(linkElement).toBeInTheDocument();
 });
