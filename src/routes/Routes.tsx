@@ -34,11 +34,11 @@ export function AppRoutes() {
       <Routes>
         {isUserLogged ? (
           <>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Questions />} />
             <Route path="/users" element={<Users />} />
             <Route path="/questions" element={<Questions />} />
             <Route path="/questions/create" element={<CreateQuestion />} />
-            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="dashboard" element={<Questions />} />
             <Route path="users" element={<Users />} />
             <Route path="users/create" element={<UsersCreate />} />
             <Route path="users/edit" element={<UsersCreate />} />
