@@ -27,15 +27,12 @@ export default function Users() {
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false);
 
   const handleDelete = (id: number) => {
-    console.log('deletando o ', id);
-    /*
     services
       .deleteUser(id)
       .then(() => getUsers())
       .catch((err) => {
         console.log(err);
       });
-      */
   };
   const getUsers = () => {
     services.getUsers().then((response) => {
