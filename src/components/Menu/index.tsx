@@ -8,21 +8,15 @@ import { theme } from '../../themes/ic-ufba.theme';
 
 const links = [
   {
-    icon: (htmlColor: string) => <Icons.Home htmlColor={htmlColor} />,
-    name: 'Inicio',
-    path: '/dashboard',
-    isSelected: false,
-  },
-  {
     icon: (htmlColor: string) => <Icons.Forum htmlColor={htmlColor} />,
     name: 'Perguntas',
-    path: '/questions',
+    path: '/dashboard/questions',
     isSelected: false,
   },
   {
     icon: (htmlColor: string) => <Icons.People htmlColor={htmlColor} />,
     name: 'Usuários',
-    path: '/users',
+    path: '/dashboard/users',
     isSelected: false,
   },
 ];

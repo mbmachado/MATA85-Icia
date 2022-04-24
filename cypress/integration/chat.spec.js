@@ -2,10 +2,10 @@ describe('APP', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000');
     cy.once('uncaught:exception', () => false);
-    cy.intercept('GET', '/api/v1/topics', { fixture: 'questions.json' });
-    cy.intercept('GET', '/api/v1/topics/1', { fixture: 'qid1.json' });
-    cy.intercept('GET', '/api/v1/topics/27', { fixture: 'qid27.json' });
-    cy.intercept('GET', '/api/v1/topics/32', { fixture: 'qid32.json' });
+    // cy.intercept('GET', '/api/v1/topics', { fixture: 'questions.json' });
+    // cy.intercept('GET', '/api/v1/topics/1', { fixture: 'qid1.json' });
+    // cy.intercept('GET', '/api/v1/topics/27', { fixture: 'qid27.json' });
+    // cy.intercept('GET', '/api/v1/topics/32', { fixture: 'qid32.json' });
   });
 
   it("should check 'Institucional' fluxo and see answer", () => {

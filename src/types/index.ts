@@ -14,7 +14,7 @@ interface Message {
   id?: number;
   text: string;
   questions?: Question[];
-  side: 'left' | 'right';
+  side?: 'left' | 'right';
   topics?: Topic[];
 }
 
@@ -25,4 +25,10 @@ interface TopicsTree {
   children: TopicsTree[];
 }
 
-export type { Message, Question, Topic, TopicsTree };
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+export type { Message, Question, Topic, TopicsTree, User };

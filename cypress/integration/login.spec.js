@@ -4,7 +4,6 @@ describe('APP', () => {
     cy.once('uncaught:exception', () => false);
   });
 
-  // verificar encriptação de email e senha antes de mandar pra CI
 
   it('should login, see admin painel and logout', () => {
     cy.get('#login-button').click();
@@ -15,11 +14,14 @@ describe('APP', () => {
     cy.get('#submitt-button').click();
     cy.get('#logout-button').should('have.length', 1);
     cy.get('#admin-content').should('have.length', 1);
+    cy.get('.questions-container').should('have.length', 1);
+    cy.get('.filter-question-button').should('have.length', 3);
     cy.get('#logout-button').click();
     cy.get('#email').should('have.length', 1);
   });
 
   it('should reset password', () => {
+    //TODO: Finish test when feature is implemented
     cy.get('#login-button').click();
     cy.get('#email').should('have.length', 1);
     cy.get('#request-password__button').click();

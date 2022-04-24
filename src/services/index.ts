@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TopicsTree } from 'types';
+import { TopicsTree, User } from 'types';
 
 import { LoginResonseData } from './types';
 
@@ -69,6 +69,90 @@ export const services = {
     return api.get<TopicsTree[]>(`/api/v3/nlp`, {
       params: { text },
     });
+  },
+  getQuestions: async (authToken: string) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+    return api.get('/api/v3/questions', {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  editQuestion: async (
+    id: number,
+    authToken: string,
+    topicId: number,
+    description: string,
+    answer: string,
+  ) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+    const data = {
+      id,
+      topic_id: topicId,
+      description,
+      answer,
+    };
+    return api.patch(`/api/v3/questions/${id}`, data, {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  deleteQuestion: async (id: number, authToken: string) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+
+    return api.delete(`/api/v3/questions/${id}`, {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  getUsers: async () => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.get<User[]>('/api/v3/users', config);
+  },
+  createUser: async (email: string, name: string, password: string) => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.post('/api/v3/users', { email, name, password }, config);
+  },
+  editUser: async (id: number, email?: string, name?: string, password?: string) => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.patch(`/api/v3/users/${id}`, { email, name, password }, config);
+  },
+  deleteUser: async (id: number) => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
+      },
+    };
+    return api.delete(`/api/v3/users/${id}`, config);
   },
 };
 

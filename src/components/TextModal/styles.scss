@@ -1,0 +1,19 @@
+.modal-footer{
+    margin-top: 20px;
+    align-self: flex-end;
+    justify-content: flex-end;
+}
+
+.modal-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500;
+    height: 150;
+    background-color: #FFF;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+  };
