@@ -110,10 +110,13 @@ export default function Login() {
         </FormControl>
 
         <div className="d-flex mb-3 justify-content-end">
-          <Link to="/request-password">Esqueceu sua senha?</Link>
+          <Link to="/request-password" id="request-password__button">
+            Esqueceu sua senha?
+          </Link>
         </div>
 
         <Button
+          id="submitt-button"
           type="submit"
           variant="contained"
           className="mb-3"

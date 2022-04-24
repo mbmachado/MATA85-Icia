@@ -1,0 +1,61 @@
+[
+  {
+    "id": 27,
+    "name": "Pessoas",
+    "questions": [],
+    "children": [
+      {
+        "id": 29,
+        "name": "Aposentados e Colaboradores",
+        "questions": [
+          {
+            "id": 29,
+            "topic_id": 29,
+            "description": "Aposentados e colaboradores do IC",
+            "answer": "https://computacao.ufba.br/pt-br/aposentados-colaboradores"
+          }
+        ],
+        "children": []
+      },
+      {
+        "id": 28,
+        "name": "Docentes",
+        "questions": [
+          {
+            "id": 28,
+            "topic_id": 28,
+            "description": "Docentes do IC",
+            "answer": "https://computacao.ufba.br/pt-br/docentes"
+          }
+        ],
+        "children": []
+      },
+      {
+        "id": 30,
+        "name": "Técnicos Administrativos",
+        "questions": [
+          {
+            "id": 30,
+            "topic_id": 30,
+            "description": "Técnicos Administrativos",
+            "answer": "https://computacao.ufba.br/pt-br/tecnicos-administrativos"
+          }
+        ],
+        "children": []
+      },
+      {
+        "id": 31,
+        "name": "Estagiários e Bolsistas",
+        "questions": [
+          {
+            "id": 31,
+            "topic_id": 31,
+            "description": "Estagiários e Bolsistas",
+            "answer": "https://computacao.ufba.br/pt-br/estagiarios-bolsistas"
+          }
+        ],
+        "children": []
+      }
+    ]
+  }
+]

@@ -11,7 +11,8 @@
     "lint": "npm run lint:format && npm run lint:fix ",
     "type-check": "tsc",
     "test": "react-scripts test",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@emotion/react": "^11.8.2",
