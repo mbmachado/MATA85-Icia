@@ -139,6 +139,7 @@ export default function Chat() {
       <div className="d-block min-vh-100 vh-100 w-100 mx-auto">
         <Header>
           <Button
+            id="login-button"
             type="button"
             variant="contained"
             color="secondary"

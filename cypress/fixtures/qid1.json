@@ -1,0 +1,336 @@
+[
+  {
+    "id": 1,
+    "name": "Institucional",
+    "questions": [
+      {
+        "id": 16,
+        "topic_id": 1,
+        "description": "Site do Instituto de Computação da UFBA",
+        "answer": "https://computacao.ufba.br/"
+      }
+    ],
+    "children": [
+      {
+        "id": 2,
+        "name": "Sobre o IC",
+        "questions": [
+          {
+            "id": 2,
+            "topic_id": 2,
+            "description": "Resolução que criou o instituto de computação",
+            "answer": "Resolucao 05.2021 do Conselho Universitario da UFBA"
+          },
+          {
+            "id": 3,
+            "topic_id": 2,
+            "description": "Departamentos que fazem parte do Instituto de Computação",
+            "answer": "Departamento de Ciência da Computação (DCC) e Departamento de Computacao Interdisciplinar (DCI)"
+          }
+        ],
+        "children": []
+      },
+      {
+        "id": 4,
+        "name": "Estrutura Administrativa",
+        "questions": [],
+        "children": [
+          {
+            "id": 5,
+            "name": "Direção-IC",
+            "questions": [],
+            "children": [
+              {
+                "id": 7,
+                "name": "Email direção",
+                "questions": [
+                  {
+                    "id": 5,
+                    "topic_id": 7,
+                    "description": "Email da direção do IC",
+                    "answer": "direcao-ic@ufba.br"
+                  }
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 8,
+            "name": "CEAG-CEAPG",
+            "questions": [],
+            "children": [
+              {
+                "id": 9,
+                "name": "Email CEAG - CEAPG",
+                "questions": [
+                  {
+                    "id": 7,
+                    "topic_id": 9,
+                    "description": "Email do Centro de Atendimento a Graduação (CEAG) / Pos-Graduação (CEAPG)",
+                    "answer": "ceag-ic@ufba.br / ceapg-ic@ufba.br"
+                  }
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 10,
+            "name": "CEAD",
+            "questions": [],
+            "children": [
+              {
+                "id": 6,
+                "name": "Direção",
+                "questions": [
+                  {
+                    "id": 4,
+                    "topic_id": 6,
+                    "description": "Direção do IC",
+                    "answer": "Fabiola Goncalves Pereira Greve, Diretora pro tempore e Vaninha Vieira dos Santos, Vice-Diretora pro tempore"
+                  },
+                  {
+                    "id": 6,
+                    "topic_id": 6,
+                    "description": "Direção do Centro de Atendimento a Graduação (CEAG) / Pos-Graduação (CEAPG)",
+                    "answer": "Kleber Batista Silva, Coordenador"
+                  },
+                  {
+                    "id": 8,
+                    "topic_id": 6,
+                    "description": "Direção do Centro de Apoio a Direção (CEAD)",
+                    "answer": "Marcio Kleber Ramos Filho, Coordenador"
+                  }
+                ],
+                "children": []
+              },
+              {
+                "id": 11,
+                "name": "Email CEAD",
+                "questions": [
+                  {
+                    "id": 9,
+                    "topic_id": 11,
+                    "description": "Email do Centro de Apoio a Direção (CEAD)",
+                    "answer": "cead-ic@ufba.br"
+                  }
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 12,
+            "name": "DCC-IC",
+            "questions": [],
+            "children": [
+              {
+                "id": 14,
+                "name": "DCI",
+                "questions": [
+                  {
+                    "id": 11,
+                    "topic_id": 14,
+                    "description": "Direção do Departamento de Computação Interdisciplinar (DCI-IC)",
+                    "answer": "Sergio Gorender, Chefe do DCI-IC e Paul Denis Etienne Regnier, Vice-Chefe do DCI-IC"
+                  }
+                ],
+                "children": []
+              },
+              {
+                "id": 13,
+                "name": "DCC",
+                "questions": [
+                  {
+                    "id": 10,
+                    "topic_id": 13,
+                    "description": "Direção do Departamento de Ciencia da Computação (DCC-IC)",
+                    "answer": "Cassio Vinicius Serafim Prazeres, Chefe do DCC-IC e Gustavo Bittencourt Figueiredo, Vice-Chefe do DCC-IC"
+                  }
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "name": "Representação",
+        "questions": [],
+        "children": [
+          {
+            "id": 16,
+            "name": "Consepe",
+            "questions": [
+              {
+                "id": 12,
+                "topic_id": 16,
+                "description": "Docentes do IC em representações da UFBA no Conselho Superior de Ensino, Pesquisa e Extensão (Consepe)",
+                "answer": "Tit. Prof. Ivan do Carmo Machado - 08.10.2021 - 1º e Sup. Tiago de Oliveira Januário - 25.03.2022 - 1º"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": 17,
+            "name": "Cae",
+            "questions": [
+              {
+                "id": 13,
+                "topic_id": 17,
+                "description": "Docentes do Instituto de Computação em representações da UFBA no Conselho Acadêmico de Ensino (Cae)",
+                "answer": "Tit. Prof. Tiago de Oliveira Januário - 04.03.2022 - 1º e Sup. Prof. Frederico de Araújo Durão - 04.03.2022 - 1º"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": 18,
+            "name": "Capex",
+            "questions": [
+              {
+                "id": 14,
+                "topic_id": 18,
+                "description": "Docentes do Instituto de Computação em representações da UFBA no Conselho Acadêmico de Pesquisa e Extensão (Capex)",
+                "answer": "Tit. Prof. Ivan do Carmo Machado - 08.10.2021 - 1º e Sup. Profª. Christina Von Flach Garcia - 08.10.2021 - 1º"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": 19,
+            "name": "Governança Digital",
+            "questions": [
+              {
+                "id": 15,
+                "topic_id": 19,
+                "description": "Docentes do Instituto de Computação em representações da UFBA no Comitê de Governança Digital",
+                "answer": "Dir. Profª. Fabiola Gonçalves Pereira Greve 01.07.2021 - 1º e Vice. Profª. Vaninha Vieira dos Santos 06.10.2021 - 1º"
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "name": "Regulação",
+        "questions": [
+          {
+            "id": 17,
+            "topic_id": 20,
+            "description": "Cadastro UFBA no e-MEC",
+            "answer": "https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/NTc4"
+          },
+          {
+            "id": 18,
+            "topic_id": 20,
+            "description": "Avaliação dos Cursos de Pós-Graduação em Computação do IC",
+            "answer": "https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/programa/quantitativos/quantitativoPrograma.jsf?areaAvaliacao=2&areaConhecimento=10300007&cdRegiao=0&ies=338507"
+          }
+        ],
+        "children": []
+      },
+      {
+        "id": 21,
+        "name": "Ensino",
+        "questions": [
+          {
+            "id": 19,
+            "topic_id": 21,
+            "description": "Modalidade dos Cursos de Pós-Graduação em Computação do IC",
+            "answer": "Presencial"
+          }
+        ],
+        "children": []
+      },
+      {
+        "id": 22,
+        "name": "PGCOMP",
+        "questions": [
+          {
+            "id": 20,
+            "topic_id": 22,
+            "description": "Duração do Mestrado em Ciência da Computação",
+            "answer": "24 Meses (2 anos)"
+          },
+          {
+            "id": 21,
+            "topic_id": 22,
+            "description": "Duração do Doutorado em Ciência da Computação",
+            "answer": "48 Meses (4 anos)"
+          },
+          {
+            "id": 22,
+            "topic_id": 22,
+            "description": "Cursos de Graduação do IC",
+            "answer": "Bacharelado em Sistemas de Informação; Bacharelado em Ciência da Computação; Licenciatura em Computação"
+          }
+        ],
+        "children": [
+          {
+            "id": 23,
+            "name": "Pesquisa",
+            "questions": [
+              {
+                "id": 23,
+                "topic_id": 23,
+                "description": "Bolsas de Mestrado ou Doutorado do IC",
+                "answer": "https://pgcomp.ufba.br/editais-publicados"
+              },
+              {
+                "id": 24,
+                "topic_id": 23,
+                "description": "Áreas de Concentração da Pós-Graduação em Ciência da Computação",
+                "answer": "Computação Aplicada; Engenharia de Software; Sistemas Computacionais; Computação Teórica"
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "name": "Inovação",
+        "questions": [
+          {
+            "id": 25,
+            "topic_id": 24,
+            "description": "Projetos de Inovação do IC",
+            "answer": "https://computacao.ufba.br/pt-br/projetos"
+          }
+        ],
+        "children": [
+          {
+            "id": 25,
+            "name": "Projetos",
+            "questions": [
+              {
+                "id": 26,
+                "topic_id": 25,
+                "description": "Projetos de inovação em cooperação com instituições públicas, indústria e governo.",
+                "answer": "https://computacao.ufba.br/projetos"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": 26,
+            "name": "InovaComp",
+            "questions": [
+              {
+                "id": 27,
+                "topic_id": 26,
+                "description": "InovaComp",
+                "answer": "InovaComp é o Laboratório (virtual) para experimentação e desenvolvimento de sistemas, hardware e software. Saiba mais em: https://computacao.ufba.br/pt-br/inovacomp"
+              }
+            ],
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+]

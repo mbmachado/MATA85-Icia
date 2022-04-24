@@ -1,0 +1,100 @@
+[
+  {
+    "id": 32,
+    "name": "Extensão",
+    "questions": [],
+    "children": [
+      {
+        "id": 34,
+        "name": "Programas de extensão",
+        "questions": [],
+        "children": [
+          {
+            "id": 33,
+            "name": "Apresentação",
+            "questions": [
+              {
+                "id": 32,
+                "topic_id": 33,
+                "description": "O que é extensão universitária ",
+                "answer": "A extensão universitária é a interface entre a universidade e sociedade visando com o objetivo de gerar conhecimento e à interlocução das atividades acadêmicas de ensino e de pesquisa, através de processos ativos de formação."
+              },
+              {
+                "id": 33,
+                "topic_id": 33,
+                "description": "Programas de extensão do DCC",
+                "answer": "o DCC conta com três Programas Permanentes de Extensão que realizam atividades focadas na inclusão e letramento digital e educação em computação em apoio com a sociedade baiana. São eles: Programa Onda Digital, Programa de Ações Pedagógicas para Formação de Professores de Computação (PROFCOMP) e Maratonas de Programação (GruPro)"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": 35,
+            "name": "Programa Onda Digital",
+            "questions": [
+              {
+                "id": 34,
+                "topic_id": 35,
+                "description": "Programa Onda Digital",
+                "answer": "O Programa Onda Digital foi criado em 2004, sob a coordenação do Departamento de Ciência da Computação (DCC) do Instituto de Matemática, como um programa permanente de extensão da Universidade Federal da Bahia (UFBA) e visa contribuir com a inclusão sociodigital na Bahia, envolvendo a Universidade em ações educativas e de difusão da filosofia do Software Livre. Saiba mais em: http://wiki.dcc.ufba.br/OndaDigital/"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": 36,
+            "name": "PROFCOMP",
+            "questions": [
+              {
+                "id": 35,
+                "topic_id": 36,
+                "description": "Programa de Ações Pedagógicas para Formação de Professores de Computação (PROFCOMP)",
+                "answer": "O Programa de Ações Pedagógicas para Formação Docente em Computação (PROFCOMP) é um programa permanente de extensão universitária, desenvolvido pelo Grupo de Pesquisa e Extensão em Informática, Educação e Sociedade  Onda Digital, com foco no desenvolvimento de conhecimentos sobre/para/com professores da educação básica. Saiba mais em: http://wiki.dcc.ufba.br/OndaDigital/ApresentacaoPROFCOMP"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": 37,
+            "name": "GruPro",
+            "questions": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 38,
+        "name": "Residência de Software",
+        "questions": [],
+        "children": [
+          {
+            "id": 40,
+            "name": "Pós-graduação Lato Sensu - Tecnologia da Informação",
+            "questions": [
+              {
+                "id": 38,
+                "topic_id": 40,
+                "description": "Curso de Pós-Graduação Lato Sensu Em Tecnologia da Informação",
+                "answer": "O curso tem como objetivo principal incentivar a formação de recursos humanos com alto grau de especialização na área de Desenvolvimento de Sistemas de Software. O foco de atuação da primeira turma do curso será desenvolver competências para o planejamento e o desenvolvimento de soluções de software para as diversas áreas do Tribunal Regional Eleitoral da Bahia (TRE/BA)."
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": 39,
+            "name": "Pós-graduação Lato Sensu - Projetos de Tecnologia e Inovação",
+            "questions": [
+              {
+                "id": 37,
+                "topic_id": 39,
+                "description": "Curso de Pós-graduação Lato Sensu em Projetos de Tecnologia e Inovação para o Judiciário Federal",
+                "answer": "O curso tem como objetivo incentivar a formação de recursos humanos com alto grau de especialização na área de Desenvolvimento de Sistemas de Software. O foco de atuação será desenvolver competências para o planejamento e o desenvolvimento de soluções de software para as diversas áreas da Seção Judiciária da Bahia (SJBA)."
+              }
+            ],
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+]
