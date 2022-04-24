@@ -4,7 +4,7 @@ import RequestPassword from 'pages/Auth/RequestPassword';
 import ResetPassword from 'pages/Auth/ResetPassword';
 import Chat from 'pages/Chat';
 import CreateQuestion from 'pages/CreateQuestion';
-import Dashboard from 'pages/Dashboard';
+import EditQuestion from 'pages/EditQuestion';
 import Questions from 'pages/Questions';
 import UsersCreate from 'pages/Users/Users-create';
 import React, { useMemo } from 'react';
@@ -34,15 +34,14 @@ export function AppRoutes() {
       <Routes>
         {isUserLogged ? (
           <>
-            <Route path="/dashboard" element={<Questions />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/questions" element={<Questions />} />
-            <Route path="/questions/create" element={<CreateQuestion />} />
-            <Route path="dashboard" element={<Questions />} />
-            <Route path="users" element={<Users />} />
-            <Route path="users/create" element={<UsersCreate />} />
-            <Route path="users/edit" element={<UsersCreate />} />
-            <Route path="questions" element={<Questions />} />
+            <Route path="/dashboard" element={<Navigate to="/dashboard/questions" />} />
+            <Route path="/dashboard/users" element={<Users />} />
+            <Route path="/dashboard/questions" element={<Questions />} />
+            <Route path="/dashboard/questions/create" element={<CreateQuestion />} />
+            <Route path="/dashboard/questions/edit" element={<EditQuestion />} />
+            <Route path="questions" element={<Navigate to="/dashboard/questions" />} />
+            <Route path="users" element={<Navigate to="/dashboard/users" />} />
+            <Route path="dashboard" element={<Navigate to="/dashboard/questions" />} />
           </>
         ) : (
           <>

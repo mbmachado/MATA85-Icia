@@ -1,6 +1,5 @@
 #questions-container{
-    display: flex;
-    flex-wrap: wrap;
+    margin: 20px 40px 20px 0px;
 }
 
 .title-container{
@@ -47,6 +46,9 @@
 
 .breadcrumb-item{
     text-decoration: underline;
+    background-color: #FFF;
+    border: none; 
+    color: inherit;
 }
 
 .breadcrumb-item:hover{

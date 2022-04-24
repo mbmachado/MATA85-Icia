@@ -14,7 +14,7 @@ interface Message {
   id?: number;
   text: string;
   questions?: Question[];
-  side: 'left' | 'right';
+  side?: 'left' | 'right';
   topics?: Topic[];
 }
 

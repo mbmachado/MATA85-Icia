@@ -55,7 +55,7 @@ export default function Users() {
           variant="outlined"
           color="secondary"
           onClick={() => {
-            navigate('/users/create', {
+            navigate('/dashboard/users/create', {
               state: { id: '', name: '', email: '' },
             });
           }}
@@ -100,7 +100,7 @@ export default function Users() {
                       aria-label="Editar"
                       component="span"
                       onClick={() => {
-                        navigate('/users/edit', {
+                        navigate('/dashboard/users/edit', {
                           state: { id: row.id, name: row.name, email: row.email },
                         });
                       }}

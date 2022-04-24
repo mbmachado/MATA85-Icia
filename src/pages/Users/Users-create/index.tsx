@@ -44,7 +44,7 @@ export default function UsersCreate() {
         .then((response) => response.data)
         .then((response) => {
           console.log(response);
-          navigate('/users');
+          navigate('/dashboard/users');
         })
         .catch((err) => {
           console.log(err);
@@ -55,7 +55,7 @@ export default function UsersCreate() {
         .then((response) => response.data)
         .then((response) => {
           console.log(response);
-          navigate('/users');
+          navigate('/dashboard/users');
         })
         .catch((err) => {
           console.log(err);
@@ -70,7 +70,7 @@ export default function UsersCreate() {
           aria-label="Voltar"
           component="span"
           onClick={() => {
-            navigate('/users');
+            navigate('/dashboard/users');
           }}
         >
           <ArrowBack />

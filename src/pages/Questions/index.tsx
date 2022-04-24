@@ -1,25 +1,40 @@
 import './styles.scss';
 
+import { Button } from '@mui/material';
 import AdminTemplate from 'components/AdminTemplate';
-import QuestionCard from 'components/QuestionCard';
-import YellowButton from 'components/YellowButton';
+import QuestionsTable from 'components/QuestionsTable';
+import TextModal from 'components/TextModal';
 import { useAuthContext } from 'contexts/AuthContext/hook';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { services } from 'services';
+import { TopicsTree } from 'types';
 
 import { Question } from './types';
 
 export default function Questions() {
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [selectedTopics, setSelectedTopics] = useState<any[]>([]);
-  const [initialData, setInitialData] = useState<any[]>([]);
-  const [currentSubtopics, setCurrentTopics] = useState<any[]>([]);
+  const [selectedTopics, setSelectedTopics] = useState<TopicsTree[]>([]);
+  const [initialData, setInitialData] = useState<TopicsTree[]>([]);
+  const [currentSubtopics, setCurrentTopics] = useState<TopicsTree[]>([]);
   const [selectedTopicName, setSelectedTopicName] = useState('');
   const [selectedTopicId, setSelectedTopicId] = useState(0);
   const navigate = useNavigate();
   const { authToken } = useAuthContext();
-  const { getTopicsTree } = services;
+  const { getTopicsTree, getQuestions } = services;
+
+  const handleRemoveQuestionFromTable = (id: number) => {
+    setQuestions((current) => current.filter((question) => question.id !== id));
+  };
+
+  useEffect(() => {
+    if (selectedTopicId === 0) {
+      getQuestions(authToken).then((response) => {
+        setQuestions(response.data);
+      });
+    }
+  }, [selectedTopicId]);
 
   useEffect(() => {
     getTopicsTree(authToken).then((response) => {
@@ -37,7 +52,7 @@ export default function Questions() {
         <div className="breadcrumb-container">
           {selectedTopicId !== 0 ? (
             <span>
-              <a
+              <button
                 className="breadcrumb-item"
                 onClick={() => {
                   setSelectedTopics([]);
@@ -48,7 +63,7 @@ export default function Questions() {
                 }}
               >
                 Inicio
-              </a>
+              </button>
               {' > '}
             </span>
           ) : (
@@ -58,8 +73,8 @@ export default function Questions() {
           {selectedTopics.map((topic, index) => {
             if (index !== selectedTopics.length - 1) {
               return (
-                <span>
-                  <a
+                <span key={topic.id}>
+                  <button
                     className="breadcrumb-item"
                     onClick={() => {
                       setSelectedTopics((current) => current.slice(0, index + 1));
@@ -70,7 +85,7 @@ export default function Questions() {
                     }}
                   >
                     {topic.name}
-                  </a>
+                  </button>
                   {' > '}
                 </span>
               );
@@ -82,6 +97,7 @@ export default function Questions() {
           if (topic.name === '') return null;
           return (
             <button
+              key={topic.id}
               className="filter-question-button"
               onClick={() => {
                 setQuestions(topic.questions);
@@ -103,22 +119,25 @@ export default function Questions() {
               <h3> {`Perguntas categoria ${selectedTopicName}`}</h3>
               <br />
               <div>
-                <YellowButton
-                  name="ADICIONAR"
+                <Button
+                  variant="contained"
                   onClick={() => {
-                    navigate('/questions/create', {
+                    navigate('/dashboard/questions/create', {
                       state: { topicId: selectedTopicId, topicName: selectedTopicName },
                     });
                   }}
-                />
+                >
+                  ADICIONAR
+                </Button>
               </div>
             </>
           )}
         </div>
         <div id="questions-container">
-          {questions.map((question) => (
-            <QuestionCard question={question} />
-          ))}
+          <QuestionsTable
+            questions={questions}
+            removeQuestion={handleRemoveQuestionFromTable}
+          />
         </div>
       </div>
     </AdminTemplate>
