@@ -8,7 +8,7 @@ const ConfirmDialog = (props: any) => {
       <DialogContent>{children}</DialogContent>
       <DialogActions>
         <Button variant="contained" onClick={() => setOpen(false)} color="secondary">
-          No
+          Não
         </Button>
         <Button
           variant="contained"
@@ -18,7 +18,7 @@ const ConfirmDialog = (props: any) => {
           }}
           color="secondary"
         >
-          Yes
+          Sim
         </Button>
       </DialogActions>
     </Dialog>

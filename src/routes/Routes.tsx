@@ -39,9 +39,9 @@ export function AppRoutes() {
             <Route path="/dashboard/questions" element={<Questions />} />
             <Route path="/dashboard/questions/create" element={<CreateQuestion />} />
             <Route path="/dashboard/questions/edit" element={<EditQuestion />} />
-            <Route path="dashboard" element={<Navigate to="/dashboard/questions" />} />
             <Route path="questions" element={<Navigate to="/dashboard/questions" />} />
             <Route path="users" element={<Navigate to="/dashboard/users" />} />
+            <Route path="dashboard" element={<Navigate to="/dashboard/questions" />} />
           </>
         ) : (
           <>

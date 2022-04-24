@@ -27,12 +27,15 @@ export default function Users() {
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false);
 
   const handleDelete = (id: number) => {
+    console.log('deletando o ', id);
+    /*
     services
       .deleteUser(id)
       .then(() => getUsers())
       .catch((err) => {
         console.log(err);
       });
+      */
   };
   const getUsers = () => {
     services.getUsers().then((response) => {
@@ -75,31 +78,29 @@ export default function Users() {
         />
       </div>
       <div className="user-container">
-        <TableContainer component={Paper}>
+        <TableContainer>
           <Table sx={{ minWidth: 450 }} size="small">
             <TableHead>
               <TableRow>
                 <TableCell>Nome</TableCell>
                 <TableCell>Email</TableCell>
-                <TableCell>Ações</TableCell>
+                <TableCell align="center">Ações</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {user.map((row) => (
                 <TableRow
-                  key={row.name}
+                  key={row.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell>{row.email}</TableCell>
-                  <TableCell>
+                  <TableCell width="40%">{row.name}</TableCell>
+                  <TableCell width="40%">{row.email}</TableCell>
+                  <TableCell width="20%" align="center">
                     <IconButton
                       aria-label="Editar"
                       component="span"
                       onClick={() => {
-                        navigate('/dashboardusers/edit', {
+                        navigate('/dashboard/users/edit', {
                           state: { id: row.id, name: row.name, email: row.email },
                         });
                       }}
@@ -112,15 +113,13 @@ export default function Users() {
                       onClick={() => setConfirmOpen(true)}
                     >
                       <Delete />
-                      <ConfirmDialog
-                        title={`Deletar usuário ${row.name}`}
-                        open={confirmOpen}
-                        setOpen={setConfirmOpen}
-                        onConfirm={() => handleDelete(row.id)}
-                      >
-                        Are you sure you want to delete this post?
-                      </ConfirmDialog>
                     </IconButton>
+                    <ConfirmDialog
+                      title={`Deletar usuário ${row.name}`}
+                      open={confirmOpen}
+                      setOpen={setConfirmOpen}
+                      onConfirm={() => handleDelete(row.id)}
+                    ></ConfirmDialog>
                   </TableCell>
                 </TableRow>
               ))}
