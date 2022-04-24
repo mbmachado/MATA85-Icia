@@ -1,6 +1,7 @@
 describe('APP', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000');
+    // cy.visit('http://localhost:3000');
+    cy.visit('https://virtual-assistent-frontend.herokuapp.com/');
     cy.once('uncaught:exception', () => false);
     // cy.intercept('GET', '/api/v1/topics', { fixture: 'questions.json' });
     // cy.intercept('GET', '/api/v1/topics/1', { fixture: 'qid1.json' });
