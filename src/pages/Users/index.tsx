@@ -94,7 +94,9 @@ export default function Users() {
                   key={row.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell width="40%" data-testid="user-name">{row.name}</TableCell>
+                  <TableCell width="40%" data-testid="user-name">
+                    {row.name}
+                  </TableCell>
                   <TableCell width="40%">{row.email}</TableCell>
                   <TableCell width="20%" align="center">
                     <IconButton

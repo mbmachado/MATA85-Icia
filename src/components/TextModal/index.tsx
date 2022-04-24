@@ -37,7 +37,12 @@ export default function TextModal({
             {text}
           </Typography>
           <div className="modal-footer">
-            <Button variant="contained" color="warning" onClick={handleConfirm} data-testid="confirm-button">
+            <Button
+              variant="contained"
+              color="warning"
+              onClick={handleConfirm}
+              data-testid="confirm-button"
+            >
               Sim
             </Button>
             <Button variant="outlined" onClick={handleClose} className="ml-2">

@@ -46,11 +46,21 @@ const QuestionForm = ({
       </div>
 
       {isEdit ? (
-        <Button variant="contained" color="secondary" type="submit" data-testid="submit-button">
+        <Button
+          variant="contained"
+          color="secondary"
+          type="submit"
+          data-testid="submit-button"
+        >
           EDITAR
         </Button>
       ) : (
-        <Button variant="contained" color="secondary" type="submit" data-testid="submit-button">
+        <Button
+          variant="contained"
+          color="secondary"
+          type="submit"
+          data-testid="submit-button"
+        >
           CADASTRAR
         </Button>
       )}
