@@ -24,6 +24,7 @@ const QuestionCard = ({ question }: QuestionCardProps) => {
         onClick={() => {
           navigate('edit', { state: { id, topic_id, description, answer } });
         }}
+        data-testid="submit-button"
       >
         EDITAR
       </Button>

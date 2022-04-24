@@ -121,6 +121,7 @@ export default function Questions() {
               <div>
                 <Button
                   variant="contained"
+                  data-testid="add-question-button"
                   onClick={() => {
                     navigate('/dashboard/questions/create', {
                       state: { topicId: selectedTopicId, topicName: selectedTopicName },

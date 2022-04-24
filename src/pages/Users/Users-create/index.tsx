@@ -112,7 +112,7 @@ export default function UsersCreate() {
               color="secondary"
             />
           </FormControl>
-          <Button type="submit" variant="contained" color="secondary" disableElevation>
+          <Button type="submit" data-testid="submit-button" variant="contained" color="secondary" disableElevation>
             Enviar
           </Button>
         </form>
