@@ -30,6 +30,7 @@ const QuestionForm = ({
           placeholder="Digite a pergunta"
           value={description}
           onChange={(event) => handleQuestionChange(event.target.value)}
+          label="Pergunta"
         />
       </FormControl>
       <div className=" mb-2">
@@ -41,6 +42,7 @@ const QuestionForm = ({
             placeholder="Digite a resposta"
             value={answer}
             onChange={(event) => handleAnswerChange(event.target.value)}
+            label="Resposta"
           />
         </FormControl>
       </div>
