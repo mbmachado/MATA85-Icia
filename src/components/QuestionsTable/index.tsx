@@ -84,6 +84,7 @@ export default function QuestionsTable({
             color="secondary"
             disableElevation
             onClick={() => handleEdit(item.row as Question)}
+            data-testid="edit-button"
           >
             EDITAR
           </Button>
@@ -95,6 +96,7 @@ export default function QuestionsTable({
             onClick={() => {
               handleOpenModal(item.row.id);
             }}
+            data-testid="delete-button"
           >
             EXCLUIR
           </Button>

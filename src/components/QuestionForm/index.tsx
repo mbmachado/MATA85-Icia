@@ -23,9 +23,9 @@ const QuestionForm = ({
   return (
     <form onSubmit={handleSubmit} className="formContainer">
       <FormControl className="mt-4" variant="outlined" fullWidth color="secondary">
-        <InputLabel htmlFor="email">Pergunta</InputLabel>
+        <InputLabel htmlFor="input-question">Pergunta</InputLabel>
         <OutlinedInput
-          id="description"
+          id="input-question"
           type="text"
           placeholder="Digite a pergunta"
           value={description}
@@ -34,9 +34,9 @@ const QuestionForm = ({
       </FormControl>
       <div className=" mb-2">
         <FormControl className="mt-4" variant="outlined" color="secondary" fullWidth>
-          <InputLabel htmlFor="email">Resposta</InputLabel>
+          <InputLabel htmlFor="input-answer">Resposta</InputLabel>
           <OutlinedInput
-            id="email"
+            id="input-answer"
             type="text"
             placeholder="Digite a resposta"
             value={answer}
@@ -46,11 +46,21 @@ const QuestionForm = ({
       </div>
 
       {isEdit ? (
-        <Button variant="contained" color="secondary" type="submit">
+        <Button
+          variant="contained"
+          color="secondary"
+          type="submit"
+          data-testid="submit-button"
+        >
           EDITAR
         </Button>
       ) : (
-        <Button variant="contained" color="secondary" type="submit">
+        <Button
+          variant="contained"
+          color="secondary"
+          type="submit"
+          data-testid="submit-button"
+        >
           CADASTRAR
         </Button>
       )}

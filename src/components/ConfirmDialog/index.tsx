@@ -11,6 +11,7 @@ const ConfirmDialog = (props: any) => {
           Não
         </Button>
         <Button
+          data-testid="confirm-button"
           variant="contained"
           onClick={() => {
             setOpen(false);

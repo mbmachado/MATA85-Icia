@@ -27,15 +27,12 @@ export default function Users() {
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false);
 
   const handleDelete = (id: number) => {
-    console.log('deletando o ', id);
-    /*
     services
       .deleteUser(id)
       .then(() => getUsers())
       .catch((err) => {
         console.log(err);
       });
-      */
   };
   const getUsers = () => {
     services.getUsers().then((response) => {
@@ -52,6 +49,7 @@ export default function Users() {
       <div className="user-container title-container">
         <h2>Usuários Cadastrados</h2>
         <Button
+          data-testid="add_user-button"
           variant="outlined"
           color="secondary"
           onClick={() => {
@@ -93,11 +91,14 @@ export default function Users() {
                   key={row.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell width="40%">{row.name}</TableCell>
+                  <TableCell width="40%" data-testid="user-name">
+                    {row.name}
+                  </TableCell>
                   <TableCell width="40%">{row.email}</TableCell>
                   <TableCell width="20%" align="center">
                     <IconButton
                       aria-label="Editar"
+                      data-testid="edit_user-button"
                       component="span"
                       onClick={() => {
                         navigate('/dashboard/users/edit', {
@@ -108,6 +109,7 @@ export default function Users() {
                       <Edit />
                     </IconButton>
                     <IconButton
+                      data-testid="delete_user-button"
                       aria-label="Deletar"
                       component="span"
                       onClick={() => setConfirmOpen(true)}

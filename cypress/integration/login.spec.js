@@ -19,10 +19,10 @@ describe('APP', () => {
     cy.get('#email').should('have.length', 1);
   });
 
-  it('should reset password', () => {
-    //TODO: Finish test when feature is implemented
-    cy.get('#login-button').click();
-    cy.get('#email').should('have.length', 1);
-    cy.get('#request-password__button').click();
-  });
+  //TODO: Finish test when feature is implemented
+  // it('should reset password', () => {
+  //   cy.get('#login-button').click();
+  //   cy.get('#email').should('have.length', 1);
+  //   cy.get('#request-password__button').click();
+  // });
 });
