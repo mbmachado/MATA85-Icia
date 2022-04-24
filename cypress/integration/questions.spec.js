@@ -14,8 +14,7 @@ describe('APP', () => {
     cy.get('#admin-content').should('have.length', 1);
     cy.get('.filter-question-button').should('have.length', 3);
     cy.get('.filter-question-button').first().click();
-    cy.get('h3').should('have.text', ' Perguntas categoria Institucional')
+    cy.get('h3').should('have.text', ' Perguntas categoria Institucional');
     cy.get('#add-category-button').should('have.length', 3);
   });
-
 });

@@ -4,7 +4,6 @@ describe('APP', () => {
     cy.once('uncaught:exception', () => false);
   });
 
-
   it('should login, see admin painel and logout', () => {
     cy.get('#login-button').click();
     cy.get('#email').should('have.length', 1);
