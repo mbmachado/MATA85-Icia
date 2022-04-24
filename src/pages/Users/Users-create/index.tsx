@@ -75,7 +75,7 @@ export default function UsersCreate() {
         >
           <ArrowBack />
         </IconButton>
-        <h2>Cadastrar Usuário</h2>
+        <h2>{id ? 'Editar Usuário' : 'Cadastrar Usuário'}</h2>
       </div>
       <div className="user-container">
         <form onSubmit={handleSubmit} action="#">

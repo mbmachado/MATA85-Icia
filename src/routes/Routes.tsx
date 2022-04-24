@@ -36,6 +36,8 @@ export function AppRoutes() {
           <>
             <Route path="/dashboard" element={<Navigate to="/dashboard/questions" />} />
             <Route path="/dashboard/users" element={<Users />} />
+            <Route path="/dashboard/users/create" element={<UsersCreate />} />
+            <Route path="/dashboard/users/edit" element={<UsersCreate />} />
             <Route path="/dashboard/questions" element={<Questions />} />
             <Route path="/dashboard/questions/create" element={<CreateQuestion />} />
             <Route path="/dashboard/questions/edit" element={<EditQuestion />} />
