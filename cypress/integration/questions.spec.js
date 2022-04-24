@@ -52,5 +52,6 @@ describe('APP', () => {
     cy.get('[data-testid=delete-button]').first().click();
     cy.get('[data-testid=confirm-button]').last().click();
     cy.contains('div', 'Pergunta excluída com sucesso').should('have.length', 1);
+    cy.wait(2000);
   });
 });
