@@ -31,7 +31,6 @@ const Menu = () => {
         return (
           <Link data-testid={link.id} to={link.path} key={link.id}>
             <div className="menu-option">
-              {isSelected && 'que merda'}
               <i className="menu-icon">
                 {link.icon(isSelected ? theme.palette.secondary.main : '')}
               </i>
