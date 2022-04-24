@@ -8,12 +8,14 @@ import { theme } from '../../themes/ic-ufba.theme';
 
 const links = [
   {
+    id: 'question-link',
     icon: (htmlColor: string) => <Icons.Forum htmlColor={htmlColor} />,
     name: 'Perguntas',
     path: '/dashboard/questions',
     isSelected: false,
   },
   {
+    id: 'users-link',
     icon: (htmlColor: string) => <Icons.People htmlColor={htmlColor} />,
     name: 'Usuários',
     path: '/dashboard/users',
@@ -24,11 +26,12 @@ const links = [
 const Menu = () => {
   return (
     <nav id="container">
-      {links.map((link, index) => {
+      {links.map((link) => {
         const isSelected = window.location.pathname.includes(link.path);
         return (
-          <Link to={link.path} key={index}>
+          <Link data-testid={link.id} to={link.path} key={link.id}>
             <div className="menu-option">
+              {isSelected && 'que merda'}
               <i className="menu-icon">
                 {link.icon(isSelected ? theme.palette.secondary.main : '')}
               </i>
