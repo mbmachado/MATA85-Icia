@@ -112,7 +112,8 @@ export default function Questions() {
           );
         })}
 
-        <button className="add-category-button">+</button>
+        {/* TODO make add category flux */}
+        {/* <button className="add-category-button">+</button> */}
         <div className="mt-3">
           {selectedTopicName && (
             <>
