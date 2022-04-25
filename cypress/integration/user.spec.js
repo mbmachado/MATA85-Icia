@@ -1,6 +1,7 @@
 describe('APP', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000');
+    // cy.visit('http://localhost:3001');
+    cy.visit('https://virtual-assistent-frontend.herokuapp.com/');
     cy.once('uncaught:exception', () => false);
     cy.get('#login-button').click();
     cy.wait(2000);
@@ -43,5 +44,6 @@ describe('APP', () => {
     cy.get('[data-testid=user-name]')
       .last()
       .should('not.have.text', 'a user test edited');
+    cy.wait(4000);
   });
 });
