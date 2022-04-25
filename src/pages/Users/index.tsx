@@ -15,9 +15,10 @@ import {
   TextField,
 } from '@mui/material';
 import AdminTemplate from 'components/AdminTemplate';
-import ConfirmDialog from 'components/ConfirmDialog';
+import TextModal from 'components/TextModal';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { services } from 'services';
 import { User } from 'types';
 
@@ -25,14 +26,27 @@ export default function Users() {
   const navigate = useNavigate();
   const [user, setUser] = useState<User[]>([]);
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false);
+  const [openedModal, setOpenedModal] = useState<number>();
 
   const handleDelete = (id: number) => {
     services
       .deleteUser(id)
-      .then(() => getUsers())
+      .then(() => {
+        toast.success('Usuário excluído com sucesso!');
+        getUsers();
+      })
       .catch((err) => {
-        console.log(err);
+        toast.error('Houve um erro ao excluir o usuário');
       });
+  };
+  const handleOpen = (id: number) => {
+    setOpenedModal(id);
+    setConfirmOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpenedModal(undefined);
+    setConfirmOpen(false);
   };
   const getUsers = () => {
     services.getUsers().then((response) => {
@@ -112,16 +126,17 @@ export default function Users() {
                       data-testid="delete_user-button"
                       aria-label="Deletar"
                       component="span"
-                      onClick={() => setConfirmOpen(true)}
+                      onClick={() => handleOpen(row.id)}
                     >
                       <Delete />
                     </IconButton>
-                    <ConfirmDialog
-                      title={`Deletar usuário ${row.name}`}
-                      open={confirmOpen}
-                      setOpen={setConfirmOpen}
-                      onConfirm={() => handleDelete(row.id)}
-                    ></ConfirmDialog>
+                    <TextModal
+                      title="Excluir usuário"
+                      text={`Tem certeza que deseja excluir o usuário ${row.name}?`}
+                      isOpen={confirmOpen && openedModal == row.id}
+                      handleClose={() => handleClose()}
+                      handleConfirm={() => handleDelete(row.id)}
+                    />
                   </TableCell>
                 </TableRow>
               ))}

@@ -1,5 +1,5 @@
 import * as Icons from '@mui/icons-material';
-import { LinearProgress } from '@mui/material';
+import { IconButton, LinearProgress } from '@mui/material';
 import AdminTemplate from 'components/AdminTemplate';
 import QuestionForm from 'components/QuestionForm';
 import { useAuthContext } from 'contexts/AuthContext/hook';
@@ -65,12 +65,17 @@ const EditQuestion = () => {
     <AdminTemplate>
       {isLoading && <LinearProgress variant={'indeterminate'} />}
       <div className="d-flex align-items-center mt-2">
-        <Icons.ArrowBack
+        <IconButton
           className="mr-3 ml-3"
+          aria-label="Voltar"
+          component="span"
           onClick={() => {
             navigate(-1);
           }}
-        />
+        >
+          <Icons.ArrowBack />
+        </IconButton>
+
         <span className="title">Editar Pergunta{topicName}</span>
       </div>
 
