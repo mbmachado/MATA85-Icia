@@ -44,12 +44,14 @@ export default function ChatHeader() {
         }}
       >
         <Typography sx={{ p: 2 }}>
-          Icia ChatBot
+          O ICIA é um sistema de &quot;BOT&quot; com o objetivo de responder as dúvidas
+          relacionadas ao Instituto de Computação (IC) da UFBA, especialmente dos cursos
+          de graduação e pós-graduação do PGCOMP.
           <br />
-          <br />
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa aliquam ipsa in
-          deserunt, veniam tempore recusandae amet velit molestiae repudiandae. Rem
-          incidunt possimus dolores harum id modi.
+          <br />O aplicativo foi desenvolvido por discentes de cursos de graduação e
+          pós-graduação vinculados ao PGCOMP, sob a orientação do Prof. Dr. Frederico
+          Durão, referente a disciplina Tópicos em Sistemas de Informação e Web I no
+          semestre letivo de 2022.1.
         </Typography>
       </Popover>
     </>

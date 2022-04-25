@@ -8,7 +8,7 @@ import ChatMessage from 'components/Chat/ChatMessage';
 import ChatTypingLoader from 'components/Chat/ChatTypingLoader';
 import Header from 'components/Header';
 import React, { useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { services } from 'services';
 import { Message, Question, Topic, TopicsTree } from 'types';
 

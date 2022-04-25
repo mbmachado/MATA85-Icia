@@ -5,7 +5,6 @@ import { IconButton } from '@mui/material';
 import React from 'react';
 
 type ChatAsideProps = {
-  // eslint-disable-next-line no-unused-vars
   handleSidebarOptionClick: (option: 'home' | 'dark' | 'font') => void;
 };
 
