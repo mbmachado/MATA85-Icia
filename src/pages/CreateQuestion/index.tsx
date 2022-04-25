@@ -1,4 +1,5 @@
 import * as Icons from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 import AdminTemplate from 'components/AdminTemplate';
 import { useAuthContext } from 'contexts/AuthContext/hook';
 import React, { useState } from 'react';
@@ -42,16 +43,19 @@ const CreateQuestion = () => {
       .catch((err) => {});
   };
 
-  //TODO change mouse hover on back arrow
   return (
     <AdminTemplate>
       <div className="d-flex align-items-center mt-2">
-        <Icons.ArrowBack
+        <IconButton
           className="mr-3 ml-3"
+          aria-label="Voltar"
+          component="span"
           onClick={() => {
             navigate(-1);
           }}
-        />
+        >
+          <Icons.ArrowBack />
+        </IconButton>
         <span className="title">Cadastrar Pergunta em {topicName}</span>
       </div>
 

@@ -75,7 +75,7 @@ export default function QuestionsTable({
           <TextModal
             title="Excluir Pergunta"
             text="Tem certeza que deseja excluir essa pergunta?"
-            isOpen={isModalOpen}
+            isOpen={isModalOpen && openedModal === item.row.id}
             handleClose={handleCloseModal}
             handleConfirm={() => handleConfirm(openedModal as number)}
           />

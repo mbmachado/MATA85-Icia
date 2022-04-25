@@ -9,6 +9,7 @@ import {
 import AdminTemplate from 'components/AdminTemplate';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { services } from 'services';
 
 interface User {
@@ -44,9 +45,14 @@ export default function UsersCreate() {
         .then((response) => response.data)
         .then((response) => {
           console.log(response);
-          navigate('/dashboard/users');
+          navigate('/dashboard/users', {
+            state: {
+              message: { type: 'success', text: 'Usuário editado com sucesso!' },
+            },
+          });
         })
         .catch((err) => {
+          toast.error('Houve um erro ao editar usuário.');
           console.log(err);
         });
     } else {
@@ -55,9 +61,14 @@ export default function UsersCreate() {
         .then((response) => response.data)
         .then((response) => {
           console.log(response);
-          navigate('/dashboard/users');
+          navigate('/dashboard/users', {
+            state: {
+              message: { type: 'success', text: 'Usuário criado com sucesso!' },
+            },
+          });
         })
         .catch((err) => {
+          toast.error('Houve um erro ao criar usuário.');
           console.log(err);
         });
     }
