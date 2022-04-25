@@ -8,6 +8,7 @@ import ChatMessage from 'components/Chat/ChatMessage';
 import ChatTypingLoader from 'components/Chat/ChatTypingLoader';
 import Header from 'components/Header';
 import React, { useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { services } from 'services';
 import { Message, Question, Topic, TopicsTree } from 'types';
 
@@ -16,6 +17,8 @@ export default function Chat() {
   const [chatRefreshCount, setChatRefreshCount] = useState<number>(0);
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+
+  const navigate = useNavigate();
   const genericMessages = [
     'Agora escolha uma opção :)',
     'Escolha mais uma opção abaixo.',
@@ -144,7 +147,9 @@ export default function Chat() {
             variant="contained"
             color="secondary"
             disableElevation
-            href="/login"
+            onClick={() => {
+              navigate('/login', { replace: true });
+            }}
           >
             Login
           </Button>
