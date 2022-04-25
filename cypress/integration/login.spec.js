@@ -1,7 +1,7 @@
 describe('APP', () => {
   beforeEach(() => {
     cy.visit('https://virtual-assistent-frontend.herokuapp.com/');
-    // cy.visit('http://localhost:3001');
+    // cy.visit('http://localhost:3000');
     cy.once('uncaught:exception', () => false);
   });
 
