@@ -151,7 +151,7 @@ export default function Chat() {
               navigate('/login', { replace: true });
             }}
           >
-            Login
+            Admin
           </Button>
         </Header>
         <div className="chat-container d-flex">
