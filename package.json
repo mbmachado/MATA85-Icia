@@ -61,6 +61,7 @@
     "vite-tsconfig-paths": "^3.3.17"
   },
   "pre-commit": "lint",
+  "pre-push": "build",
   "license": "MIT",
   "eslintConfig": {
     "extends": [
