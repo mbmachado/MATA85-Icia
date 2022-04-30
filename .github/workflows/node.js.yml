@@ -27,7 +27,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
-    - run: npm run build
     #- run: npm run cypress:run 
 
   deploy: 
@@ -36,9 +35,10 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
-          - uses: actions/checkout@v2
-          - uses: akhileshns/heroku-deploy@v3.12.12
-            with:
-              heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-              heroku_app_name: "icia"
-              heroku_email: "mbmachado@outlook.com"
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "icia"
+          heroku_email: "mbmachado@outlook.com"
+      - run: npm run build
