@@ -10,8 +10,7 @@ const headers = {
 };
 
 const api = axios.create({
-  baseURL: 'http://virtual-assistent-backend.herokuapp.com/',
-  // baseURL: 'http://127.0.0.1:8000',
+  baseURL: 'https://virtual-assistent-backend.herokuapp.com/',
   headers: headers,
 });
 
