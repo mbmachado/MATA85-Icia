@@ -12,7 +12,8 @@
     "type-check": "tsc",
     "test": "react-scripts test",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "pre-deploy": "npm run lint && npm run build && git add ./dist/*"
   },
   "dependencies": {
     "@emotion/react": "^11.8.2",
@@ -60,8 +61,7 @@
     "vite": "^2.7.13",
     "vite-tsconfig-paths": "^3.3.17"
   },
-  "pre-commit": "lint",
-  "pre-push": "build",
+  "pre-commit": "pre-deploy",
   "license": "MIT",
   "eslintConfig": {
     "extends": [
