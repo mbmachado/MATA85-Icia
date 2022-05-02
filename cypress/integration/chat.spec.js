@@ -9,6 +9,10 @@ describe('APP', () => {
     // cy.intercept('GET', '/api/v1/topics/32', { fixture: 'qid32.json' });
   });
 
+  afterEach(() => {
+    cy.wait(2000);
+  });
+
   it("should check 'Institucional' fluxo and see answer", () => {
     cy.get('.chat-items').should('have.length', 1);
     cy.get('.chat-item-option').should('have.length', 3);
