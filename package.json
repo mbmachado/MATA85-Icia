@@ -13,7 +13,7 @@
     "test": "react-scripts test",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "pre-deploy": "npm run lint && npm run build && cp ./nginx_app.conf ./dist/nginx_app.conf && git add ./dist/*"
+    "pre-deploy": "npm run lint && npm run build && git add ./dist/*"
   },
   "dependencies": {
     "@emotion/react": "^11.8.2",
