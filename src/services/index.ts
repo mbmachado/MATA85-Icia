@@ -148,7 +148,23 @@ export const services = {
     return api.delete(`/api/v3/users/${id}`, config);
   },
 
-  
+  createTopic: async (authToken: string, name: string, parentId?: number) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+    const data = {
+      name,
+    };
+    const id = parentId ? `/${parentId}` : '';
+    return api.post(`/api/v3/topics${id}`, data, {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+
   deleteTopic: async (id: number, authToken: string) => {
     let token = authToken;
     if (!token) {
