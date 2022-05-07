@@ -19,6 +19,7 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.5.1",
+    "@mui/lab": "^5.0.0-alpha.80",
     "@mui/material": "^5.5.2",
     "@mui/x-data-grid": "^5.9.0",
     "@testing-library/jest-dom": "^5.11.4",

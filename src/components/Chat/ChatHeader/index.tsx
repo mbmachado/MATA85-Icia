@@ -19,7 +19,13 @@ export default function ChatHeader() {
 
   return (
     <>
-      <h2 className="mb-0 text-dark">ChatBot do IC-UFBA</h2>
+      <h2
+        id="chat-header-title"
+        title="Inteligência Artificial do IC"
+        className="mb-0 text-dark"
+      >
+        Inteligência Artificial do IC
+      </h2>
       <div className="flex-fill"></div>
       <Button
         aria-describedby={id}

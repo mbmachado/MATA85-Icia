@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TopicsTree, User } from 'types';
+import { Question, TopicsTree, User } from 'types';
 
 import { LoginResonseData } from './types';
 
@@ -15,11 +15,17 @@ const api = axios.create({
 });
 
 export const services = {
-  login: async (email: string, password: string) => {
-    return api.post('/api/v2/auth/login', {
-      email,
-      password,
-    });
+  getInitialTopicsTree: async () => {
+    return api.get<TopicsTree[]>('/api/v1/topics');
+  },
+  getTopicsTreeById: async (id: number) => {
+    return api.get<TopicsTree[]>(`/api/v1/topics/${id}`);
+  },
+  getTopicsTreeByNlp: async (text: string) => {
+    return api.post<TopicsTree[] | Question[]>(`/api/v1/nlp`, { text });
+  },
+  login: async (credentials: { email: string; password: string }) => {
+    return api.post('/api/v2/auth/login', credentials);
   },
   getTopicsTree: async (authToken?: string) => {
     let token = authToken;
@@ -55,18 +61,6 @@ export const services = {
         'X-CSRF-TOKEN': '',
         Authorization: `Bearer ${token}`,
       },
-    });
-  },
-
-  getInitialTopicsTree: async () => {
-    return api.get<TopicsTree[]>('/api/v1/topics');
-  },
-  getTopicsTreeById: async (id: number) => {
-    return api.get<TopicsTree[]>(`/api/v1/topics/${id}`);
-  },
-  getTopicsTreeByNlp: async (text: string) => {
-    return api.get<TopicsTree[]>(`/api/v3/nlp`, {
-      params: { text },
     });
   },
   getQuestions: async (authToken: string) => {

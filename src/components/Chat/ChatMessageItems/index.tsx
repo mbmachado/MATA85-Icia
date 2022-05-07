@@ -34,8 +34,8 @@ export default function ChatMessageItems({
               onClick={() => handleClick(item)}
               title={isQuestion(item) ? item.description : item.name}
               className={
-                'chat-item-option d-block rounded-pill bg-info ' +
-                `text-dark py-${isQuestion(item) ? '1' : '2'} px-3 mt-3 ` +
+                'chat-item-option d-block ' +
+                'rounded-pill bg-info text-dark py-2 px-3 mt-3 ' +
                 `border-0${selectedItemId === item.id ? ' selected' : ''}`
               }
             >
