@@ -153,6 +153,22 @@ export const services = {
     };
     return api.delete(`/api/v3/users/${id}`, config);
   },
+
+  
+  deleteTopic: async (id: number, authToken: string) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+
+    return api.delete(`/api/v3/topics/${id}`, {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
 };
 
 export const setAuthOnLocalStorage = (state: LoginResonseData) => {
