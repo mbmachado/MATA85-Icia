@@ -29,11 +29,14 @@ export default function ChatAside({ handleSidebarOptionClick }: ChatAsideProps) 
           {darkMode ? <Brightness4 /> : <Brightness2 />}
         </IconButton>
       </Tooltip>
+
+      {/*
       <Tooltip title="Fonte" placement="right">
         <IconButton aria-label="cached" onClick={() => handleSidebarOptionClick('font')}>
           <FormatSize />
         </IconButton>
       </Tooltip>
+      */}
     </aside>
   );
 }

@@ -27,6 +27,9 @@ export const services = {
   login: async (credentials: { email: string; password: string }) => {
     return api.post('/api/v2/auth/login', credentials);
   },
+  requestPassword: async (email: string) => {
+    return api.get(`/api/v2/auth/recoverAccess/${email}`);
+  },
   getTopicsTree: async (authToken?: string) => {
     let token = authToken;
     if (!token) {

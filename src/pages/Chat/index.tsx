@@ -1,6 +1,5 @@
 import './styles.scss';
 
-import { AlternateEmailTwoTone } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import ChatAside from 'components/Chat/ChatAside';
 import ChatHeader from 'components/Chat/ChatHeader';

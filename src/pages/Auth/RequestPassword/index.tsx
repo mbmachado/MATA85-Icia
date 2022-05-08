@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { services } from 'services';
 
 import Auth from '..';
 
@@ -28,18 +29,27 @@ export default function RequestPassword() {
   const handleChange =
     (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [prop]: event.target.value });
-      setControlsError(false);
+      if (controlsError) setControlsError(false);
+      if (successAlert) setSuccessAlert(false);
     };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (values.email) {
+    const email = values.email;
+
+    if (email) {
       setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        setSuccessAlert(true);
-      }, 1500);
+
+      try {
+        const response = await services.requestPassword(email);
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+
+      setLoading(false);
+      setSuccessAlert(true);
     } else {
       setControlsError(true);
     }
