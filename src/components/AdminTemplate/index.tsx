@@ -1,5 +1,6 @@
 import './styles.scss';
 
+import { Person } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import Header from 'components/Header';
 import Menu from 'components/Menu';
@@ -36,6 +37,21 @@ export default function AdminTemplate({ children }: AdminTemplateProps) {
   return (
     <div className="app">
       <Header>
+        <Button
+          id="profile-edit"
+          startIcon={<Person />}
+          type="button"
+          variant="contained"
+          color="secondary"
+          disableElevation
+          onClick={() => {
+            navigate('/dashboard/users/edit', {
+              state: user,
+            });
+          }}
+        >
+          {user?.name}
+        </Button>
         <Button
           id="logout-button"
           type="button"

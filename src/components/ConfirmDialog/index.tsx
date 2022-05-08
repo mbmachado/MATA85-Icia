@@ -7,7 +7,12 @@ const ConfirmDialog = (props: any) => {
       <DialogTitle id="confirm-dialog">{title}</DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        <Button variant="contained" onClick={() => setOpen(false)} color="secondary">
+        <Button
+          data-testid="reject-button"
+          variant="contained"
+          onClick={() => setOpen(false)}
+          color="secondary"
+        >
           Não
         </Button>
         <Button
