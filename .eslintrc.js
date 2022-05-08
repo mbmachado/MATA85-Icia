@@ -50,4 +50,12 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: ['*.spec.js'],
+      rules: {
+        'no-undef': 0,
+      },
+    },
+  ],
 };

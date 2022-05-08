@@ -13,6 +13,7 @@
   .chat-container {
     height: calc(100% - 80px);
     background-color: var(--white);
+    transition: background-color .3s;
   
     main {
       .chat-toolbar {
@@ -24,6 +25,38 @@
         overflow-y: auto;
         overflow-x: hidden;
       }
+    }
+  }
+}
+
+.chatbot.dark {
+  .chat-container {
+    background-color: var(--coal);
+    
+    aside, .chat-toolbar {
+      border-color: var(--dark-grey) !important;
+    }
+
+    #chat-header-title {
+      color: var(--ligth-grey) !important;
+    }
+  }
+  .chat-input-container {
+    border-color: var(--dark-grey) !important;
+
+    input {
+      background-color: var(--dark-grey);
+      color: var(--ligth-grey);
+    }
+
+    ::placeholder {
+      color: var(--ligth-grey);
+      opacity: 1;
+    }
+    
+    ::-ms-input-placeholder {
+      color: var(--ligth-grey);
+      opacity: 1;
     }
   }
 }

@@ -8,7 +8,7 @@ import ChatMessage from 'components/Chat/ChatMessage';
 import ChatTypingLoader from 'components/Chat/ChatTypingLoader';
 import Header from 'components/Header';
 import React, { useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { services } from 'services';
 import { Message, Question, Topic, TopicsTree } from 'types';
 
@@ -17,8 +17,9 @@ export default function Chat() {
   const [chatRefreshCount, setChatRefreshCount] = useState<number>(0);
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [chatMode, setChatMode] = useState<boolean>(false);
+  let navigate = useNavigate();
 
-  const navigate = useNavigate();
   const genericMessages = [
     'Agora escolha uma opção :)',
     'Escolha mais uma opção abaixo.',
@@ -58,11 +59,16 @@ export default function Chat() {
     }
   };
 
-  const handleSidebarOptionClick = (option: 'home' | 'dark' | 'font'): void => {
-    if (option === 'home') {
-      setChatRefreshCount(1 + chatRefreshCount);
-    } else {
-      alert('Não implementado!');
+  const handleSidebarOptionClick = (option: 'home' | 'mode' | 'font'): void => {
+    switch (option) {
+      case 'home':
+        setChatRefreshCount(1 + chatRefreshCount);
+        break;
+      case 'mode':
+        setChatMode(!chatMode);
+        break;
+      default:
+        alert('Não implementado!');
     }
   };
 
@@ -112,16 +118,37 @@ export default function Chat() {
   };
 
   const generateMessegesOnFormSubmit = async (text: string) => {
-    const newMessages: Message[] = [];
+    const newMessages: Message[] = [...messages, { text, side: 'right' }];
 
-    newMessages.push({ text, side: 'right' });
-    newMessages.push({
-      text: 'Ohh, não... Não encontrei uma resposta para a sua pergunta. \
-        Tente pesquisar com outro termo ou utilizar as opções do menu :(',
-      side: 'left',
-    });
+    setMessages(newMessages);
 
-    setMessages([...messages, ...newMessages]);
+    setLoading(true);
+
+    try {
+      const response = await services.getTopicsTreeByNlp(text);
+
+      if (!response.data) {
+        throw new Error('no content');
+      }
+
+      if ((response.data[0] as Question).description !== undefined) {
+        newMessages.push({
+          text: genericMessages[Math.floor(Math.random() * genericMessages.length)],
+          side: 'left',
+          topics: [],
+          questions: response.data as Question[],
+        });
+      }
+    } catch (err) {
+      newMessages.push({
+        text: 'Ohh, não... Não encontrei uma resposta para a sua pergunta. \
+          Tente pesquisar com outro termo ou utilizar as opções do menu :(',
+        side: 'left',
+      });
+    }
+
+    setLoading(false);
+    setMessages(newMessages);
   };
 
   const getMessageTopics = (topicsTree: TopicsTree[]): Topic[] => {
@@ -138,7 +165,7 @@ export default function Chat() {
   };
 
   return (
-    <div className="chatbot d-block w-100">
+    <div className={'chatbot d-block w-100' + (chatMode ? ' dark' : '')}>
       <div className="d-block min-vh-100 vh-100 w-100 mx-auto">
         <Header>
           <Button
@@ -148,7 +175,7 @@ export default function Chat() {
             color="secondary"
             disableElevation
             onClick={() => {
-              navigate('/login', { replace: true });
+              navigate('/login');
             }}
           >
             Login

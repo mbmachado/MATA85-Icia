@@ -3,7 +3,6 @@
   "clean_urls": true,
   "encoding": "US-ASCII",
   "routes": {
-    "/*.html": "index.html",
-    "/route/**": "index.html"
+    "/**": "index.html"
   }
 }

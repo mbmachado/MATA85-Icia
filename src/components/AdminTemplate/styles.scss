@@ -1,22 +1,7 @@
-#admin-container {
-  display: flex;
-}
-
 #admin-content {
   flex:1;
 }
 
-#logout-button {
-  background-color: var(--yellow);
-  color: var(--blank);
-  border:none;
-  padding: 10px 70px;
-}
-
 #profile-edit {
-  background-color: var(--yellow);
-  color: var(--blank);
-  border:none;
-  padding: 10px 70px;
   margin-right: 15px;
 }

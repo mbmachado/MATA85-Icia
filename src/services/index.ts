@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TopicsTree, User } from 'types';
+import { Question, TopicsTree, User } from 'types';
 
 import { LoginResonseData } from './types';
 
@@ -10,17 +10,25 @@ const headers = {
 };
 
 const api = axios.create({
-  baseURL: 'http://virtual-assistent-backend.herokuapp.com/',
-  // baseURL: 'http://127.0.0.1:8000',
+  baseURL: 'https://virtual-assistent-backend.herokuapp.com/',
   headers: headers,
 });
 
 export const services = {
-  login: async (email: string, password: string) => {
-    return api.post('/api/v2/auth/login', {
-      email,
-      password,
-    });
+  getInitialTopicsTree: async () => {
+    return api.get<TopicsTree[]>('/api/v1/topics');
+  },
+  getTopicsTreeById: async (id: number) => {
+    return api.get<TopicsTree[]>(`/api/v1/topics/${id}`);
+  },
+  getTopicsTreeByNlp: async (text: string) => {
+    return api.post<TopicsTree[] | Question[]>(`/api/v1/nlp`, { text });
+  },
+  login: async (credentials: { email: string; password: string }) => {
+    return api.post('/api/v2/auth/login', credentials);
+  },
+  requestPassword: async (email: string) => {
+    return api.get(`/api/v2/auth/recoverAccess/${email}`);
   },
   getTopicsTree: async (authToken?: string) => {
     let token = authToken;
@@ -56,18 +64,6 @@ export const services = {
         'X-CSRF-TOKEN': '',
         Authorization: `Bearer ${token}`,
       },
-    });
-  },
-
-  getInitialTopicsTree: async () => {
-    return api.get<TopicsTree[]>('/api/v1/topics');
-  },
-  getTopicsTreeById: async (id: number) => {
-    return api.get<TopicsTree[]>(`/api/v1/topics/${id}`);
-  },
-  getTopicsTreeByNlp: async (text: string) => {
-    return api.get<TopicsTree[]>(`/api/v3/nlp`, {
-      params: { text },
     });
   },
   getQuestions: async (authToken: string) => {
@@ -153,6 +149,22 @@ export const services = {
       },
     };
     return api.delete(`/api/v3/users/${id}`, config);
+  },
+
+  
+  deleteTopic: async (id: number, authToken: string) => {
+    let token = authToken;
+    if (!token) {
+      token = getAuthOnLocalStorage()?.token || '';
+    }
+
+    return api.delete(`/api/v3/topics/${id}`, {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'X-CSRF-TOKEN': '',
+        Authorization: `Bearer ${token}`,
+      },
+    });
   },
 };
 

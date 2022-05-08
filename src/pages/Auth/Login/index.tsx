@@ -1,9 +1,11 @@
 import './styles.scss';
 
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import {
-  Button,
+  Alert,
   FormControl,
+  FormHelperText,
   IconButton,
   InputAdornment,
   InputLabel,
@@ -24,6 +26,9 @@ interface State {
 
 export default function Login() {
   const navigate = useNavigate();
+  const [errorAlert, setErrorAlert] = React.useState(false);
+  const [controlsError, setControlsError] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const [values, setValues] = React.useState<State>({
     email: '',
     password: '',
@@ -34,6 +39,7 @@ export default function Login() {
   const handleChange =
     (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [prop]: event.target.value });
+      setControlsError(false);
     };
 
   const handleClickShowPassword = () => {
@@ -49,33 +55,44 @@ export default function Login() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    services
-      .login(values.email, values.password)
-      .then((response) => response.data)
-      .then((response) => {
-        if (response.status === 'Success') {
-          const user = response.data?.user;
-          storeUser(user);
-          storeToken(response.data?.token);
-          setAuthOnLocalStorage(response.data);
-          navigate('/dashboard');
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        setValues({ ...values, password: '' });
-      });
+
+    if (!!values.email || !!values.email) {
+      setLoading(true);
+
+      services
+        .login(values)
+        .then((response) => response.data)
+        .then((response) => {
+          if (response.status === 'Success') {
+            const user = response.data?.user;
+            storeUser(user);
+            storeToken(response.data?.token);
+            setAuthOnLocalStorage(response.data);
+            navigate('/dashboard');
+          }
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+          setErrorAlert(true);
+          setControlsError(true);
+          setValues({ ...values, password: '' });
+        });
+    } else {
+      setControlsError(true);
+    }
   };
 
   return (
     <Auth>
-      <p className="text-center mb-3">
-        Faça login com e-mail e senha para acessar o painel administrativo do Assistente
-        Virtual do <span className="text-primary font-weight-bold">IC-UFBA</span>.
-      </p>
+      {errorAlert ? (
+        <Alert severity="error">
+          Seu e-mail ou senha não correspondem aos nossos registros.
+        </Alert>
+      ) : null}
 
       <form onSubmit={handleSubmit} action="#">
-        <FormControl variant="outlined" fullWidth margin="normal">
+        <FormControl variant="outlined" error={controlsError} fullWidth margin="normal">
           <InputLabel htmlFor="email">E-mail</InputLabel>
           <OutlinedInput
             id="email"
@@ -84,9 +101,14 @@ export default function Login() {
             onChange={handleChange('email')}
             label="E-mail"
           />
+          {controlsError ? (
+            <FormHelperText id="e-mail-error-text">
+              {!values.email ? 'Campo obrigatório.' : 'E-mail ou senha incorreto.'}
+            </FormHelperText>
+          ) : null}
         </FormControl>
 
-        <FormControl variant="outlined" fullWidth margin="normal">
+        <FormControl variant="outlined" error={controlsError} fullWidth margin="normal">
           <InputLabel htmlFor="password">Senha</InputLabel>
           <OutlinedInput
             id="password"
@@ -107,6 +129,11 @@ export default function Login() {
             }
             label="Senha"
           />
+          {controlsError ? (
+            <FormHelperText id="password-error-text">
+              {!values.password ? 'Campo obrigatório.' : 'E-mail ou senha incorreto.'}
+            </FormHelperText>
+          ) : null}
         </FormControl>
 
         <div className="d-flex mb-3 justify-content-end">
@@ -115,16 +142,17 @@ export default function Login() {
           </Link>
         </div>
 
-        <Button
+        <LoadingButton
           id="submitt-button"
           type="submit"
+          loading={loading}
           variant="contained"
           className="mb-3"
           disableElevation
           fullWidth
         >
           Entrar
-        </Button>
+        </LoadingButton>
       </form>
     </Auth>
   );

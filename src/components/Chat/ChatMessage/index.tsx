@@ -1,6 +1,6 @@
 import './styles.scss';
 
-import { Icon } from '@mui/material';
+import { Divider, Icon } from '@mui/material';
 import React from 'react';
 import { Question, Topic } from 'types';
 
@@ -54,7 +54,7 @@ export default function ChatMessage({
       </div>
       <div className="chat-ballon py-3 px-4">
         {text?.length ? (
-          <h3 className="mb-0">
+          <h3 className="font-weight-normal mb-0">
             {text.includes('https://') ? (
               <a target="_blank" className="text-white" href={text} rel="noreferrer">
                 {text}
@@ -71,7 +71,6 @@ export default function ChatMessage({
 
         {questions?.length ? (
           <div className="d-block w-100">
-            <h4 className="text-white mt-3 mb-0">Questões:</h4>
             <ChatMessageItems
               items={questions}
               handleItemSelection={handleItemSelection}

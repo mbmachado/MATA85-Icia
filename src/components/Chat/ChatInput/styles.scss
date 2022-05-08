@@ -1,8 +1,21 @@
 .chat-input-container {
   input {
+    background-color: var(--white);
+    color: var(--dark-grey);
+    transition: background-color color .3s;
     outline: none;
     border-width: 1px;
     height: 40px;
+  }
+
+  ::placeholder {
+    color: var(--dark-grey);
+    opacity: 1;
+  }
+  
+  ::-ms-input-placeholder {
+    color: var(--dark-grey);
+    opacity: 1;
   }
 
   div {

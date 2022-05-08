@@ -1,7 +1,5 @@
 node_modules
 .DS_Store
-
-dist-ssr
 *.local
 node_modules/*
 .env

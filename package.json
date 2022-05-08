@@ -12,12 +12,14 @@
     "type-check": "tsc",
     "test": "react-scripts test",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "pre-deploy": "npm run lint && npm run build && git add ./dist/*"
   },
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.5.1",
+    "@mui/lab": "^5.0.0-alpha.80",
     "@mui/material": "^5.5.2",
     "@mui/x-data-grid": "^5.9.0",
     "@testing-library/jest-dom": "^5.11.4",
@@ -60,7 +62,7 @@
     "vite": "^2.7.13",
     "vite-tsconfig-paths": "^3.3.17"
   },
-  "pre-commit": "lint",
+  "pre-commit": "pre-deploy",
   "license": "MIT",
   "eslintConfig": {
     "extends": [

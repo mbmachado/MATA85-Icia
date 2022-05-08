@@ -24,7 +24,6 @@ interface StateInterface {
 export default function AdminTemplate({ children }: AdminTemplateProps) {
   const { clean, user } = useAuthContext();
   const navigate = useNavigate();
-  const path = useLocation().pathname;
   const state = useLocation().state as StateInterface;
   const message = state?.message;
 
@@ -41,29 +40,34 @@ export default function AdminTemplate({ children }: AdminTemplateProps) {
         <Button
           id="profile-edit"
           startIcon={<Person />}
-          hidden={path === '/'}
+          type="button"
+          variant="contained"
+          color="secondary"
+          disableElevation
           onClick={() => {
-            if (path !== '/dashboard/users/edit' && path !== '/dashboard/users/create') {
-              navigate('/dashboard/users/edit', {
-                state: user,
-              });
-            }
+            navigate('/dashboard/users/edit', {
+              state: user,
+            });
           }}
         >
           {user?.name}
         </Button>
         <Button
           id="logout-button"
+          type="button"
+          variant="contained"
+          color="secondary"
+          disableElevation
           onClick={() => {
             removeAuthOnLocalStorage();
             clean();
             navigate('/login', { replace: true });
           }}
         >
-          {path === '/' ? 'ACESSO ADMIN' : 'SAIR'}
+          Sair
         </Button>
       </Header>
-      <div id="admin-container">
+      <div id="admin-container" className="d-flex">
         <Menu />
         <main id="admin-content">{children}</main>
       </div>
