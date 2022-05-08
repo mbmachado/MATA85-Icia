@@ -48,8 +48,11 @@ export default function UsersCreate() {
       const dataEdit: UserEdit = {
         email: values.email,
         name: values.name,
-        password: values.password ? values.password : password,
       };
+      // password: values.password ? values.password : password,
+      if (values.password) {
+        dataEdit.password = values.password;
+      }
       services
         .editUser(id, dataEdit)
         .then((response) => response.data)

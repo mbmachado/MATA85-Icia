@@ -140,7 +140,6 @@ export const services = {
         Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
       },
     };
-    console.log(data);
     return api.patch(`/api/v3/users/${id}`, data, config);
   },
   deleteUser: async (id: number) => {
