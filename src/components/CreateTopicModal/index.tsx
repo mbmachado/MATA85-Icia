@@ -13,12 +13,14 @@ import { services } from 'services';
 interface CreateTopicModalProps {
   isOpen: boolean;
   parentId: number;
+  onConfirm(): void;
   onClose(): void;
 }
 
 export default function CreateTopicModal({
   isOpen,
   onClose,
+  onConfirm,
   parentId,
 }: CreateTopicModalProps) {
   const [topicName, setTopicName] = useState('');
@@ -31,7 +33,7 @@ export default function CreateTopicModal({
       .createTopic(authToken, topicName, parentId)
       .then((response) => response.data)
       .then((response) => {
-        onClose();
+        onConfirm();
         console.log(response);
         setTopicName('');
         toast.success('Categoria adicionada com sucesso.');
