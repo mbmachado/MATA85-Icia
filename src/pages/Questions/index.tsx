@@ -2,16 +2,17 @@ import './styles.scss';
 
 import { Button, LinearProgress } from '@mui/material';
 import AdminTemplate from 'components/AdminTemplate';
-import TextModal from 'components/TextModal';
+import CreateTopicModal from 'components/CreateTopicModal';
 import QuestionsTable from 'components/QuestionsTable';
+import TextModal from 'components/TextModal';
 import { useAuthContext } from 'contexts/AuthContext/hook';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { services } from 'services';
 import { TopicsTree } from 'types';
 
 import { Question } from './types';
-import { toast } from 'react-toastify';
 
 export default function Questions() {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -21,6 +22,7 @@ export default function Questions() {
   const [selectedTopicName, setSelectedTopicName] = useState('');
   const [selectedTopicId, setSelectedTopicId] = useState(0);
   const [isDeleteTopicModalOpen, setIsDeleteTopicModalOpen] = useState(false);
+  const [isCreateTopicModalOpen, setIsCreateTopicModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -31,7 +33,12 @@ export default function Questions() {
     setIsDeleteTopicModalOpen(false);
   };
 
-  const handleGoToInitial = () => {
+  const handleCloseCreateTopicModal = () => {
+    getTree();
+    setIsCreateTopicModalOpen(false);
+  };
+
+  const clearTree = () => {
     setSelectedTopics([]);
     setCurrentTopics(initialData);
     setSelectedTopicName('');
@@ -47,7 +54,6 @@ export default function Questions() {
         console.log(data);
         if (data.status === 'Success') {
           toast.success('Categoria excluída com sucesso!');
-          handleGoToInitial();
           getTree();
         } else {
           console.log(data);
@@ -80,6 +86,7 @@ export default function Questions() {
     setIsLoading(true);
     getTopicsTree(authToken)
       .then((response) => {
+        clearTree();
         setCurrentTopics(response.data || []);
         setInitialData(response.data || []);
       })
@@ -97,6 +104,12 @@ export default function Questions() {
         <div className="title-container">
           <h2 className="title">Perguntas por categoria</h2>
         </div>
+
+        <CreateTopicModal
+          isOpen={isCreateTopicModalOpen}
+          onClose={handleCloseCreateTopicModal}
+          parentId={selectedTopicId}
+        />
 
         {selectedTopicName && (
           <>
@@ -129,7 +142,7 @@ export default function Questions() {
               <button
                 className="breadcrumb-item"
                 onClick={() => {
-                  handleGoToInitial();
+                  clearTree();
                 }}
               >
                 Inicio
@@ -182,8 +195,12 @@ export default function Questions() {
           );
         })}
 
-        {/* TODO make add category flux */}
-        {/* <button className="add-category-button">+</button> */}
+        <button
+          className="add-category-button"
+          onClick={() => setIsCreateTopicModalOpen(true)}
+        >
+          +
+        </button>
         <div className="mt-3">
           {selectedTopicName && (
             <>
