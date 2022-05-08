@@ -34,7 +34,6 @@ export default function Questions() {
   };
 
   const handleCloseCreateTopicModal = () => {
-    getTree();
     setIsCreateTopicModalOpen(false);
   };
 
@@ -109,6 +108,10 @@ export default function Questions() {
           isOpen={isCreateTopicModalOpen}
           onClose={handleCloseCreateTopicModal}
           parentId={selectedTopicId}
+          onConfirm={() => {
+            handleCloseCreateTopicModal();
+            getTree();
+          }}
         />
 
         {selectedTopicName && (
