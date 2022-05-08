@@ -5,7 +5,9 @@ import ConfirmDialog from '..';
 
 test('should render ConfirmDialog properly', () => {
   const { getByTestId } = render(
-    <ConfirmDialog props={{ title: 'a', onConfirm: () => {}, setOpen: () => {}, open: true }} />,
+    <ConfirmDialog
+      props={{ title: 'a', onConfirm: () => {}, setOpen: () => {}, open: true }}
+    />,
   );
   const reject = getByTestId('reject-button');
   const confirm = getByTestId('confirm-button');

@@ -13,6 +13,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { services } from 'services';
 
+import { UserEdit } from '../../../services/types';
+
 interface User {
   name: string;
   email: string;
@@ -22,10 +24,11 @@ interface User {
 export default function UsersCreate() {
   const { clean, user } = useAuthContext();
   const navigate = useNavigate();
-  const { id, name, email } = useLocation().state as {
+  const { id, name, email, password } = useLocation().state as {
     id: number;
     name: string;
     email: string;
+    password: string;
   };
 
   const [values, setValues] = React.useState<User>({
@@ -42,8 +45,13 @@ export default function UsersCreate() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (id) {
+      const dataEdit: UserEdit = {
+        email: values.email,
+        name: values.name,
+        password: values.password ? values.password : password,
+      };
       services
-        .editUser(id, values.email, values.name, values.password)
+        .editUser(id, dataEdit)
         .then((response) => response.data)
         .then((response) => {
           navigate('/dashboard/users', {
@@ -61,7 +69,6 @@ export default function UsersCreate() {
         .createUser(values.email, values.name, values.password)
         .then((response) => response.data)
         .then((response) => {
-          console.log(response);
           navigate('/dashboard/users', {
             state: {
               message: { type: 'success', text: 'Usuário criado com sucesso!' },
@@ -112,16 +119,12 @@ export default function UsersCreate() {
             />
           </FormControl>
           <FormControl variant="outlined" fullWidth margin="normal">
-            <InputLabel
-              hidden={id === user?.id ? false : true}
-              color="secondary"
-              htmlFor="text"
-            >
+            <InputLabel hidden={!!id && id !== user?.id} color="secondary" htmlFor="text">
               Senha
             </InputLabel>
             <OutlinedInput
               id="password"
-              hidden={id === user?.id ? false : true}
+              hidden={!!id && id !== user?.id}
               type="text"
               value={values.password}
               onChange={handleChange('password')}

@@ -2,16 +2,16 @@ import './styles.scss';
 
 import { Button, LinearProgress } from '@mui/material';
 import AdminTemplate from 'components/AdminTemplate';
-import TextModal from 'components/TextModal';
 import QuestionsTable from 'components/QuestionsTable';
+import TextModal from 'components/TextModal';
 import { useAuthContext } from 'contexts/AuthContext/hook';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { services } from 'services';
 import { TopicsTree } from 'types';
 
 import { Question } from './types';
-import { toast } from 'react-toastify';
 
 export default function Questions() {
   const [questions, setQuestions] = useState<Question[]>([]);

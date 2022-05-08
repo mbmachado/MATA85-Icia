@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Question, TopicsTree, User } from 'types';
 
-import { LoginResonseData } from './types';
+import { LoginResonseData, UserEdit } from './types';
 
 const headers = {
   Accept: 'application/json, text/plain, */*',
@@ -134,13 +134,14 @@ export const services = {
     };
     return api.post('/api/v3/users', { email, name, password }, config);
   },
-  editUser: async (id: number, email?: string, name?: string, password?: string) => {
+  editUser: async (id: number, data: UserEdit) => {
     const config = {
       headers: {
         Authorization: 'Bearer ' + getAuthOnLocalStorage()?.token,
       },
     };
-    return api.patch(`/api/v3/users/${id}`, { email, name, password }, config);
+    console.log(data);
+    return api.patch(`/api/v3/users/${id}`, data, config);
   },
   deleteUser: async (id: number) => {
     const config = {
@@ -151,7 +152,6 @@ export const services = {
     return api.delete(`/api/v3/users/${id}`, config);
   },
 
-  
   deleteTopic: async (id: number, authToken: string) => {
     let token = authToken;
     if (!token) {

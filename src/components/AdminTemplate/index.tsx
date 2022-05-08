@@ -25,6 +25,7 @@ export default function AdminTemplate({ children }: AdminTemplateProps) {
   const { clean, user } = useAuthContext();
   const navigate = useNavigate();
   const state = useLocation().state as StateInterface;
+  const path = useLocation().pathname;
   const message = state?.message;
 
   useEffect(() => {
@@ -45,9 +46,11 @@ export default function AdminTemplate({ children }: AdminTemplateProps) {
           color="secondary"
           disableElevation
           onClick={() => {
-            navigate('/dashboard/users/edit', {
-              state: user,
-            });
+            if (path !== '/dashboard/users/edit' && path !== '/dashboard/users/create') {
+              navigate('/dashboard/users/edit', {
+                state: user,
+              });
+            }
           }}
         >
           {user?.name}

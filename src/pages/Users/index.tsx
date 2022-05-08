@@ -116,7 +116,12 @@ export default function Users() {
                       component="span"
                       onClick={() => {
                         navigate('/dashboard/users/edit', {
-                          state: { id: row.id, name: row.name, email: row.email },
+                          state: {
+                            id: row.id,
+                            name: row.name,
+                            email: row.email,
+                            password: row.password,
+                          },
                         });
                       }}
                     >

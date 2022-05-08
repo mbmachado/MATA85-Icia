@@ -10,3 +10,9 @@ export interface LoginResponse {
   message: string;
   data: LoginResonseData;
 }
+
+export interface UserEdit {
+  name?: string;
+  email?: string;
+  password?: string;
+}
