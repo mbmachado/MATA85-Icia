@@ -1,5 +1,7 @@
 import './styles.scss';
 
+import { Person } from '@mui/icons-material';
+import { Button } from '@mui/material';
 import Header from 'components/Header';
 import Menu from 'components/Menu';
 import React, { useEffect } from 'react';
@@ -36,7 +38,21 @@ export default function AdminTemplate({ children }: AdminTemplateProps) {
   return (
     <div className="app">
       <Header>
-        <button
+        <Button
+          id="profile-edit"
+          startIcon={<Person />}
+          hidden={path === '/'}
+          onClick={() => {
+            if (path !== '/dashboard/users/edit' && path !== '/dashboard/users/create') {
+              navigate('/dashboard/users/edit', {
+                state: user,
+              });
+            }
+          }}
+        >
+          {user?.name}
+        </Button>
+        <Button
           id="logout-button"
           onClick={() => {
             removeAuthOnLocalStorage();
@@ -45,7 +61,7 @@ export default function AdminTemplate({ children }: AdminTemplateProps) {
           }}
         >
           {path === '/' ? 'ACESSO ADMIN' : 'SAIR'}
-        </button>
+        </Button>
       </Header>
       <div id="admin-container">
         <Menu />

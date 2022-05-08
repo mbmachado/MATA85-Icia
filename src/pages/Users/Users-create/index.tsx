@@ -7,6 +7,7 @@ import {
   OutlinedInput,
 } from '@mui/material';
 import AdminTemplate from 'components/AdminTemplate';
+import { useAuthContext } from 'contexts/AuthContext/hook';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -19,6 +20,7 @@ interface User {
 }
 
 export default function UsersCreate() {
+  const { clean, user } = useAuthContext();
   const navigate = useNavigate();
   const { id, name, email } = useLocation().state as {
     id: number;
@@ -44,15 +46,14 @@ export default function UsersCreate() {
         .editUser(id, values.email, values.name, values.password)
         .then((response) => response.data)
         .then((response) => {
-          console.log(response);
           navigate('/dashboard/users', {
             state: {
-              message: { type: 'success', text: 'Usuário editado com sucesso!' },
+              message: { type: 'success', text: `${values.name} editado com sucesso!` },
             },
           });
         })
         .catch((err) => {
-          toast.error('Houve um erro ao editar usuário.');
+          toast.error(`Houve um erro ao editar ${values.name}.`);
           console.log(err);
         });
     } else {
@@ -111,11 +112,16 @@ export default function UsersCreate() {
             />
           </FormControl>
           <FormControl variant="outlined" fullWidth margin="normal">
-            <InputLabel color="secondary" htmlFor="text">
+            <InputLabel
+              hidden={id === user?.id ? false : true}
+              color="secondary"
+              htmlFor="text"
+            >
               Senha
             </InputLabel>
             <OutlinedInput
               id="password"
+              hidden={id === user?.id ? false : true}
               type="text"
               value={values.password}
               onChange={handleChange('password')}
