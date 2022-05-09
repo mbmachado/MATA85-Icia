@@ -1,7 +1,7 @@
 describe('APP', () => {
   beforeEach(() => {
     // cy.visit('http://localhost:3000');
-    cy.visit('https://virtual-assistent-frontend.herokuapp.com/');
+    cy.visit('https://icia.herokuapp.com/');
     cy.once('uncaught:exception', () => false);
     cy.get('#login-button').click();
     cy.wait(2000);
@@ -33,7 +33,6 @@ describe('APP', () => {
 
     cy.get('[data-testid=edit_user-button]').last().click();
     cy.get('#name').type(' edited');
-    cy.get('#password').type('senhasenha');
     cy.get('[data-testid=submit-button]').click();
     cy.wait(2000);
     cy.get('[data-testid=user-name]').last().should('have.text', 'a user test edited');

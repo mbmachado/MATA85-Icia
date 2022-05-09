@@ -127,7 +127,7 @@ export default function Questions() {
               <Button
                 variant="contained"
                 color="warning"
-                data-testid="add-question-button"
+                data-testid="remove-category-button"
                 onClick={() => {
                   setIsDeleteTopicModalOpen(true);
                 }}
