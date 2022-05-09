@@ -1,6 +1,6 @@
 describe('APP', () => {
   beforeEach(() => {
-    cy.visit('https://virtual-assistent-frontend.herokuapp.com/');
+    cy.visit('https://icia.herokuapp.com/');
     // cy.visit('http://localhost:3000');
     cy.once('uncaught:exception', () => false);
   });
@@ -15,7 +15,7 @@ describe('APP', () => {
     cy.get('#logout-button').should('have.length', 1);
     cy.get('#admin-content').should('have.length', 1);
     cy.get('.questions-container').should('have.length', 1);
-    cy.get('.filter-question-button').should('have.length', 3);
+    cy.get('.filter-question-button').should('have.length', 6);
     cy.get('#logout-button').click();
     cy.get('#email').should('have.length', 1);
   });

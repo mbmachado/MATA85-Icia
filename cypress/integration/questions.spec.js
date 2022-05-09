@@ -1,6 +1,6 @@
 describe('APP', () => {
   beforeEach(() => {
-    cy.visit('https://virtual-assistent-frontend.herokuapp.com/');
+    cy.visit('https://icia.herokuapp.com/');
     // cy.visit('http://localhost:3000');
     cy.once('uncaught:exception', () => false);
     cy.get('#login-button').click();
@@ -20,7 +20,7 @@ describe('APP', () => {
 
   it('should filter questions by category', () => {
     cy.get('#admin-content').should('have.length', 1);
-    cy.get('.filter-question-button').should('have.length', 3);
+    cy.get('.filter-question-button').should('have.length', 6);
     cy.get('.filter-question-button').first().click();
     cy.get('h3').should('have.text', ' Perguntas categoria Institucional');
     cy.get('.add-category-button').should('have.length', 1);
@@ -33,10 +33,11 @@ describe('APP', () => {
   // data-testid="submit-button"
   it('should add, edit and remove question', () => {
     cy.get('#admin-content').should('have.length', 1);
-    cy.get('.filter-question-button').should('have.length', 3);
+    cy.get('.filter-question-button').should('have.length', 6);
     cy.get('.filter-question-button').first().click();
+    cy.wait(2000);
     cy.get('h3').should('have.text', ' Perguntas categoria Institucional');
-    cy.get('[data-testid=add-question-button]').click();
+    cy.get('[data-testid=add-question-button]').last().click();
     cy.get('#input-question').type('a question test');
     cy.get('#input-answer').type('answer test');
     cy.get('[data-testid=submit-button]').click();
