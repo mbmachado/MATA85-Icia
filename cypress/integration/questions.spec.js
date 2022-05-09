@@ -41,9 +41,10 @@ describe('APP', () => {
     cy.get('#input-question').type('a question test');
     cy.get('#input-answer').type('answer test');
     cy.get('[data-testid=submit-button]').click();
+    cy.wait(2000);
     cy.contains('div', 'Pergunta adicionada com sucesso').should('have.length', 1);
     cy.get('.MuiDataGrid-columnHeader--sortable').first().click();
-    cy.wait(2000);
+    cy.wait(4000);
     cy.get('[data-testid=edit-button]').first().click();
     cy.get('#input-question').type(' edited');
     cy.get('[data-testid=submit-button]').click();
