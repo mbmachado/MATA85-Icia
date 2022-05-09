@@ -60,7 +60,7 @@ export default function RequestPassword() {
       <form onSubmit={handleSubmit} action="#">
         {successAlert ? (
           <Alert severity="success">
-            Se o e-mail <b>{values.email}</b> estiver cadastrado, você receberá intruções
+            Se o e-mail <b>{values.email}</b> estiver cadastrado, você receberá instruções
             para recuperar sua senha.
           </Alert>
         ) : null}
@@ -94,7 +94,7 @@ export default function RequestPassword() {
           disableElevation
           fullWidth
         >
-          Entrar
+          Enviar
         </LoadingButton>
       </form>
       <Link to="/login">Fazer login</Link> em vez disso.
