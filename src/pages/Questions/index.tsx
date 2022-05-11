@@ -198,12 +198,13 @@ export default function Questions() {
           );
         })}
 
-        <button
+        <Button
           className="add-category-button"
+          variant="contained"
           onClick={() => setIsCreateTopicModalOpen(true)}
         >
-          +
-        </button>
+          + Categoria
+        </Button>
         <div className="mt-3">
           {selectedTopicName && (
             <>
