@@ -32,8 +32,10 @@ export default function Chat() {
       const topics: Topic[] = getMessageTopics(response.data);
 
       setLoading(false);
+
+      if (chatRefreshCount > 0) setMessages([]);
+
       setMessages([
-        ...messages,
         {
           text:
             chatRefreshCount === 0
@@ -131,14 +133,15 @@ export default function Chat() {
         throw new Error('no content');
       }
 
-      if ((response.data[0] as Question).description !== undefined) {
-        newMessages.push({
-          text: genericMessages[Math.floor(Math.random() * genericMessages.length)],
-          side: 'left',
-          topics: [],
-          questions: response.data as Question[],
-        });
-      }
+      const questions = isQuestion(response.data[0]) ? response.data : [];
+      const topics = isTopic(response.data[0]) ? response.data : [];
+
+      newMessages.push({
+        text: genericMessages[Math.floor(Math.random() * genericMessages.length)],
+        side: 'left',
+        topics: topics as Topic[],
+        questions: questions as Question[],
+      });
     } catch (err) {
       newMessages.push({
         text: 'Ohh, não... Não encontrei uma resposta para a sua pergunta. \
@@ -162,6 +165,14 @@ export default function Chat() {
       });
 
     return topics;
+  };
+
+  const isTopic = (item: Topic | Question): item is Topic => {
+    return (item as Topic).name !== undefined;
+  };
+
+  const isQuestion = (item: Question | Topic): item is Question => {
+    return (item as Question).description !== undefined;
   };
 
   return (
