@@ -5,4 +5,16 @@
   .app-logo {
     height: 55px;
   }
+
+  .app-computacao {
+    font-family: 'ITC Bauhaus', sans-serif;
+    line-height: .6;
+
+    span {
+      font-family: 'IBM Plex Sans', sans-serif;
+      letter-spacing: 10px;
+      font-size: .4em;
+      line-height: 1;
+    }
+  }
 }

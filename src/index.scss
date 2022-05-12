@@ -66,3 +66,12 @@ $font-family-sans-serif: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Se
 @import "../node_modules/bootstrap/scss/grid";
 @import "../node_modules/bootstrap/scss/utilities";
 @import "../node_modules/bootstrap/scss/alert";
+
+@font-face {font-family: "ITC Bauhaus";
+  src: url("../src/assets/fonts/itc-bauhaus/390289fedd068780e28c0f9f259c3782.eot"); /* IE9*/
+  src: url("../src/assets/fonts/itc-bauhaus/390289fedd068780e28c0f9f259c3782.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("../src/assets/fonts/itc-bauhaus/390289fedd068780e28c0f9f259c3782.woff2") format("woff2"), /* chrome、firefox */
+  url("../src/assets/fonts/itc-bauhaus/390289fedd068780e28c0f9f259c3782.woff") format("woff"), /* chrome、firefox */
+  url("../src/assets/fonts/itc-bauhaus/390289fedd068780e28c0f9f259c3782.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url("../src/assets/fonts/itc-bauhaus/390289fedd068780e28c0f9f259c3782.svg#ITC Bauhaus") format("svg"); /* iOS 4.1- */
+}
