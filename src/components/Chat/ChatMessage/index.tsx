@@ -55,13 +55,26 @@ export default function ChatMessage({
       <div className="chat-ballon py-3 px-4">
         {text?.length ? (
           <h3 className="font-weight-normal mb-0">
-            {text.includes('https://') ? (
-              <a target="_blank" className="text-white" href={text} rel="noreferrer">
-                {text}
-              </a>
-            ) : (
-              text
-            )}
+            {text
+              .trim()
+              .split(' ')
+              .map((textSnippet) => {
+                return textSnippet.includes('://') ? (
+                  <>
+                    &nbsp;
+                    <a
+                      target="_blank"
+                      className="text-white"
+                      href={textSnippet}
+                      rel="noreferrer"
+                    >
+                      {textSnippet}
+                    </a>
+                  </>
+                ) : (
+                  <span> {textSnippet}</span>
+                );
+              })}
           </h3>
         ) : null}
 
