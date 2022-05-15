@@ -105,7 +105,7 @@ export default function QuestionsTable({
   return (
     <div style={{ height: '80vh', width: '100%' }}>
       <DataGrid
-        rows={questions}
+        rows={questions || []}
         columns={columns}
         pageSize={15}
         rowsPerPageOptions={[]}
