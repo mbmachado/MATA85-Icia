@@ -1,6 +1,6 @@
 import './styles.scss';
 
-import { Divider, Icon } from '@mui/material';
+import { Icon } from '@mui/material';
 import React from 'react';
 import { Question, Topic } from 'types';
 
@@ -58,7 +58,7 @@ export default function ChatMessage({
             {text
               .trim()
               .split(' ')
-              .map((textSnippet) => {
+              .map((textSnippet, index) => {
                 return textSnippet.includes('://') ? (
                   <>
                     &nbsp;
@@ -67,12 +67,13 @@ export default function ChatMessage({
                       className="text-white"
                       href={textSnippet}
                       rel="noreferrer"
+                      key={index}
                     >
                       {textSnippet}
                     </a>
                   </>
                 ) : (
-                  <span> {textSnippet}</span>
+                  <span key={index}> {textSnippet}</span>
                 );
               })}
           </h3>

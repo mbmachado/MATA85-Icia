@@ -154,7 +154,9 @@ export default function Chat() {
     setMessages(newMessages);
   };
 
-  const getMessageTopics = (topicsTree: TopicsTree[]): Topic[] => {
+  const getMessageTopics = (topicsTree: TopicsTree[] | undefined): Topic[] => {
+    if (undefined === topicsTree) return [];
+
     const topics: Topic[] = topicsTree
       .filter((topic) => !!topic.name.length)
       .map((topic) => {
