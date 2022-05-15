@@ -74,12 +74,12 @@ export default function UsersCreate() {
         .then((response) => {
           navigate('/dashboard/users', {
             state: {
-              message: { type: 'success', text: 'Usuário criado com sucesso!' },
+              message: { type: 'success', text: 'Convite enviado com sucesso!' },
             },
           });
         })
         .catch((err) => {
-          toast.error('Houve um erro ao criar usuário.');
+          toast.error('Houve um erro ao convidar usuário.');
           console.log(err);
         });
     }
@@ -122,12 +122,16 @@ export default function UsersCreate() {
             />
           </FormControl>
           <FormControl variant="outlined" fullWidth margin="normal">
-            <InputLabel hidden={!!id && id !== user?.id} color="secondary" htmlFor="text">
+            <InputLabel
+              hidden={!id || (!!id && id !== user?.id)}
+              color="secondary"
+              htmlFor="text"
+            >
               Senha
             </InputLabel>
             <OutlinedInput
               id="password"
-              hidden={!!id && id !== user?.id}
+              hidden={!id || (!!id && id !== user?.id)}
               type="text"
               value={values.password}
               onChange={handleChange('password')}
@@ -142,7 +146,7 @@ export default function UsersCreate() {
             color="secondary"
             disableElevation
           >
-            Enviar
+            {id ? 'Enviar' : 'Convidar'}
           </Button>
         </form>
       </div>
