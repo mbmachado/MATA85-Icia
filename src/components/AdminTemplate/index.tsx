@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 import Header from 'components/Header';
 import Menu from 'components/Menu';
 import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { removeAuthOnLocalStorage, setAuthOnLocalStorage } from 'services';
 
@@ -55,6 +55,17 @@ export default function AdminTemplate({ children }: AdminTemplateProps) {
         >
           {user?.name}
         </Button>
+        <Link to="/" target="_blank">
+          <Button
+            id="chat-button"
+            type="button"
+            variant="contained"
+            color="secondary"
+            disableElevation
+          >
+            Chat
+          </Button>
+        </Link>
         <Button
           id="logout-button"
           type="button"
