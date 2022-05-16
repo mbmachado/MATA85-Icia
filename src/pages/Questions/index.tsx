@@ -164,7 +164,7 @@ export default function Questions() {
                     className="breadcrumb-item"
                     onClick={() => {
                       setSelectedTopics((current) => current.slice(0, index + 1));
-                      setCurrentTopics(topic.children!);
+                      setCurrentTopics(topic.children);
                       setSelectedTopicName(topic.name);
                       setSelectedTopicId(topic.id);
                       setQuestions(topic.questions);
@@ -188,7 +188,7 @@ export default function Questions() {
               onClick={() => {
                 setQuestions(topic.questions);
                 setSelectedTopics((current) => [...current, topic]);
-                setCurrentTopics(topic.children!);
+                setCurrentTopics(topic.children);
                 setSelectedTopicName(topic.name);
                 setSelectedTopicId(topic.id);
               }}

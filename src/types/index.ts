@@ -22,7 +22,7 @@ interface TopicsTree {
   id: number;
   name: string;
   questions: Question[];
-  children?: TopicsTree[];
+  children: TopicsTree[];
 }
 
 interface User {
