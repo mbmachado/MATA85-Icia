@@ -24,11 +24,19 @@ export default function CreateTopicModal({
   parentId,
 }: CreateTopicModalProps) {
   const [topicName, setTopicName] = useState('');
+  const [errorMessage, setErrorMesage] = useState('');
   const topicType = parentId ? 'subategoria' : 'categoria';
   const { authToken } = useAuthContext();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setErrorMesage('');
+
+    if (topicName === '') {
+      setErrorMesage(`Adicione o nome da ${topicType}`);
+      return;
+    }
+
     services
       .createTopic(authToken, topicName, parentId)
       .then((response) => response.data)
@@ -68,6 +76,7 @@ export default function CreateTopicModal({
                 placeholder={`Digite a ${topicType}`}
                 label="Nome"
               />
+              <small className="text-danger">{errorMessage}</small>
               <div className="create-modal-footer">
                 <Button
                   variant="contained"
@@ -77,7 +86,14 @@ export default function CreateTopicModal({
                 >
                   Adicionar
                 </Button>
-                <Button variant="outlined" onClick={onClose} className="ml-2">
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    setErrorMesage('');
+                    onClose();
+                  }}
+                  className="ml-2"
+                >
                   Cancelar
                 </Button>
               </div>
