@@ -2,7 +2,6 @@ import './styles.scss';
 
 import { Button } from '@mui/material';
 import ChatAside from 'components/Chat/ChatAside';
-import ChatHeader from 'components/Chat/ChatHeader';
 import ChatInput from 'components/Chat/ChatInput';
 import ChatMessage from 'components/Chat/ChatMessage';
 import ChatTypingLoader from 'components/Chat/ChatTypingLoader';
@@ -61,7 +60,7 @@ export default function Chat() {
     }
   };
 
-  const handleSidebarOptionClick = (option: 'home' | 'mode' | 'font'): void => {
+  const handleSidebarOptionClick = (option: 'home' | 'mode'): void => {
     switch (option) {
       case 'home':
         setChatRefreshCount(1 + chatRefreshCount);
@@ -124,6 +123,11 @@ export default function Chat() {
 
     setMessages(newMessages);
 
+    if (isKeyWord(text)) {
+      setChatRefreshCount(chatRefreshCount + 1);
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -152,6 +156,13 @@ export default function Chat() {
 
     setLoading(false);
     setMessages(newMessages);
+  };
+
+  const isKeyWord = (text: string): boolean => {
+    const regex = new RegExp(/^exit|menu|clear|limpar|sair|out$/);
+    const sanitizedText = text.trim().toLowerCase();
+
+    return regex.test(sanitizedText);
   };
 
   const getMessageTopics = (topicsTree: TopicsTree[] | undefined): Topic[] => {
@@ -197,10 +208,6 @@ export default function Chat() {
         <div className="chat-container d-flex">
           <ChatAside handleSidebarOptionClick={handleSidebarOptionClick} />
           <main className="d-flex flex-column flex-fill">
-            <div className="chat-toolbar d-flex align-items-center border-bottom border-info px-3">
-              <ChatHeader />
-            </div>
-
             <div
               ref={chatScrollableContainer}
               className="chat-content d-flex flex-column flex-fill w-100 mw-100 p-3"
