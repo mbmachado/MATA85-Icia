@@ -24,7 +24,6 @@ export default function Questions() {
   const [isDeleteTopicModalOpen, setIsDeleteTopicModalOpen] = useState(false);
   const [isCreateTopicModalOpen, setIsCreateTopicModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
   const { authToken } = useAuthContext();
   const { getTopicsTree, getQuestions, deleteTopic } = services;
@@ -68,7 +67,6 @@ export default function Questions() {
         handleCloseDeleteTopicModal();
       });
   };
-
   const handleRemoveQuestionFromTable = (id: number) => {
     setQuestions((current) => current.filter((question) => question.id !== id));
   };
@@ -123,18 +121,6 @@ export default function Questions() {
               handleClose={handleCloseDeleteTopicModal}
               handleConfirm={() => handleDeleteTopic(selectedTopicId)}
             />
-            <div>
-              <Button
-                variant="contained"
-                color="warning"
-                data-testid="remove-category-button"
-                onClick={() => {
-                  setIsDeleteTopicModalOpen(true);
-                }}
-              >
-                Excluir
-              </Button>
-            </div>
           </>
         )}
       </div>
@@ -148,12 +134,12 @@ export default function Questions() {
                   clearTree();
                 }}
               >
-                Inicio
+                Categorias iniciais
               </button>
               {' > '}
             </span>
           ) : (
-            <span>Inicio</span>
+            <span></span>
           )}
 
           {selectedTopics.map((topic, index) => {
@@ -197,14 +183,36 @@ export default function Questions() {
             </button>
           );
         })}
-
-        <Button
-          className="add-category-button"
-          variant="contained"
-          onClick={() => setIsCreateTopicModalOpen(true)}
-        >
-          + Categoria
-        </Button>
+        <div className="mt-2 d-flex justify-content-row">
+          <Button
+            className="add-category-button mr-2"
+            variant="contained"
+            onClick={() => setIsCreateTopicModalOpen(true)}
+          >
+            + {selectedTopicName ? 'Subcategoria' : 'Categoria'}
+          </Button>
+          {selectedTopicName && (
+            <>
+              <TextModal
+                title="Excluir Pergunta"
+                text={`Tem certeza que deseja excluir a categoria ${selectedTopicName}?`}
+                isOpen={isDeleteTopicModalOpen}
+                handleClose={handleCloseDeleteTopicModal}
+                handleConfirm={() => handleDeleteTopic(selectedTopicId)}
+              />
+              <Button
+                variant="contained"
+                color="warning"
+                data-testid="remove-category-button"
+                onClick={() => {
+                  setIsDeleteTopicModalOpen(true);
+                }}
+              >
+                Excluir
+              </Button>
+            </>
+          )}
+        </div>
         <div className="mt-3">
           {selectedTopicName && (
             <>
