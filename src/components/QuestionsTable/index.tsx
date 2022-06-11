@@ -31,7 +31,6 @@ export default function QuestionsTable({
     }
     navigate('edit', { state: { id, topic_id: topic, description, answer } });
   };
-
   const handleConfirm = (id: number) => {
     services.deleteQuestion(id, authToken).then((response) => {
       const data = response.data;
@@ -50,7 +49,6 @@ export default function QuestionsTable({
     setOpenedModal(questionId);
     setIsModalOpen(true);
   };
-
   const handleCloseModal = () => {
     setOpenedModal(undefined);
     setIsModalOpen(false);
@@ -60,13 +58,21 @@ export default function QuestionsTable({
     {
       field: 'description',
       headerName: 'Pergunta',
-      flex: 4,
+      flex: 3,
     },
     {
       field: 'answer',
       headerName: 'Resposta',
-      flex: 4,
+      flex: 3,
     },
+    {
+      field: 'parents',
+      valueFormatter: (category) => (category?.value && category?.value[0]?.name) || '',
+      headerName: 'Categoria',
+      flex: 3,
+      hide: questions.every((question) => !question.parents),
+    },
+
     {
       field: 'id',
       headerName: 'Ações',
@@ -101,14 +107,14 @@ export default function QuestionsTable({
       ),
     },
   ];
-
   return (
-    <div style={{ height: '80vh', width: '100%' }}>
+    <div
+      style={{ height: Math.min(questions.length * 6 + 10, 80) + 'vh', width: '100%' }}
+    >
       <DataGrid
         rows={questions || []}
         columns={columns}
         pageSize={15}
-        rowsPerPageOptions={[]}
         disableSelectionOnClick
       />
     </div>
