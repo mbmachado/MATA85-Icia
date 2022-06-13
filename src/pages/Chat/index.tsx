@@ -60,7 +60,32 @@ export default function Chat() {
     }
   };
 
-  const handleSidebarOptionClick = (option: 'home' | 'mode'): void => {
+  const handleUsefulOptionClick = (useful: boolean): void => {
+    if (useful) {
+      setMessages([
+        ...messages,
+        {
+          text: 'Sim',
+          side: 'right',
+        },
+        {
+          text: 'Que bom! 😊😊',
+          side: 'left',
+        },
+      ]);
+    } else {
+      setMessages([
+        ...messages,
+        {
+          text: 'Não',
+          side: 'right',
+        },
+      ]);
+      handleOptionClick('home');
+    }
+  };
+
+  const handleOptionClick = (option: 'home' | 'mode'): void => {
     switch (option) {
       case 'home':
         setChatRefreshCount(1 + chatRefreshCount);
@@ -112,6 +137,7 @@ export default function Chat() {
       {
         text: question.answer,
         side: 'left',
+        askUseful: true,
       },
     ];
 
@@ -206,7 +232,7 @@ export default function Chat() {
           </Button>
         </Header>
         <div className="chat-container d-flex">
-          <ChatAside handleSidebarOptionClick={handleSidebarOptionClick} />
+          <ChatAside handleSidebarOptionClick={handleOptionClick} />
           <main className="d-flex flex-column flex-fill">
             <div
               ref={chatScrollableContainer}
@@ -219,6 +245,8 @@ export default function Chat() {
                   side={message.side}
                   topics={message.topics}
                   questions={message.questions}
+                  askUseful={message.askUseful || false}
+                  handleUsefulOptionClick={handleUsefulOptionClick}
                   generateMessegesForTopicSelection={generateMessegesForTopicSelection}
                   generateMessegesForQuestionSelection={
                     generateMessegesForQuestionSelection

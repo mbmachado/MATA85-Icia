@@ -13,6 +13,8 @@ type ChatMessageProps = {
   side: 'left' | 'right';
   text?: string;
   topics?: Topic[];
+  askUseful?: boolean;
+  handleUsefulOptionClick?: (useful: boolean) => void;
   generateMessegesForTopicSelection?: (topic: Topic) => void;
   generateMessegesForQuestionSelection?: (question: Question) => void;
 };
@@ -23,6 +25,8 @@ export default function ChatMessage({
   side,
   text,
   topics,
+  askUseful,
+  handleUsefulOptionClick,
   generateMessegesForTopicSelection,
   generateMessegesForQuestionSelection,
 }: ChatMessageProps) {
@@ -89,6 +93,30 @@ export default function ChatMessage({
               items={questions}
               handleItemSelection={handleItemSelection}
             />
+          </div>
+        ) : null}
+
+        {askUseful && handleUsefulOptionClick ? (
+          <div className="d-block w-100">
+            <h4 className="font-weight-normal mb-1 pt-2">Esta resposta foi útil?</h4>
+            <div className="d-flex">
+              <button
+                type="button"
+                onClick={() => handleUsefulOptionClick(true)}
+                title="Sim"
+                className={`chat-item-option d-block rounded bg-info text-dark py-0 px-2 border-0`}
+              >
+                <span>Sim</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleUsefulOptionClick(false)}
+                title="Não"
+                className={`chat-item-option d-block rounded bg-info text-dark py-0 px-2 ml-2 border-0`}
+              >
+                <span>Não</span>
+              </button>
+            </div>
           </div>
         ) : null}
         <div></div>

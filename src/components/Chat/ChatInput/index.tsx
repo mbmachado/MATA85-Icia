@@ -28,7 +28,7 @@ export default function ChatInput({ generateMessegesOnFormSubmit }: ChatInputPro
           type="text"
           className="py-2 pl-4 pr-5 w-100 border-0"
           onChange={handleChange()}
-          placeholder="Digite algo"
+          placeholder="Digite alguma pergunta"
           value={input}
         />
         <div className="position-absolute">

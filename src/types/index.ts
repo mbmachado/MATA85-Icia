@@ -16,6 +16,7 @@ interface Message {
   questions?: Question[];
   side: 'left' | 'right';
   topics?: Topic[];
+  askUseful?: boolean;
 }
 
 interface TopicsTree {
