@@ -38,11 +38,15 @@ export default function QuestionsTable({
       if (data.status === 'Success') {
         removeQuestion && removeQuestion(id);
 
-        const selectedTopic = JSON.parse(window.sessionStorage.getItem('selectedTopic'));
+        const selectedTopic = JSON.parse(
+          window.sessionStorage.getItem('selectedTopic') || '',
+        );
 
         if (selectedTopic) {
           const { questions } = selectedTopic;
-          const newQuestions = questions.filter((question) => question.id !== id);
+          const newQuestions = questions.filter(
+            (question: Question) => question.id !== id,
+          );
           const newSelectedTopic = { ...selectedTopic, questions: newQuestions };
           window.sessionStorage.setItem(
             'selectedTopic',

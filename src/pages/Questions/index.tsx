@@ -243,7 +243,7 @@ export default function Questions() {
         <div className="mt-3">
           {selectedTopicName && (
             <>
-              <h3> {`Perguntas da subcategoria ${selectedTopicName}`}</h3>
+              <h3>Perguntas da subcategoria `&quot;`{selectedTopicName}`&quot;`</h3>
               <br />
               <div>
                 <Button

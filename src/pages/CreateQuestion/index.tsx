@@ -35,7 +35,9 @@ const CreateQuestion = () => {
       .then((response) => {
         console.log(response);
 
-        const selectedTopic = JSON.parse(window.sessionStorage.getItem('selectedTopic'));
+        const selectedTopic = JSON.parse(
+          window.sessionStorage.getItem('selectedTopic') || '',
+        );
 
         if (selectedTopic) {
           const { questions } = selectedTopic;
