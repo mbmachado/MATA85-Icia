@@ -34,6 +34,19 @@ const CreateQuestion = () => {
       .then((response) => response.data)
       .then((response) => {
         console.log(response);
+
+        const selectedTopic = JSON.parse(window.sessionStorage.getItem('selectedTopic'));
+
+        if (selectedTopic) {
+          const { questions } = selectedTopic;
+          const newQuestions = [...questions, response.data];
+          const newSelectedTopic = { ...selectedTopic, questions: newQuestions };
+          window.sessionStorage.setItem(
+            'selectedTopic',
+            JSON.stringify(newSelectedTopic),
+          );
+        }
+
         navigate('/dashboard/questions', {
           state: {
             message: { type: 'success', text: 'Pergunta adicionada com sucesso!' },

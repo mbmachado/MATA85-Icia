@@ -37,6 +37,19 @@ export default function QuestionsTable({
 
       if (data.status === 'Success') {
         removeQuestion && removeQuestion(id);
+
+        const selectedTopic = JSON.parse(window.sessionStorage.getItem('selectedTopic'));
+
+        if (selectedTopic) {
+          const { questions } = selectedTopic;
+          const newQuestions = questions.filter((question) => question.id !== id);
+          const newSelectedTopic = { ...selectedTopic, questions: newQuestions };
+          window.sessionStorage.setItem(
+            'selectedTopic',
+            JSON.stringify(newSelectedTopic),
+          );
+        }
+
         toast.success('Pergunta excluída com sucesso!');
       } else {
         toast.error('Houve um erro ao excluir a pergunta.');
@@ -109,7 +122,7 @@ export default function QuestionsTable({
   ];
   return (
     <div
-      style={{ height: Math.min(questions.length * 6 + 10, 80) + 'vh', width: '100%' }}
+      style={{ height: Math.min(questions.length * 6 + 30, 80) + 'vh', width: '100%' }}
     >
       <DataGrid
         rows={questions || []}

@@ -6,7 +6,7 @@ import CreateTopicModal from 'components/CreateTopicModal';
 import QuestionsTable from 'components/QuestionsTable';
 import TextModal from 'components/TextModal';
 import { useAuthContext } from 'contexts/AuthContext/hook';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { services } from 'services';
@@ -33,6 +33,7 @@ export default function Questions() {
   };
 
   const handleCloseCreateTopicModal = () => {
+    setCurrentTopics((current) => [...current]);
     setIsCreateTopicModalOpen(false);
   };
 
@@ -42,6 +43,8 @@ export default function Questions() {
     setSelectedTopicName('');
     setSelectedTopicId(0);
     setQuestions([]);
+    window.sessionStorage.removeItem('breadcrumb');
+    window.sessionStorage.removeItem('selectedTopic');
   };
 
   const handleDeleteTopic = (topicId: number) => {
@@ -72,7 +75,20 @@ export default function Questions() {
   };
 
   useEffect(() => {
-    if (selectedTopicId === 0) {
+    const breadcrumb = window.sessionStorage.getItem('breadcrumb');
+    const selectedTopic = window.sessionStorage.getItem('selectedTopic');
+
+    if (breadcrumb && selectedTopic) {
+      const newSelectedTopics = JSON.parse(breadcrumb) as TopicsTree[];
+      const newSelectedTopic = JSON.parse(selectedTopic) as TopicsTree;
+      setSelectedTopics(newSelectedTopics);
+      setSelectedTopicId(newSelectedTopic.id);
+      setSelectedTopicName(newSelectedTopic.name);
+      setCurrentTopics(newSelectedTopic.children!);
+      setQuestions(newSelectedTopic.questions);
+    } else if (selectedTopicId === 0) {
+      getTree();
+
       getQuestions(authToken).then((response) => {
         setQuestions(response.data);
       });
@@ -83,16 +99,14 @@ export default function Questions() {
     setIsLoading(true);
     getTopicsTree(authToken)
       .then((response) => {
-        clearTree();
-        setCurrentTopics(response.data || []);
-        setInitialData(response.data || []);
+        if (currentSubtopics.length === 0) {
+          clearTree();
+          setCurrentTopics(response.data || []);
+          setInitialData(response.data || []);
+        }
       })
       .finally(() => setIsLoading(false));
-  }, [getTopicsTree, setCurrentTopics, setInitialData]);
-
-  useEffect(() => {
-    getTree();
-  }, []);
+  }, [selectedTopicId, getTopicsTree, setCurrentTopics, setInitialData]);
 
   return (
     <AdminTemplate>
@@ -108,7 +122,6 @@ export default function Questions() {
           parentId={selectedTopicId}
           onConfirm={() => {
             handleCloseCreateTopicModal();
-            getTree();
           }}
         />
 
@@ -154,6 +167,14 @@ export default function Questions() {
                       setSelectedTopicName(topic.name);
                       setSelectedTopicId(topic.id);
                       setQuestions(topic.questions);
+                      window.sessionStorage.setItem(
+                        'breadcrumb',
+                        JSON.stringify(selectedTopics.slice(0, index + 1)),
+                      );
+                      window.sessionStorage.setItem(
+                        'selectedTopic',
+                        JSON.stringify(topic),
+                      );
                     }}
                   >
                     {topic.name}
@@ -177,6 +198,12 @@ export default function Questions() {
                 setCurrentTopics(topic.children);
                 setSelectedTopicName(topic.name);
                 setSelectedTopicId(topic.id);
+
+                window.sessionStorage.setItem(
+                  'breadcrumb',
+                  JSON.stringify([...selectedTopics, topic]),
+                );
+                window.sessionStorage.setItem('selectedTopic', JSON.stringify(topic));
               }}
             >
               {topic.name}
@@ -216,7 +243,7 @@ export default function Questions() {
         <div className="mt-3">
           {selectedTopicName && (
             <>
-              <h3> {`Perguntas categoria ${selectedTopicName}`}</h3>
+              <h3> {`Perguntas da subcategoria "${selectedTopicName}`}"</h3>
               <br />
               <div>
                 <Button
